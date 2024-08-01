@@ -1,0 +1,48 @@
+* {  
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.iniciovista {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 200px); /* Tres columnas de 200px de ancho */
+    grid-template-rows: repeat(3, 200px); /* Dos filas de 200px de alto */
+    gap: 80px; /* Espacio entre cuadros */
+    justify-content: center; /* Centra los elementos horizontalmente */
+
+}
+
+.op5 {
+    
+    border: 1px solid black; /* Ajusta el borde según tus necesidades */
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    padding: 20px; /* Espacio interno opcional */
+    box-shadow: 2px 2px 5px rgb(93, 83, 25); /* Sombra para darle profundidad */
+    transition: transform 0.2s, box-shadow 0.2s; /* Transición para el hover effect */
+}
+
+ .op5:hover {
+    transform: translateY(-5px); /* Efecto de levantar en hover */
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.2); /* Sombra más pronunciada en hover */
+
+}
+
+.op5 img {
+    max-width: 50%;
+    height: 50px;
+    
+}
+
+ .op5 p {
+    margin-top: 30px; /* Espacio entre la imagen y el texto */
+    text-align: center; /* Centra el texto */
+    font-size: 16px; /* Tamaño de fuente */
+}
+

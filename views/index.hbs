@@ -1,0 +1,26 @@
+<div class="body w-full h-full">
+    <div class="container">
+        <div class="left-section"></div>
+        <div class="right-section">
+            <div class="login-container">
+                <form class="login-form" action="{{url}}/login" method="POST">
+                    {{#if error}}
+                    <p style="color: red;">{{error}}</p>
+                    {{/if}}
+                    <h2 class="login-title"><i class="fas fa-user-circle"></i>Iniciar Sesión</h2>
+                    <div class="form-control">
+                        <i class="fas fa-user icon"></i>
+                        <input type="text" placeholder="Usuario" name="user" required>
+                    </div>
+                    <div class="form-control">
+                        <i class="fas fa-lock icon"></i>
+                        <input type="password" placeholder="Contraseña" name="pass" required>
+                    </div>
+                    <button type="submit" class="login-button">Login</button>
+                </form>
+                <button type="button" class="register-button"
+                    onclick="window.location.href='{{url}}/registrar'">Registrarme</button>
+            </div>
+        </div>
+    </div>
+</div>

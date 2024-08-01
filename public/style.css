@@ -1,0 +1,180 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #027186;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            align-items: stretch;
+        }
+
+        .left-section,
+        .left1-section,
+        .left2-section {
+            background-size: cover;
+            background-position: center;
+            display: none;
+        }
+
+        .left-section {
+            background-image: url('https://img.freepik.com/free-vector/flat-illustration-international-museum-day_23-2150264410.jpg?t=st=1719608133~exp=1719611733~hmac=de2d8e6d8f86342ab231462d718bbbd89a6b1d1217317a25e000d009851a131e&w=740');
+        }
+
+        .left1-section {
+            background-image: url('https://img.freepik.com/free-vector/flat-illustration-international-museum-day_23-2150264410.jpg?t=st=1719608133~exp=1719611733~hmac=de2d8e6d8f86342ab231462d718bbbd89a6b1d1217317a25e000d009851a131e&w=740');
+        }
+
+        .left2-section {
+            background-image: url('https://img.freepik.com/free-vector/flat-illustration-international-museum-day_23-2150264410.jpg?t=st=1719608133~exp=1719611733~hmac=de2d8e6d8f86342ab231462d718bbbd89a6b1d1217317a25e000d009851a131e&w=740');
+        }
+
+        @media screen and (min-width: 768px) {
+
+            .left-section,
+            .left1-section,
+            .left2-section {
+                display: block;
+                flex: 1;
+            }
+        }
+
+        .right-section,
+        .right1-section,
+        .right2-section {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgb(10 75 90);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .login-form h2 {
+            color: #F39200;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .login-title i {
+            margin-right: 10px;
+            color: #027186;
+        }
+
+        .form-control {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .form-control i {
+            position: absolute;
+            left: 15px;
+            top: 14px;
+            color: #32495e;
+        }
+
+        .form-control input {
+            width: 91%;
+            padding: 12px 0 12px 37px;
+            border: 2px solid #00569f1c;
+            background-color: rgb(232, 232, 232);
+            color: rgb(50, 73, 94);
+            border-radius: 6px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-control input:focus {
+            outline: none;
+            border: 2px solid #ffd8a1;
+        }
+
+        .form-control input:invalid:not(:focus):not(:placeholder-shown) {
+            border: 2px solid #ff3860;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            border: 2px solid #223362;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: #f7f7f7;
+            transition: background-color 0.3s, border-color 0.3s;
+            pointer-events: none;
+        }
+
+        .remember-me .checkbox-custom::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1px;
+            width: 6px;
+            height: 11px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            display: none;
+        }
+
+        .remember-me input[type="checkbox"] {
+            display: none;
+        }
+
+        .remember-me input[type="checkbox"]:checked+.checkbox-custom::after {
+            display: block;
+        }
+
+        .remember-me input[type="checkbox"]:checked+.checkbox-custom {
+            background-color: #027186;
+            border-color: #027186;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background-color: #F39200;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button:hover {
+            background-color: #223362;
+        }
+
+        .register-button {
+            margin-top: 10px;
+            background-color: #223362;
+        }
+
+        .register-button:hover {
+            background-color: #F39200;
+        }

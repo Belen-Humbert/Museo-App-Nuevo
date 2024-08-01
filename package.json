@@ -1,0 +1,29 @@
+{
+  "name": "proyectonode",
+  "version": "1.0.0",
+  "description": "Andamiaje para proyecto Node de programación II",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnzoVonkunoschy/p2_2023_repo.git"
+  },
+  "author": "Enzo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnzoVonkunoschy/p2_2023_repo/issues"
+  },
+  "homepage": "https://github.com/EnzoVonkunoschy/p2_2023_repo#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
