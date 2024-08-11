@@ -98,9 +98,6 @@ function actualizarPieza(piezaAct) {
 
 }
 
-
-
-
 //baja logica
 function PiezaBaja(numRe) {
   const numeroRegistro = numRe;
@@ -112,8 +109,6 @@ function PiezaBaja(numRe) {
     return{ success: false, message: 'Pieza no encontrada' };
   }
 }
-
-
 
 function guardarPrestamo(data) {
   console.log("--nuevo(Préstamo)-->[controlador]");
@@ -145,5 +140,30 @@ function obtenerPrestamo() {
   return Modelo.obtenerPrestamo();
 }
 
+function nuevaTaxi(nuevaTaxidermia) {
+  console.log("--nuevo(nuevaTaxidermia)-->[controlador]");
+  console.log(nuevaTaxidermia);
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza,};
+  let miTaxidermia = new Clases.Taxidermia(
+    nuevaTaxidermia.NumeroRegistro,
+    nuevaTaxidermia.FechaMantenimiento,
+    nuevaTaxidermia.Observacion,
+    nuevaTaxidermia.idPieza
+    );
+
+  console.log('Registro de Taxidermia Creado:', miTaxidermia);
+
+  const guardarExitoso = Modelo.guardarTaxidermia(miTaxidermia);
+  console.log('Operación de guardar:', guardarExitoso);
+  if(guardarExitoso){
+    console.log("Taxidermia registrada con exito");
+    return true;
+  } else{
+    console.log('algo fallo');
+    return false;
+  }
+
+}
+
+
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi,};

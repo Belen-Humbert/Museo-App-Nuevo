@@ -203,12 +203,28 @@ app.post('/registrarprestamo', (req, res) => {
 
 });
 
+app.get('/nuevaTaxidermia', (req, res) => {
+  res.render('nuevaTaxidermia', { useTailwind: true, titulo: 'Nueva Taxidermia' });
+});
+
+app.post('/enviarTaxidermia', (req, res) => {
+  console.log(req.body);
+  const nuevaTaxidermia = req.body;
+  const operacionExitosa = Controlador.nuevaTaxi(nuevaTaxidermia);
+  if(operacionExitosa){
+    console.log('redirigiendo a inicio');
+    res.redirect('/inicio');
+  } else {
+    return false;
+  }
+});
 
 //baja logica
 /* app.delete('/eliminar/:numeroRegistro', Controlador.eliminarPieza); */
 app.use((req, res, next) => {
   res.status(404).render('404', { useTailwind: true, titulo: 'Página no encontrada' });
 });
+
 
 app.listen(port, () => {
   console.log(`Corriendo en \x1b[35m'http://localhost:${port}'\x1b[30m crtl + click izq para ir\x1b[0m`)

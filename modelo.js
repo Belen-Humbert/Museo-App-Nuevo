@@ -153,8 +153,6 @@ function updatePieza(piezaAct) {
   }
 }
 
-
-
 function obtenerPrestamo() {
   let str_prestamo = fs.readFileSync('./db/prestamo.txt', 'utf-8');
   let prestamo = [];
@@ -165,5 +163,28 @@ function obtenerPrestamo() {
   return prestamo;
 }
 
+function guardarTaxidermia(miTaxidermia) {
+  let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
+  let taxidermia = [];
+  if (str_taxidermia) {
+    taxidermia = JSON.parse(str_taxidermia);
+      console.log('Registros existentes:', taxidermia);
+  }
 
-module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, };
+  console.log('Nueva Taxidermia:', miTaxidermia);
+  taxidermia.push(miTaxidermia);
+  console.log('Registro después de agregar la nueva taxidermia:', taxidermia);
+
+  try {
+      fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
+      console.log('Datos guardados en taxidermia.txt');
+      return true;
+  } catch (err) {
+      console.error('Error al guardar los datos:', err);
+      return false;
+  }
+
+}
+
+
+module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, };
