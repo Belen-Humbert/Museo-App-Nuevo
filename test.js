@@ -37,7 +37,7 @@ function testGuardar(){
 function testActualizarBajaLogica(){
     Modelo.actualizarBajaLogica()
 }
-testActualizarBajaLogica(1734)
+//testActualizarBajaLogica(1734)
 
 function testObtener(){
     console.log("Test Obtener Piezas----")

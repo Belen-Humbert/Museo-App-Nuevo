@@ -98,36 +98,36 @@ function actualizarBajaLogica(numeroRegistro) {
   }
 }
 
- function actualizarBajaLogicax(numeroRegistro) {
-   try {
-     let piezas =  obtener();
-     //const index = piezas.findIndex(p => p.NumeroRegistro == numeroRegistro);
-     let index=null;
-     for(var i=0 ; i<piezas.length ; i++){
-       console.log(piezas[i])
-       if(piezas[i].NumeroRegistro == numeroRegistro){
-         index = i
-         console.log("index")
-         console.log(index)
-       }
-     }
+//  function actualizarBajaLogicax(numeroRegistro) {
+//    try {
+//      let piezas =  obtener();
+//      //const index = piezas.findIndex(p => p.NumeroRegistro == numeroRegistro);
+//      let index=null;
+//      for(var i=0 ; i<piezas.length ; i++){
+//        console.log(piezas[i])
+//        if(piezas[i].NumeroRegistro == numeroRegistro){
+//          index = i
+//          console.log("index")
+//          console.log(index)
+//        }
+//      }
 
-     console.log("index")
-     console.log(index)
-     if (index !== -1) {
-       piezas[index].BajaLogica = false;
-       guardar(piezas);
-       console.log(`Pieza con número de registro ${numeroRegistro} marcada como eliminada lógicamente.`);
-       return true;
-     } else {
-       console.log(`No se encontró la pieza con número de registro ${numeroRegistro}.`);
-       return false;
-     }
-   } catch (err) {
-     console.error('Error al actualizar baja lógica:', err);
-     return false;
-   }
- }
+//      console.log("index")
+//      console.log(index)
+//      if (index !== -1) {
+//        piezas[index].BajaLogica = false;
+//        guardar(piezas);
+//        console.log(`Pieza con número de registro ${numeroRegistro} marcada como eliminada lógicamente.`);
+//        return true;
+//      } else {
+//        console.log(`No se encontró la pieza con número de registro ${numeroRegistro}.`);
+//        return false;
+//      }
+//    } catch (err) {
+//      console.error('Error al actualizar baja lógica:', err);
+//      return false;
+//    }
+//  }
 function guardarPrestamo(data) {
   let str_prestamo = fs.readFileSync('./db/prestamo.txt', 'utf-8');
   let prestamo = [];
