@@ -142,7 +142,7 @@ app.get('/editarPieza/:NroReg', (req, res)=>{
 
   const numRe = req.params.NroReg;
   const piezas = Controlador.PiezaPorNro(numRe);
-  res.render('modificar', { useTailwind: false, titulo: 'Modificar', piezas });
+  res.render('modificar', { useTailwind: true, titulo: 'Modificar', piezas });
 
 
 }); 
@@ -151,13 +151,21 @@ app.get('/editarPieza/:NroReg', (req, res)=>{
 app.post('/actualizarPieza', (req, res)=>{
 
   const piezaAct = req.body;
-  const NroRpiezaOri = Controlador.PiezaPorNro(piezaAct.NroReg);
 
-  const piezaActualizada = Controlador.actualizarPieza(piezaAct,NroRpiezaOri);
+  const operacionExitosa = Controlador.actualizarPieza(piezaAct);
 
+  if (operacionExitosa) {
+
+    console.log('en server todo bien redirigeindo a menu');
+    res.redirect('/menu');
+
+  }else{
+
+    console.log('error mi rey')
+  }
+  
 
 });
-
 
 app.get('/prestamo', autenticarUsuario,(req, res) => {
   console.log("llegó un /nuevo prestamo");
