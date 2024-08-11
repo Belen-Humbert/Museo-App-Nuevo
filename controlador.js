@@ -82,14 +82,20 @@ function PiezaPorNro(numRe) {
 
 // en proceso
 
-function actualizarPieza(piezaAct, NroRpiezaOri){
-const piezaOr = PiezaPorNro(NroRpiezaOri);
-const piezasArray = Modelo.obtener();
+function actualizarPieza(piezaAct) {
 
-if(piezaAct !== piezaOr){
+  OperaciónOk =  Modelo.updatePieza(piezaAct);
 
+  if (OperaciónOk) {
+    console.log('todo bien al fin');
+    return true;
 
-}
+  } else {
+    console.log('todo mal otra vez');
+    return false;
+
+  }
+
 }
 
 
@@ -140,4 +146,4 @@ function obtenerPrestamo() {
 }
 
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza};
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza,};
