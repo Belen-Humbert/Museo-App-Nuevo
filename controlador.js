@@ -165,5 +165,8 @@ function nuevaTaxi(nuevaTaxidermia) {
 
 }
 
+function listarTaxidermia() {
+  return Modelo.obtenerTaxidermia();
+}
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi,};
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia};

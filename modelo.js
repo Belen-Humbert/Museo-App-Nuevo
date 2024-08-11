@@ -186,5 +186,14 @@ function guardarTaxidermia(miTaxidermia) {
 
 }
 
+function obtenerTaxidermia() {
+  let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
+  let taxidermia = [];
+  if (str_taxidermia) {
+    taxidermia = JSON.parse(str_taxidermia);
+  }
+  return taxidermia;
+}
 
-module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, };
+
+module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia };

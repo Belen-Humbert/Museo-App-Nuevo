@@ -213,10 +213,15 @@ app.post('/enviarTaxidermia', (req, res) => {
   const operacionExitosa = Controlador.nuevaTaxi(nuevaTaxidermia);
   if(operacionExitosa){
     console.log('redirigiendo a inicio');
-    res.redirect('/inicio');
+    res.redirect('/listarTaxidermia');
   } else {
     return false;
   }
+});
+
+app.get('/listarTaxidermia', (req,res) => {
+const taxidermia = Controlador.listarTaxidermia();
+res.render('listarTaxidermia', {useTailwind: true, titulo: 'Listar Taxidermia', taxidermia})
 });
 
 //baja logica
