@@ -186,5 +186,41 @@ function guardarTaxidermia(miTaxidermia) {
 
 }
 
+function obtenerTaxidermia() {
+  let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
+  let taxidermia = [];
+  if (str_taxidermia) {
+    taxidermia = JSON.parse(str_taxidermia);
+  }
+  return taxidermia;
+}
 
-module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, };
+function updateTaxidermia(taxidermiaActualizada){
+const taxidermia = obtenerTaxidermia();
+
+let indice = null;
+
+for (let i = 0; i < taxidermia.length; i++) {
+    if (taxidermiaActualizada.numero === taxidermia[i].idTaxidermia) {
+      indice = i;
+      console.log('encntre esta taxidermia', indice);
+    }
+  
+}
+if (indice !== -1) {
+  
+  taxidermia[indice].fechaMantenimiento = taxidermiaActualizada.fecha;
+  taxidermia[indice].observacionTaxidermia = taxidermiaActualizada.observa;
+
+  try {
+    fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
+    console.log('Datos guardados en taxidermia.txt');
+    return true;
+} catch (err) {
+    console.error('Error al guardar los datos:', err);
+    return false;
+}
+}
+
+}
+module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia, };
