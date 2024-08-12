@@ -72,6 +72,9 @@
                         <th scope="col" class="px-6 py-3">
                             Observaciones
                         </th>
+                         <th scope="col" class="px-6 py-3">
+                            Editar
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -100,6 +103,12 @@
                         </td>
                         <td class="px-6 py-4">
                             {{this.observacionTaxidermia}}
+                        </td>
+                        <td class="px-2 py-4 space-x-2.5">
+                            <form action="/modificarTaxidermia" method="post">
+                                <input type="hidden" name="editar" value="{{this.idTaxidermia}}">
+                                <button type="submit" class="btn btn-success">Editar</button>
+                            </form>
                         </td>
                     {{/each}}
                 </tbody>

@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const Seguridad = require("./seguridad.js");
 const Controlador = require('./controlador.js');
 const session = require('express-session');
+const { title } = require("process");
 
 // Inicialización de la aplicación Express
 const app = express();
@@ -223,6 +224,31 @@ app.get('/listarTaxidermia', (req,res) => {
 const taxidermia = Controlador.listarTaxidermia();
 res.render('listarTaxidermia', {useTailwind: true, titulo: 'Listar Taxidermia', taxidermia})
 });
+
+app.post('/modificarTaxidermia', (req,res) => {
+ const idTax = req.body.editar;
+ res.redirect(`/editarTaxidermia/${idTax}`);
+});
+
+app.get('/editarTaxidermia/:idTax', (req,res) => {
+const idTax = req.params.idTax;
+const taxidermia = Controlador.TaxidermiaPorNro(idTax);
+res.render('modificarTaxidermia', {useTailwind: true, titulo: 'Modificar Pieza', taxidermia});
+});
+
+app.post('/actualizarTaxidermia', (req,res) => {
+  const taxidermiaActualizada = req.body;
+  const operacionOk = Controlador.actualizarTaxidermia(taxidermiaActualizada);
+
+  if(operacionOk){
+    console.log('Todo bien en server redirigiendo a listar');
+    res.redirect('listarTaxidermia');
+  }else{
+    console.log('algo fallo');
+    return false
+  }
+
+})
 
 //baja logica
 /* app.delete('/eliminar/:numeroRegistro', Controlador.eliminarPieza); */

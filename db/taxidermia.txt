@@ -1,1 +1,1 @@
-[{"idTaxidermia":"1","fechaMantenimiento":"2024-08-11","observacionTaxidermia":"Mi primer registro"},{"idTaxidermia":"2","fechaMantenimiento":"2024-08-06","observacionTaxidermia":"dfiwekdslksdkd"},{"idTaxidermia":"3","fechaMantenimiento":"2024-08-17","observacionTaxidermia":"esta muerta"}]
+[{"idTaxidermia":"1","fechaMantenimiento":"2024-08-11","observacionTaxidermia":"mi ultimo regsitro"},{"idTaxidermia":"2","fechaMantenimiento":"2024-08-06","observacionTaxidermia":"milei"},{"idTaxidermia":"3","fechaMantenimiento":"2024-08-17","observacionTaxidermia":"esta viva"}]

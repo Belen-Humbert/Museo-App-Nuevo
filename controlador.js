@@ -169,4 +169,31 @@ function listarTaxidermia() {
   return Modelo.obtenerTaxidermia();
 }
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia};
+function TaxidermiaPorNro(idTax){
+
+  const taxidermiaArray = Modelo.obtenerTaxidermia();
+  const taxidId = taxidermiaArray.find(taxidermia => taxidermia.idTaxidermia === idTax);//busca el priemer numero en el array que coincida con el que se le pasa con el 
+
+  if (taxidId) {
+    console.log('encontramos', taxidId.idTaxidermia);
+    return (taxidId);
+  } else {
+    console.log('No encontre ni aka');
+  }
+
+}
+
+function actualizarTaxidermia(taxidermiaActualizada){
+  const operacionOk = Modelo.updateTaxidermia(taxidermiaActualizada);
+
+  if (operacionOk) {
+    console.log('esta funcionando');
+    return true;
+  } else {
+    console.log('no anda');
+    return false;
+  }
+
+}
+
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia};
