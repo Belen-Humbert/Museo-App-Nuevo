@@ -1,1 +1,1 @@
-[{"idTaxidermia":"1","fechaMantenimiento":"2024-08-11","observacionTaxidermia":"Mi primer registro"},{"idTaxidermia":"2","fechaMantenimiento":"2024-08-06","observacionTaxidermia":"dfiwekdslksdkd"}]
+[{"idTaxidermia":"1","fechaMantenimiento":"2024-08-11","observacionTaxidermia":"Mi primer registro"},{"idTaxidermia":"2","fechaMantenimiento":"2024-08-06","observacionTaxidermia":"dfiwekdslksdkd"},{"idTaxidermia":"3","fechaMantenimiento":"2024-09-06","observacionTaxidermia":"viva peron"}]
