@@ -5,7 +5,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #027186;
+            background-color: white;
         }
 
         .container {
@@ -23,15 +23,15 @@
         }
 
         .left-section {
-            background-image: url('https://img.freepik.com/free-vector/flat-illustration-international-museum-day_23-2150264410.jpg?t=st=1719608133~exp=1719611733~hmac=de2d8e6d8f86342ab231462d718bbbd89a6b1d1217317a25e000d009851a131e&w=740');
+            background-image: url('https://img.freepik.com/free-vector/flat-customer-support-illustration_23-2148899114.jpg?t=st=1723670380~exp=1723673980~hmac=4a4d9b242134f2ee27ebde7fd782126381098f23005ccb2d5fdf2de121007296&w=740');
         }
 
         .left1-section {
-            background-image: url('https://img.freepik.com/free-vector/flat-illustration-international-museum-day_23-2150264410.jpg?t=st=1719608133~exp=1719611733~hmac=de2d8e6d8f86342ab231462d718bbbd89a6b1d1217317a25e000d009851a131e&w=740');
+            background-image: url('https://img.freepik.com/free-vector/flat-customer-support-illustration_23-2148899114.jpg?t=st=1723670380~exp=1723673980~hmac=4a4d9b242134f2ee27ebde7fd782126381098f23005ccb2d5fdf2de121007296&w=740');
         }
 
         .left2-section {
-            background-image: url('https://img.freepik.com/free-vector/flat-illustration-international-museum-day_23-2150264410.jpg?t=st=1719608133~exp=1719611733~hmac=de2d8e6d8f86342ab231462d718bbbd89a6b1d1217317a25e000d009851a131e&w=740');
+            background-image: url('https://img.freepik.com/free-vector/flat-customer-support-illustration_23-2148899114.jpg?t=st=1723670380~exp=1723673980~hmac=4a4d9b242134f2ee27ebde7fd782126381098f23005ccb2d5fdf2de121007296&w=740');
         }
 
         @media screen and (min-width: 768px) {
@@ -54,7 +54,7 @@
         }
 
         .login-container {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgb(255, 255, 255);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgb(10 75 90);
