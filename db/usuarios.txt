@@ -1,1 +1,1 @@
-[{"nombre":"Belen","usuario":"bel_humbert","pass":"0395","token":null,"class":"Usuario"}]
+[{"nombre":"Belen","usuario":"bel_humbert","pass":"0395","token":null,"class":"Usuario"},{"nombre":"Alejo Montuori","usuario":"alejo","pass":"1234","token":null,"class":"Usuario"}]
