@@ -1,23 +1,18 @@
-* {  
-
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body {
+    background-color: white;
 }
 
 
 .iniciovista {
     margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(4, 200px); /* Tres columnas de 200px de ancho */
-    grid-template-rows: repeat(3, 200px); /* Dos filas de 200px de alto */
+    grid-template-columns: repeat(3, 200px); /* Tres columnas de 200px de ancho */
+    grid-template-rows: repeat(2, 200px); /* Dos filas de 200px de alto */
     gap: 80px; /* Espacio entre cuadros */
     justify-content: center; /* Centra los elementos horizontalmente */
-
 }
 
-.op5 {
-    
+.op1, .op2, .op3, .op4, .op5 {
     border: 1px solid black; /* Ajusta el borde según tus necesidades */
     display: flex;
     flex-direction: column; /* Coloca los elementos en columna */
@@ -26,23 +21,21 @@
     padding: 20px; /* Espacio interno opcional */
     box-shadow: 2px 2px 5px rgb(93, 83, 25); /* Sombra para darle profundidad */
     transition: transform 0.2s, box-shadow 0.2s; /* Transición para el hover effect */
+    cursor: pointer;
 }
 
- .op5:hover {
+.op1:hover, .op2:hover, .op3:hover, .op4:hover, .op5:hover {
     transform: translateY(-5px); /* Efecto de levantar en hover */
     box-shadow: 4px 4px 15px rgba(0,0,0,0.2); /* Sombra más pronunciada en hover */
-
 }
 
-.op5 img {
+.op1 img, .op2 img, .op3 img, .op4 img, .op5 img {
     max-width: 50%;
     height: 50px;
-    
 }
 
- .op5 p {
+.op1 p, .op2 p, .op3 p, .op4 p, .op5 p {
     margin-top: 30px; /* Espacio entre la imagen y el texto */
     text-align: center; /* Centra el texto */
     font-size: 16px; /* Tamaño de fuente */
 }
-
