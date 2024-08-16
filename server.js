@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const Seguridad = require("./seguridad.js");
 const Controlador = require('./controlador.js');
 const session = require('express-session');
+const { title } = require("process");
 
 // Inicialización de la aplicación Express
 const app = express();
@@ -142,7 +143,7 @@ app.get('/editarPieza/:NroReg', (req, res)=>{
 
   const numRe = req.params.NroReg;
   const piezas = Controlador.PiezaPorNro(numRe);
-  res.render('modificar', { useTailwind: false, titulo: 'Modificar', piezas });
+  res.render('modificar', { useTailwind: true, titulo: 'Modificar', piezas });
 
 
 }); 
@@ -151,13 +152,21 @@ app.get('/editarPieza/:NroReg', (req, res)=>{
 app.post('/actualizarPieza', (req, res)=>{
 
   const piezaAct = req.body;
-  const NroRpiezaOri = Controlador.PiezaPorNro(piezaAct.NroReg);
 
-  const piezaActualizada = Controlador.actualizarPieza(piezaAct,NroRpiezaOri);
+  const operacionExitosa = Controlador.actualizarPieza(piezaAct);
 
+  if (operacionExitosa) {
+
+    console.log('en server todo bien redirigeindo a menu');
+    res.redirect('/menu');
+
+  }else{
+
+    console.log('error mi rey')
+  }
+  
 
 });
-
 
 app.get('/prestamo', autenticarUsuario,(req, res) => {
   console.log("llegó un /nuevo prestamo");
@@ -195,12 +204,58 @@ app.post('/registrarprestamo', (req, res) => {
 
 });
 
+app.get('/nuevaTaxidermia', (req, res) => {
+  res.render('nuevaTaxidermia', { useTailwind: true, titulo: 'Nueva Taxidermia' });
+});
+
+app.post('/enviarTaxidermia', (req, res) => {
+  console.log(req.body);
+  const nuevaTaxidermia = req.body;
+  const operacionExitosa = Controlador.nuevaTaxi(nuevaTaxidermia);
+  if(operacionExitosa){
+    console.log('redirigiendo a inicio');
+    res.redirect('/listarTaxidermia');
+  } else {
+    return false;
+  }
+});
+
+app.get('/listarTaxidermia', (req,res) => {
+const taxidermia = Controlador.listarTaxidermia();
+res.render('listarTaxidermia', {useTailwind: true, titulo: 'Listar Taxidermia', taxidermia})
+});
+
+app.post('/modificarTaxidermia', (req,res) => {
+ const idTax = req.body.editar;
+ res.redirect(`/editarTaxidermia/${idTax}`);
+});
+
+app.get('/editarTaxidermia/:idTax', (req,res) => {
+const idTax = req.params.idTax;
+const taxidermia = Controlador.TaxidermiaPorNro(idTax);
+res.render('modificarTaxidermia', {useTailwind: true, titulo: 'Modificar Pieza', taxidermia});
+});
+
+app.post('/actualizarTaxidermia', (req,res) => {
+  const taxidermiaActualizada = req.body;
+  const operacionOk = Controlador.actualizarTaxidermia(taxidermiaActualizada);
+
+  if(operacionOk){
+    console.log('Todo bien en server redirigiendo a listar');
+    res.redirect('listarTaxidermia');
+  }else{
+    console.log('algo fallo');
+    return false
+  }
+
+})
 
 //baja logica
 /* app.delete('/eliminar/:numeroRegistro', Controlador.eliminarPieza); */
 app.use((req, res, next) => {
   res.status(404).render('404', { useTailwind: true, titulo: 'Página no encontrada' });
 });
+
 
 app.listen(port, () => {
   console.log(`Corriendo en \x1b[35m'http://localhost:${port}'\x1b[30m crtl + click izq para ir\x1b[0m`)

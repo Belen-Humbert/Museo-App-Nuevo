@@ -82,18 +82,21 @@ function PiezaPorNro(numRe) {
 
 // en proceso
 
-function actualizarPieza(piezaAct, NroRpiezaOri){
-const piezaOr = PiezaPorNro(NroRpiezaOri);
-const piezasArray = Modelo.obtener();
+function actualizarPieza(piezaAct) {
 
-if(piezaAct !== piezaOr){
+  OperaciónOk =  Modelo.updatePieza(piezaAct);
 
+  if (OperaciónOk) {
+    console.log('todo bien al fin');
+    return true;
+
+  } else {
+    console.log('todo mal otra vez');
+    return false;
+
+  }
 
 }
-}
-
-
-
 
 //baja logica
 function PiezaBaja(numRe) {
@@ -106,8 +109,6 @@ function PiezaBaja(numRe) {
     return{ success: false, message: 'Pieza no encontrada' };
   }
 }
-
-
 
 function guardarPrestamo(data) {
   console.log("--nuevo(Préstamo)-->[controlador]");
@@ -139,5 +140,60 @@ function obtenerPrestamo() {
   return Modelo.obtenerPrestamo();
 }
 
+function nuevaTaxi(nuevaTaxidermia) {
+  console.log("--nuevo(nuevaTaxidermia)-->[controlador]");
+  console.log(nuevaTaxidermia);
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza};
+  let miTaxidermia = new Clases.Taxidermia(
+    nuevaTaxidermia.NumeroRegistro,
+    nuevaTaxidermia.FechaMantenimiento,
+    nuevaTaxidermia.Observacion,
+    nuevaTaxidermia.idPieza
+    );
+
+  console.log('Registro de Taxidermia Creado:', miTaxidermia);
+
+  const guardarExitoso = Modelo.guardarTaxidermia(miTaxidermia);
+  console.log('Operación de guardar:', guardarExitoso);
+  if(guardarExitoso){
+    console.log("Taxidermia registrada con exito");
+    return true;
+  } else{
+    console.log('algo fallo');
+    return false;
+  }
+
+}
+
+function listarTaxidermia() {
+  return Modelo.obtenerTaxidermia();
+}
+
+function TaxidermiaPorNro(idTax){
+
+  const taxidermiaArray = Modelo.obtenerTaxidermia();
+  const taxidId = taxidermiaArray.find(taxidermia => taxidermia.idTaxidermia === idTax);//busca el priemer numero en el array que coincida con el que se le pasa con el 
+
+  if (taxidId) {
+    console.log('encontramos', taxidId.idTaxidermia);
+    return (taxidId);
+  } else {
+    console.log('No encontre ni aka');
+  }
+
+}
+
+function actualizarTaxidermia(taxidermiaActualizada){
+  const operacionOk = Modelo.updateTaxidermia(taxidermiaActualizada);
+
+  if (operacionOk) {
+    console.log('esta funcionando');
+    return true;
+  } else {
+    console.log('no anda');
+    return false;
+  }
+
+}
+
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia};

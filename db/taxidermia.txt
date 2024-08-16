@@ -1,0 +1,1 @@
+[{"idTaxidermia":"1","fechaMantenimiento":"2024-08-11","observacionTaxidermia":"Mi primer registro"},{"idTaxidermia":"2","fechaMantenimiento":"2024-08-12","observacionTaxidermia":"hola gey"}]

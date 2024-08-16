@@ -34,10 +34,16 @@ function testGuardar(){
 }
 //testGuardar();
 
+function testNuevaTaxidermia(){
+    const miTaxidermia = new Clases.Taxidermia(1, "12/04/2024", "Mi primer registro")
+    Modelo.guardarTaxidermia(miTaxidermia);
+}
+testNuevaTaxidermia
+
 function testActualizarBajaLogica(){
     Modelo.actualizarBajaLogica()
 }
-testActualizarBajaLogica(1734)
+//testActualizarBajaLogica(1734)
 
 function testObtener(){
     console.log("Test Obtener Piezas----")
