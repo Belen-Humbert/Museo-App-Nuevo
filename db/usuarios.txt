@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"nombre":"Belen","usuario":"bel_humbert","pass":"0395","token":null,"class":"Usuario"},{"nombre":"Alejo Montuori","usuario":"alejo","pass":"1234","token":null,"class":"Usuario"}]
-=======
 [{"nombre":"Belen","usuario":"bel_humbert","pass":"0395","token":null,"class":"Usuario"},{"nombre":"Luana","usuario":"luana","pass":"1234","token":null,"class":"Usuario"}]
->>>>>>> 7779b0946b39f6ac4d927491ef2ce7425cb170ec
