@@ -118,12 +118,12 @@ function guardarPrestamo(data) {
   let miPretamos = new Clases.Prestamo(
     data.idPrestamo,
     data.numeroPrestamo,
+    data.numeroPiezas,
     data.eventoPrestamo,
     data.fechaPrestamo,
     data.fechaDevolucion,
     data.cantidad,
     data.observacionPrestamo,
-    data.idPieza,
     insert
 
   );
@@ -196,4 +196,31 @@ function actualizarTaxidermia(taxidermiaActualizada){
 
 }
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia};
+function actualizarPrestamo(PrestamoActualizado){
+  const operacionOk = Modelo.updatePrestamo(PrestamoActualizado);
+
+  if (operacionOk) {
+    console.log('esta funcionando');
+    return true;
+  } else {
+    console.log('no anda');
+    return false;
+  }
+
+}
+
+function PrestamoPorNro(idPres){
+
+  const prestamoArray = Modelo.obtenerPrestamo();
+  const prestId = prestamoArray.find(prestamo => prestamo.numeroPrestamo === idPres);//busca el priemer numero en el array que coincida con el que se le pasa con el 
+
+  if (prestId) {
+    console.log('encontramos', prestId.numeroPrestamo);
+    return (prestId);
+  } else {
+    console.log('No encontre ni aka');
+  }
+
+}
+
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, actualizarPrestamo, PrestamoPorNro};

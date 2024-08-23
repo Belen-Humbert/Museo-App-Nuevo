@@ -103,7 +103,7 @@ function guardarPrestamo(data) {
   let prestamo = [];
   if (str_prestamo) {
     prestamo = JSON.parse(str_prestamo);
-      console.log('Piezas existentes:', prestamo);
+      console.log('prestamo existente:', prestamo);
   }
 
   console.log('Nueva prestamo:', data);
@@ -111,7 +111,7 @@ function guardarPrestamo(data) {
   console.log('prestamo después de agregar la nueva:', prestamo);
 
   try {
-      fs.writeFileSync('./db/prestamo.txt', JSON.stringify(piezas));
+      fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamo));
       console.log('Datos guardados en prestamo.txt');
       return true;
   } catch (err) {
@@ -221,6 +221,42 @@ if (indice !== -1) {
     return false;
 }
 }
+}
+
+function updatePrestamo(PrestamoActualizado){
+  const prestamo = obtenerPrestamo();
+  
+  let indice = null;
+  
+  for (let i = 0; i < prestamo.length; i++) {
+      if (PrestamoActualizado.numero === prestamo[i].idPrestamo) {
+        indice = i;
+        console.log('encntre este Prestamo', indice);
+      }
+    
+  }
+  if (indice !== -1) {
+    
+    prestamo[indice].numeroPrestamo = PrestamoActualizado.numeroPrestamo;
+    prestamo[indice].numeroPiezas = PrestamoActualizado.numeroPiezas;
+    prestamo[indice].eventoPrestamo = PrestamoActualizado.eventoPrestamo;
+    prestamo[indice].fechaPrestamo = PrestamoActualizado.fechaPrestamo;
+    prestamo[indice].fechaDevolucion = PrestamoActualizado.fechaDevolucion;
+    prestamo[indice].cantidad = PrestamoActualizado.cantidad;
+    prestamo[indice].observacion = PrestamoActualizado.observacion;
+
+
+    try {
+      fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamo));
+      console.log('Datos guardados en prestamo.txt');
+      return true;
+  } catch (err) {
+      console.error('Error al guardar los datos:', err);
+      return false;
+  }
+  }
+
+
 
 }
-module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia, };
+module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia,updatePrestamo, };

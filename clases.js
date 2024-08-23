@@ -38,15 +38,15 @@ class Pieza {
 
 class Prestamo{
 
-   constructor(idPres, numPres ,eventoPre, fechaPre, fechaDev, cant ,obsePre, idPieza){
+   constructor(idPres, numPres ,eventoPre, fechaPre, fechaDev, cant ,obsePre, numPieza){
         this.idPrestamo = idPres;
         this.numeroPrestamo = numPres 
         this.eventoPrestamo = eventoPre;
+        this.numeroPiezas= numPieza;
         this.fechaPrestamo = fechaPre;
         this.fechaDevolucion = fechaDev;
         this.cantidad = cant;
         this.observacionPrestamo = obsePre;
-        this.idPieza = idPieza; 
         this.class = "Prestamo";
    }
 
