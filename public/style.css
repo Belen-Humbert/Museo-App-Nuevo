@@ -23,16 +23,17 @@
         }
 
         .left-section {
-            background-image: url('https://img.freepik.com/free-vector/flat-customer-support-illustration_23-2148899114.jpg?t=st=1723670380~exp=1723673980~hmac=4a4d9b242134f2ee27ebde7fd782126381098f23005ccb2d5fdf2de121007296&w=740');
+            background-image: url('../img/login.jpg');
         }
-
+        
         .left1-section {
-            background-image: url('https://img.freepik.com/free-vector/flat-customer-support-illustration_23-2148899114.jpg?t=st=1723670380~exp=1723673980~hmac=4a4d9b242134f2ee27ebde7fd782126381098f23005ccb2d5fdf2de121007296&w=740');
+            background-image: url('../img/login.jpg');
         }
-
+        
         .left2-section {
-            background-image: url('https://img.freepik.com/free-vector/flat-customer-support-illustration_23-2148899114.jpg?t=st=1723670380~exp=1723673980~hmac=4a4d9b242134f2ee27ebde7fd782126381098f23005ccb2d5fdf2de121007296&w=740');
+            background-image: url('../img/login.jpg');
         }
+        
 
         @media screen and (min-width: 768px) {
 
