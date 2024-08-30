@@ -229,7 +229,7 @@ function updatePrestamo(PrestamoActualizado){
   let indice = null;
   
   for (let i = 0; i < prestamo.length; i++) {
-      if (PrestamoActualizado.numero === prestamo[i].idPrestamo) {
+      if (PrestamoActualizado.numeroPrestamo === prestamo[i].numeroPrestamo) {
         indice = i;
         console.log('encntre este Prestamo', indice);
       }
@@ -243,7 +243,7 @@ function updatePrestamo(PrestamoActualizado){
     prestamo[indice].fechaPrestamo = PrestamoActualizado.fechaPrestamo;
     prestamo[indice].fechaDevolucion = PrestamoActualizado.fechaDevolucion;
     prestamo[indice].cantidad = PrestamoActualizado.cantidad;
-    prestamo[indice].observacion = PrestamoActualizado.observacion;
+    prestamo[indice].observacionPrestamo = PrestamoActualizado.observacionPrestamo;
 
 
     try {

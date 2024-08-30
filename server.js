@@ -214,6 +214,25 @@ app.post("/deletePieza", (req, res) => {
   res.redirect("menu");
 });
 
+app.post("/registrarprestamo", (req, res) => {
+  console.log("llegó post");
+  console.log(req.body);
+
+  const operacionExitosa = Controlador.guardarPrestamo(req.body);
+  redirect("listarPrestamo");
+  console.log("Operación exitosa:", operacionExitosa);
+});
+
+app.get("/prestamo", autenticarUsuario, (req, res) => {
+  console.log("llegó un /nuevo prestamo");
+  res.render("prestamo", {
+    useTailwind: true,
+    useCSS: false,
+    useNav: true,
+    titulo: "Nuevo prestamo"
+  });
+});
+
 app.get("/listarPrestamo", (req, res) => {
   const prestamo = Controlador.obtenerPrestamo();
   res.render("listarPrestamo", {
@@ -225,23 +244,7 @@ app.get("/listarPrestamo", (req, res) => {
   });
 });
 
-app.post("/registrarprestamo", (req, res) => {
-  console.log("llegó post");
-  console.log(req.body);
 
-  const operacionExitosa = Controlador.guardarPrestamo(req.body);
-  redirect("listarPrestamo");
-  console.log("Operación exitosa:", operacionExitosa);
-});
-app.get("/prestamo", autenticarUsuario, (req, res) => {
-  console.log("llegó un /nuevo prestamo");
-  res.render("prestamo", {
-    useTailwind: true,
-    useCSS: false,
-    useNav: true,
-    titulo: "Nuevo prestamo"
-  });
-});
 
 app.post("/modificarPrestamo", (req, res) => {
   const idPres = req.body.editar;
@@ -261,6 +264,7 @@ app.get("/editarPrestamo/:idPres", (req, res) => {
 });
 
 app.post("/actualizarPrestamo", (req, res) => {
+  console.log(req.body)
   const PrestamoActualizado = req.body;
   const operacionOk = Controlador.actualizarPrestamo(PrestamoActualizado);
 

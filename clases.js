@@ -38,11 +38,10 @@ class Pieza {
 
 class Prestamo{
 
-   constructor(idPres, numPres ,eventoPre, fechaPre, fechaDev, cant ,obsePre, numPieza){
-        this.idPrestamo = idPres;
-        this.numeroPrestamo = numPres 
-        this.eventoPrestamo = eventoPre;
+   constructor( numPres ,numPieza, eventoPre, fechaPre, fechaDev, cant ,obsePre){
+        this.numeroPrestamo = numPres
         this.numeroPiezas= numPieza;
+        this.eventoPrestamo = eventoPre;
         this.fechaPrestamo = fechaPre;
         this.fechaDevolucion = fechaDev;
         this.cantidad = cant;
@@ -56,14 +55,13 @@ class Prestamo{
 
         let nuevoPrestamo = new Prestamo();
 
-        nuevoPrestamo.idPrestamo = json.idPrestamo;
         nuevoPrestamo.numeroPrestamo = json.numeroPrestamo;
+        nuevoPrestamo.numeroPiezas = json.numeroPrestamo;
         nuevoPrestamo.eventoPrestamo = json.eventoPrestamo;
         nuevoPrestamo.fechaPrestamo = json.fechaPrestamo;
         nuevoPrestamo.fechaDevolucion = json.fechaDevolucion;
         nuevoPrestamo.cantidad = json.cantidad;
         nuevoPrestamo.observacionPrestamo = json.observacionPrestamo;
-        nuevoPrestamo.idPieza = json.idPieza;
         return nuevoPrestamo;
 
     }

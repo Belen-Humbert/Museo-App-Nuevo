@@ -113,10 +113,9 @@ function PiezaBaja(numRe) {
 function guardarPrestamo(data) {
   console.log("--nuevo(Préstamo)-->[controlador]");
   console.log(data);
-  let insert = data.insert === 'true'
+  // let insert = data.insert === 'true'
 
   let miPretamos = new Clases.Prestamo(
-    data.idPrestamo,
     data.numeroPrestamo,
     data.numeroPiezas,
     data.eventoPrestamo,
@@ -124,7 +123,6 @@ function guardarPrestamo(data) {
     data.fechaDevolucion,
     data.cantidad,
     data.observacionPrestamo,
-    insert
 
   );
 
@@ -196,18 +194,6 @@ function actualizarTaxidermia(taxidermiaActualizada){
 
 }
 
-function actualizarPrestamo(PrestamoActualizado){
-  const operacionOk = Modelo.updatePrestamo(PrestamoActualizado);
-
-  if (operacionOk) {
-    console.log('esta funcionando');
-    return true;
-  } else {
-    console.log('no anda');
-    return false;
-  }
-
-}
 
 function PrestamoPorNro(idPres){
 
@@ -223,4 +209,17 @@ function PrestamoPorNro(idPres){
 
 }
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, actualizarPrestamo, PrestamoPorNro};
+function actualizarPrestamo(PrestamoActualizado){
+  const operacionOk = Modelo.updatePrestamo(PrestamoActualizado);
+
+  if (operacionOk) {
+    console.log('esta funcionando');
+    return true;
+  } else {
+    console.log('no anda');
+    return false;
+  }
+
+}
+
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro,actualizarPrestamo};
