@@ -1,94 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Objeto</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-100">
-
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-lg">
-            <h1 class="text-4xl font-bold text-center text-gray-900">Agregar Nueva Pieza</h1>
-        </div>
-
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-lg">
-            <form class="space-y-6" action="{{url}}/agregar" method="POST">
-                <div>
-                    <label for="numero" class="block text-sm font-medium text-gray-900">Número de registro</label>
-                    <input type="number" name="NumeroRegistro" id="numero" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="nombre" class="block text-sm font-medium text-gray-900">Nombre Pieza</label>
-                    <input type="text" name="NombrePieza" id="nombre" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="medida" class="block text-sm font-medium text-gray-900">Medida Pieza</label>
-                    <input type="text" name="MedidaPieza" id="medida" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="material" class="block text-sm font-medium text-gray-900">Material Objeto</label>
-                    <input type="text" name="MaterialObjeto" id="material" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="fecha" class="block text-sm font-medium text-gray-900">Fecha Adquisición</label>
-                    <input type="date" name="FechaAdquisicion" id="fecha" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="forma" class="block text-sm font-medium text-gray-900">Forma Adquirida</label>
-                    <input type="text" name="FormaAdquirida" id="forma" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="anio" class="block text-sm font-medium text-gray-900">Año Pieza</label>
-                    <input type="number" name="AñoPieza" id="anio" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="estado" class="block text-sm font-medium text-gray-900">Estado Pieza</label>
-                    <input type="text" name="EstadoPieza" id="estado" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="cantidad" class="block text-sm font-medium text-gray-900">Cantidad</label>
-                    <input type="number" name="Cantidad" id="cantidad" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <div>
-                    <label for="observacion" class="block text-sm font-medium text-gray-900">Observación</label>
-                    <input type="text" name="Observacion" id="observacion" required
-                        class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
-
-                <input type="hidden" name="BajaLogica" value="true">
-
-                <div>
-                    <button type="submit"
-                        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        Enviar
-                    </button>
-                </div>
-            </form>
-        </div>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-lg">
+        <h1 class="text-4xl font-bold text-center text-gray-900">Agregar Nueva Pieza</h1>
     </div>
 
-</body>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-lg">
+        <form class="space-y-6" action="{{url}}/agregar" method="POST">
+            <div>
+                <label for="numero" class="block text-sm font-medium text-gray-900">Número de registro</label>
+                <input type="number" name="NumeroRegistro" id="numero" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
 
-</html>
+            <div>
+                <label for="nombre" class="block text-sm font-medium text-gray-900">Nombre Pieza</label>
+                <input type="text" name="NombrePieza" id="nombre" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="medida" class="block text-sm font-medium text-gray-900">Medida Pieza</label>
+                <input type="text" name="MedidaPieza" id="medida" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="material" class="block text-sm font-medium text-gray-900">Material Objeto</label>
+                <input type="text" name="MaterialObjeto" id="material" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="fecha" class="block text-sm font-medium text-gray-900">Fecha Adquisición</label>
+                <input type="date" name="FechaAdquisicion" id="fecha" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="forma" class="block text-sm font-medium text-gray-900">Forma Adquirida</label>
+                <input type="text" name="FormaAdquirida" id="forma" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="anio" class="block text-sm font-medium text-gray-900">Año Pieza</label>
+                <input type="number" name="AñoPieza" id="anio" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="estado" class="block text-sm font-medium text-gray-900">Estado Pieza</label>
+                <input type="text" name="EstadoPieza" id="estado" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="cantidad" class="block text-sm font-medium text-gray-900">Cantidad</label>
+                <input type="number" name="Cantidad" id="cantidad" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <div>
+                <label for="observacion" class="block text-sm font-medium text-gray-900">Observación</label>
+                <input type="text" name="Observacion" id="observacion" required
+                    class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+
+            <input type="hidden" name="BajaLogica" value="true">
+
+            <div>
+                <button type="submit"
+                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

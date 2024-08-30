@@ -56,7 +56,7 @@ function autenticarUsuario(req, res, next) {
 
 // ----- Definición de rutas -----
 app.get("/", (req, res) => {
-  res.render("index", { useTailwind: false, titulo: "Login" });
+  res.render("index", { useTailwind: true, useCSS: true, titulo: "Login", useNav: false });
 });
 
 app.post("/login", (req, res) => {
@@ -72,9 +72,10 @@ app.post("/login", (req, res) => {
     console.log("server <-r- seguridad 'false'");
     console.log("browser <-r- server 'Error...!!!.html'");
     res.render("index", {
-      useTailwind: false,
+      useTailwind: true,
       titulo: "Login",
       error: resultado.mensaje,
+      useNav: true
     });
     console.log(resultado.mensaje);
   }
@@ -84,16 +85,20 @@ app.get("/menu", autenticarUsuario, (req, res) => {
   const piezas = Controlador.listar();
   res.render("menu", {
     useTailwind: true,
+    useCSS: false,
     piezas,
     titulo: "Menú",
     usuario: req.usuario,
+    useNav: true
   });
 });
 
 app.get("/inicio", autenticarUsuario, (req, res) => {
   console.log(req.usuario);
   res.render("inicio", {
-    useTailwind: false,
+    useTailwind: true,
+    useCSS: true,
+    useNav: true,
     titulo: "Inicio",
     usuario: req.usuario,
   });
@@ -101,7 +106,12 @@ app.get("/inicio", autenticarUsuario, (req, res) => {
 
 app.get("/nuevo", autenticarUsuario, (req, res) => {
   console.log("llegó un get/nuevo");
-  res.render("nuevo", { useTailwind: true, titulo: "Nuevo Elemento" });
+  res.render("nuevo", {
+    useTailwind: true,
+    useCSS: false,
+    useNav: true,
+    titulo: "Nuevo Elemento",
+  });
 });
 
 app.post("/agregar", (req, res) => {
@@ -121,7 +131,12 @@ app.post("/agregar", (req, res) => {
 
 app.get("/registrar", (req, res) => {
   console.log("llegó un get/registrar");
-  res.render("registro", { useTailwind: false, titulo: "Registro" });
+  res.render("registro", {
+    useTailwind: true,
+    useCSS: false,
+    useNav: true,
+    titulo: "Registro",
+  });
 });
 
 app.post("/agregarUser", (req, res) => {
@@ -131,6 +146,8 @@ app.post("/agregarUser", (req, res) => {
   } else {
     res.render("registro", {
       useTailwind: true,
+      useCSS: false,
+      useNav: true,
       titulo: "Registro de Usuario",
       error: resultado.mensaje,
     });
@@ -154,7 +171,13 @@ app.post("/enviarNreg", (req, res) => {
 app.get("/editarPieza/:NroReg", (req, res) => {
   const numRe = req.params.NroReg;
   const piezas = Controlador.PiezaPorNro(numRe);
-  res.render("modificar", { useTailwind: true, titulo: "Modificar", piezas });
+  res.render("modificar", {
+    useTailwind: true,
+    useCSS: false,
+    useNav: true,
+    titulo: "Modificar",
+    piezas,
+  });
 });
 
 app.post("/actualizarPieza", (req, res) => {
@@ -195,6 +218,8 @@ app.get("/listarPrestamo", (req, res) => {
   const prestamo = Controlador.obtenerPrestamo();
   res.render("listarPrestamo", {
     useTailwind: true,
+    useCSS: false,
+    useNav: true,
     titulo: "Listar prestamo",
     prestamo,
   });
@@ -210,12 +235,13 @@ app.post("/registrarprestamo", (req, res) => {
 });
 app.get("/prestamo", autenticarUsuario, (req, res) => {
   console.log("llegó un /nuevo prestamo");
-  res.render("prestamo", { useTailwind: true, titulo: "Nuevo prestamo" });
+  res.render("prestamo", {
+    useTailwind: true,
+    useCSS: false,
+    useNav: true,
+    titulo: "Nuevo prestamo"
+  });
 });
-
-
-
-
 
 app.post("/modificarPrestamo", (req, res) => {
   const idPres = req.body.editar;
@@ -227,6 +253,8 @@ app.get("/editarPrestamo/:idPres", (req, res) => {
   const prestamo = Controlador.PrestamoPorNro(idPres);
   res.render("modificarPrestamo", {
     useTailwind: true,
+    useCSS:false,
+    useNav: true,
     titulo: "Modificar prestamo",
     prestamo,
   });
@@ -248,6 +276,8 @@ app.post("/actualizarPrestamo", (req, res) => {
 app.get("/nuevaTaxidermia", (req, res) => {
   res.render("nuevaTaxidermia", {
     useTailwind: true,
+    useCSS:false,
+    useNav: true,
     titulo: "Nueva Taxidermia",
   });
 });
@@ -268,6 +298,8 @@ app.get("/listarTaxidermia", (req, res) => {
   const taxidermia = Controlador.listarTaxidermia();
   res.render("listarTaxidermia", {
     useTailwind: true,
+    useCSS:false,
+    useNav: true,
     titulo: "Listar Taxidermia",
     taxidermia,
   });
@@ -283,6 +315,8 @@ app.get("/editarTaxidermia/:idTax", (req, res) => {
   const taxidermia = Controlador.TaxidermiaPorNro(idTax);
   res.render("modificarTaxidermia", {
     useTailwind: true,
+    useCSS:false,
+    useNav: true,
     titulo: "Modificar Pieza",
     taxidermia,
   });

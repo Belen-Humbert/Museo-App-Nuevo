@@ -1,118 +1,116 @@
 {{!-- Dashboard Tabla Taxidermia --}}
-<div class="bg-gray-100 h-screen">
-    <div class="container mx-auto py-8">
-        <div class="mb-4 flex justify-between">
-            <h1 class="text-3xl font-bold text-[#58595E] pl-2">Registro de Taxidermia</h1>
-            <div class="flex space-x-3">
-                <div
-                    class="search-container flex items-center bg-gray-300 rounded-full overflow-hidden transition-all duration-300 ease-in-out w-10 h-10">
-                    <div class="search-icon flex items-center justify-center w-10 h-10 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-search">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                            <path d="M21 21l-6 -6" />
-                        </svg>
-                    </div>
-                    <input
-                        class="search-input w-0 bg-transparent border-none outline-none transition-all duration-300 ease-in-out px-3 py-2 hidden"
-                        placeholder="Buscar..." type="text" />
-                </div>
-                <button
-                    class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm text-gray-700 bg-gray-300 h-10 px-4 py-2 hover:bg-[#223362] hover:text-white duration-200">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
-                        stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments-alt">
+<div class="container mx-auto py-8">
+    <div class="mb-4 flex justify-between">
+        <h1 class="text-3xl font-bold text-[#58595E] pl-2">Registro de Taxidermia</h1>
+        <div class="flex space-x-3">
+            <div
+                class="search-container flex items-center bg-gray-300 rounded-full overflow-hidden transition-all duration-300 ease-in-out w-10 h-10">
+                <div class="search-icon flex items-center justify-center w-10 h-10 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-search">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M4 8h4v4h-4z" />
-                        <path d="M6 4l0 4" />
-                        <path d="M6 12l0 8" />
-                        <path d="M10 14h4v4h-4z" />
-                        <path d="M12 4l0 10" />
-                        <path d="M12 18l0 2" />
-                        <path d="M16 5h4v4h-4z" />
-                        <path d="M18 4l0 1" />
-                        <path d="M18 9l0 11" />
+                        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                        <path d="M21 21l-6 -6" />
                     </svg>
-                </button>
-
-                <a href="/nuevaTaxidermia"
-                    class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium text-gray-700 bg-gray-300 h-10 px-4 py-2 hover:bg-[#223362] hover:text-white duration-200">
-                    Agregar Registro de Taxidermia
-                </a>
-
+                </div>
+                <input
+                    class="search-input w-0 bg-transparent border-none outline-none transition-all duration-300 ease-in-out px-3 py-2 hidden"
+                    placeholder="Buscar..." type="text" />
             </div>
+            <button
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm text-gray-700 bg-gray-300 h-10 px-4 py-2 hover:bg-[#223362] hover:text-white duration-200">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments-alt">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 8h4v4h-4z" />
+                    <path d="M6 4l0 4" />
+                    <path d="M6 12l0 8" />
+                    <path d="M10 14h4v4h-4z" />
+                    <path d="M12 4l0 10" />
+                    <path d="M12 18l0 2" />
+                    <path d="M16 5h4v4h-4z" />
+                    <path d="M18 4l0 1" />
+                    <path d="M18 9l0 11" />
+                </svg>
+            </button>
+
+            <a href="/nuevaTaxidermia"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium text-gray-700 bg-gray-300 h-10 px-4 py-2 hover:bg-[#223362] hover:text-white duration-200">
+                Agregar Registro de Taxidermia
+            </a>
+
         </div>
-        <div class="relative w-full overflow-auto rounded-xl shadow-md">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 bg-[#cdcdcd]">
-                    <tr>
-                        <th scope="col" class="m-auto px-6 py-3">
-                            <label class="relative flex cursor-pointer items-center p-1 rounded-md">
-                                <input type="checkbox"
-                                    class="peer cursor-pointer appearance-none relative h-5 w-5 bg-gray-500/25 border border-gray-400 transition-all checked:border-yellow-500 checked:bg-yellow-500 rounded-md" />
-                                <div
-                                    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
-                                        fill="currentColor" stroke="currentColor" stroke-width="1">
-                                        <path fill-rule="evenodd"
-                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                            </label>
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            N° Registro
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Fecha de Registro
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Observaciones
-                        </th>
-                         <th scope="col" class="px-6 py-3">
-                            Editar
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each taxidermia}}
-                    <tr class="odd:bg-zinc-200 even:bg-[#cdcdcd] border-b">
-                        <td class="m-auto px-6 py-3">
-                            <label class="relative flex cursor-pointer items-center p-1 rounded-md">
-                                <input type="checkbox"
-                                    class="peer cursor-pointer appearance-none relative h-5 w-5 bg-gray-500/25 border border-gray-400 transition-all checked:border-yellow-500 checked:bg-yellow-500 rounded-md" />
-                                <div
-                                    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
-                                        fill="currentColor" stroke="currentColor" stroke-width="1">
-                                        <path fill-rule="evenodd"
-                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                            </label>
-                        </td>
-                        <td class="px-6 py-4">
-                            {{this.idTaxidermia}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{this.fechaMantenimiento}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{this.observacionTaxidermia}}
-                        </td>
-                        <td class="px-2 py-4 space-x-2.5">
-                            <form action="/modificarTaxidermia" method="post">
-                                <input type="hidden" name="editar" value="{{this.idTaxidermia}}">
-                                <button type="submit" class="btn btn-success">Editar</button>
-                            </form>
-                        </td>
+    </div>
+    <div class="relative w-full overflow-auto rounded-xl shadow-md">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 bg-[#cdcdcd]">
+                <tr>
+                    <th scope="col" class="m-auto px-6 py-3">
+                        <label class="relative flex cursor-pointer items-center p-1 rounded-md">
+                            <input type="checkbox"
+                                class="peer cursor-pointer appearance-none relative h-5 w-5 bg-gray-500/25 border border-gray-400 transition-all checked:border-yellow-500 checked:bg-yellow-500 rounded-md" />
+                            <div
+                                class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
+                                    fill="currentColor" stroke="currentColor" stroke-width="1">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </label>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        N° Registro
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Fecha de Registro
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Observaciones
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Editar
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each taxidermia}}
+                <tr class="odd:bg-zinc-200 even:bg-[#cdcdcd] border-b">
+                    <td class="m-auto px-6 py-3">
+                        <label class="relative flex cursor-pointer items-center p-1 rounded-md">
+                            <input type="checkbox"
+                                class="peer cursor-pointer appearance-none relative h-5 w-5 bg-gray-500/25 border border-gray-400 transition-all checked:border-yellow-500 checked:bg-yellow-500 rounded-md" />
+                            <div
+                                class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
+                                    fill="currentColor" stroke="currentColor" stroke-width="1">
+                                    <path fill-rule="evenodd"
+                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </label>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{this.idTaxidermia}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{this.fechaMantenimiento}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{this.observacionTaxidermia}}
+                    </td>
+                    <td class="px-2 py-4 space-x-2.5">
+                        <form action="/modificarTaxidermia" method="post">
+                            <input type="hidden" name="editar" value="{{this.idTaxidermia}}">
+                            <button type="submit" class="btn btn-success">Editar</button>
+                        </form>
+                    </td>
                     {{/each}}
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
 </div>
