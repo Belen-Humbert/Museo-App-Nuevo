@@ -277,6 +277,15 @@ app.post("/actualizarPrestamo", (req, res) => {
   }
 });
 
+app.post("/deletePrestamo", (req, res) => {
+  console.log("llegó post de eliminar");
+  console.log(req.body);
+  const NroReg = req.body.NroReg;
+  Controlador.PiezaBaja(NroReg);
+  res.redirect("listarPrestamo");
+});
+
+
 app.get("/nuevaTaxidermia", (req, res) => {
   res.render("nuevaTaxidermia", {
     useTailwind: true,

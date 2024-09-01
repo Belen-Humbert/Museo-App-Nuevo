@@ -100,7 +100,7 @@
               </div>
             </label>
           </th>
-          
+
           <th scope="col" class="px-6 py-3">
             N° de préstamo
           </th>
@@ -122,6 +122,9 @@
           </th>
           <th scope="col" class="px-6 py-3">
             Observación
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Acciones
           </th>
         </tr>
       </thead>
@@ -156,7 +159,7 @@
                 </div>
               </label>
             </td>
-           
+
             <td class="px-6 py-4">
               {{this.numeroPrestamo}}
             </td>
@@ -179,19 +182,112 @@
               {{this.observacionPrestamo}}
             </td>
 
+            <td class="px-2 py-4 space-x-2.5">
+              <form action="/modificarPrestamo" method="post">
+                <input
+                  type="hidden"
+                  name="editar"
+                  value="{{this.numeroPrestamo}}"
+                />
+                <button type="submit" class="btn btn-success">Editar</button>
+                </form>
+                <button
+                  class="eliminar-btn bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-500"
+                  data-numero="{{this.numeroPrestamo}}"
+                  data-nombre="{{this.numeroPrestamo}}"
+                  onclick="openConfirmDeleteModal(this)"
+                >
+                  Eliminar
+                </button>
+              
+            </td>
           </tr>
-          <td class="px-2 py-4 space-x-2.5">
-            <form action="/modificarPrestamo" method="post">
-              <input
-                type="hidden"
-                name="editar"
-                value="{{this.numeroPrestamo}}"
-              />
-              <button type="submit" class="btn btn-success">Editar</button>
-            </form>
-          </td>
         {{/each}}
       </tbody>
     </table>
   </div>
 </div>
+
+
+<script>
+    function toggleModal(modalID) {
+        document.getElementById(modalID).classList.toggle('hidden');
+    }
+</script>
+
+<script>
+    function openConfirmDeleteModal(button) {
+        const modal = document.getElementById('confirmDeleteModal');
+        const piezaNombre = button.getAttribute('data-nombre');
+        const piezaNumero = button.getAttribute('data-numero');
+
+        document.getElementById('piezaNombre').innerText = piezaNombre;
+        document.getElementById('piezaNumero').innerText = piezaNumero;
+
+        // Establecer el valor del input oculto con el número de registro
+        document.getElementById('piezaNumeroInput').value = piezaNumero;
+
+        toggleModal('confirmDeleteModal');
+    }
+</script>
+<script>
+    function confirmDelete() {
+        const piezaNumero = document.getElementById('confirmDeleteBtn').getAttribute('data-numero');
+
+        fetch('/deletePrestamo', {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                toggleModal('confirmDeleteModal');
+                // Aquí puedes agregar lógica adicional como actualizar la UI
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    function toggleModal(modalID) {
+        document.getElementById(modalID).classList.toggle('hidden');
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.getElementById('toggle');
+        const menu = document.getElementById('menu');
+        const dropdown = document.getElementById('dropdown');
+        const body = document.body;
+
+        toggle.addEventListener('click', function () {
+            menu.classList.toggle('hidden');
+        });
+
+        body.addEventListener('click', function (event) {
+            if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        const searchContainer = document.querySelector('.search-container');
+        const searchIcon = document.querySelector('.search-icon');
+        const searchInput = document.querySelector('.search-input');
+
+        searchIcon.addEventListener('click', () => {
+            searchContainer.classList.toggle('w-72');
+            searchInput.classList.toggle('w-full');
+            searchInput.classList.toggle('hidden');
+            if (searchContainer.classList.contains('w-72')) {
+                searchInput.focus();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!searchContainer.contains(event.target) && searchContainer.classList.contains('w-72')) {
+                searchContainer.classList.remove('w-72');
+                searchInput.classList.remove('w-full');
+                searchInput.classList.add('hidden');
+            }
+        });
+
