@@ -5,7 +5,6 @@ const exphbs = require("express-handlebars");
 const Seguridad = require("./seguridad.js");
 const Controlador = require("./controlador.js");
 const session = require("express-session");
-const { title } = require("process");
 
 // Inicialización de la aplicación Express
 const app = express();
@@ -16,8 +15,11 @@ app.use(
   session({
     secret: "secreto_de_tito_session", // Contraseña super secreta de tito suarez
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }, // Cambia a true si usas HTTPS
+    saveUninitialized: false,
+    cookie: {
+      secure: false, // Cambia a true si usas HTTPS
+      maxAge: 2 * 60 * 60 * 1000 // 2 horas en milisegundos
+    }
   })
 );
 
@@ -42,14 +44,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Middleware para verificar la autenticación
 function autenticarUsuario(req, res, next) {
-  const token = req.session.token;
-  if (token) {
-    const usuario = Seguridad.verificarToken(token);
-    if (usuario) {
-      req.usuario = usuario;
-      console.log(usuario);
-      return next();
-    }
+  if (req.session.usuario) {
+    return next();
   }
   res.redirect("/");
 }
@@ -65,7 +61,7 @@ app.post("/login", (req, res) => {
   let resultado = Seguridad.registrado(req.body);
   if (resultado.autenticado) {
     console.log("server <-r- seguridad 'true'");
-    req.session.token = resultado.token;
+    req.session.usuario = resultado.usuario;
     res.redirect("/inicio");
     console.log("browser <-r- server 'inicio'");
   } else {
@@ -88,7 +84,7 @@ app.get("/menu", autenticarUsuario, (req, res) => {
     useCSS: false,
     piezas,
     titulo: "Menú",
-    usuario: req.usuario,
+    usuario: req.session.usuario,
     useNav: true
   });
 });
@@ -100,7 +96,7 @@ app.get("/inicio", autenticarUsuario, (req, res) => {
     useCSS: true,
     useNav: true,
     titulo: "Inicio",
-    usuario: req.usuario,
+    usuario: req.session.usuario,
   });
 });
 
@@ -157,7 +153,7 @@ app.post("/agregarUser", (req, res) => {
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.redirect("/");
+      console.error("Error al cerrar sesión:", err);
     }
     res.redirect("/");
   });
@@ -256,7 +252,7 @@ app.get("/editarPrestamo/:idPres", (req, res) => {
   const prestamo = Controlador.PrestamoPorNro(idPres);
   res.render("modificarPrestamo", {
     useTailwind: true,
-    useCSS:false,
+    useCSS: false,
     useNav: true,
     titulo: "Modificar prestamo",
     prestamo,
@@ -289,7 +285,7 @@ app.post("/deletePrestamo", (req, res) => {
 app.get("/nuevaTaxidermia", (req, res) => {
   res.render("nuevaTaxidermia", {
     useTailwind: true,
-    useCSS:false,
+    useCSS: false,
     useNav: true,
     titulo: "Nueva Taxidermia",
   });
@@ -311,7 +307,7 @@ app.get("/listarTaxidermia", (req, res) => {
   const taxidermia = Controlador.listarTaxidermia();
   res.render("listarTaxidermia", {
     useTailwind: true,
-    useCSS:false,
+    useCSS: false,
     useNav: true,
     titulo: "Listar Taxidermia",
     taxidermia,
@@ -328,7 +324,7 @@ app.get("/editarTaxidermia/:idTax", (req, res) => {
   const taxidermia = Controlador.TaxidermiaPorNro(idTax);
   res.render("modificarTaxidermia", {
     useTailwind: true,
-    useCSS:false,
+    useCSS: false,
     useNav: true,
     titulo: "Modificar Pieza",
     taxidermia,
@@ -348,10 +344,6 @@ app.post("/actualizarTaxidermia", (req, res) => {
   }
 });
 
-
-
-//baja logica
-/* app.delete('/eliminar/:numeroRegistro', Controlador.eliminarPieza); */
 app.use((req, res, next) => {
   res
     .status(404)
