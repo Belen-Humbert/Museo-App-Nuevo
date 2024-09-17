@@ -147,16 +147,18 @@
                     <td class="px-6 py-4">
                         {{this.Observacion}}
                     </td>
-                    <td class="px-2 py-4 space-x-2.5">
-                        <button class="eliminar-btn bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-500"
+                    <td class="px-2 py-4">
+                        <div class="flex flex-col space-y-2 w-full">
+                        <button class="eliminar-btn bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-500 w-full"
                             data-numero="{{this.NumeroRegistro}}" data-nombre="{{this.NombrePieza}}"
                             onclick="openConfirmDeleteModal(this)">
                             Eliminar
                         </button>
                         <form action="/enviarNreg" method="post">
                             <input type="hidden" name="editar" value="{{this.NumeroRegistro}}">
-                            <button type="submit" class="btn btn-success">Editar</button>
+                            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md w-full">Editar</button>
                         </form>
+                        </div>
                     </td>
                 </tr>
                 {{/if}}
