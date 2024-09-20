@@ -277,7 +277,7 @@ app.post("/deletePrestamo", (req, res) => {
   console.log("llegó post de eliminar");
   console.log(req.body);
   const NroReg = req.body.NroReg;
-  Controlador.PiezaBaja(NroReg);
+  Controlador.PrestamoBaja(NroReg);
   res.redirect("listarPrestamo");
 });
 

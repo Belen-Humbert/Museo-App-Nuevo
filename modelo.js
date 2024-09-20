@@ -271,4 +271,45 @@ function updatePrestamo(PrestamoActualizado){
 
 
 }
-module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia,updatePrestamo, };
+function actualizarBajaLogicaPrestamo(numeroPrestamo) {
+  try {
+    let str_prestamos = fs.readFileSync('./db/prestamo.txt', 'utf-8');
+    let prestamos = [];
+
+    // Verifica si hay datos en el archivo
+    if (str_prestamos) {
+      prestamos = JSON.parse(str_prestamos);
+    }
+
+    let encontrado = false; // Para rastrear si se encuentra el registro
+
+    // Itera sobre los préstamos para encontrar el registro
+    for (let i = 0; i < prestamos.length; i++) {
+      // Compara como string para asegurar coincidencia
+      if (prestamos[i].numeroPrestamo === String(numeroPrestamo)) {
+        // Marca como baja lógica
+        prestamos[i].BajaLogica = true; // Asegúrate de que esta propiedad exista
+        encontrado = true; // Se encontró el registro
+        console.log(`Préstamo ${prestamos[i].numeroPrestamo} marcado como baja lógica.`);
+      } else {
+        console.log(`${prestamos[i].numeroPrestamo}  ${prestamos[i].BajaLogica}  ${numeroPrestamo}`);
+      }
+    }
+
+    // Si se encontró el registro, guarda los cambios
+    if (encontrado) {
+      fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamos, null, 2)); // Formato legible
+      return true; // Indica que la baja lógica fue exitosa
+    } else {
+      console.log('Número de préstamo no encontrado.');
+      return false; // Indica que no se encontró el registro
+    }
+
+  } catch (err) {
+    console.error('Error al actualizar baja lógica:', err);
+    return false; // Manejo de errores
+  }
+}
+
+
+module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia,updatePrestamo,actualizarBajaLogicaPrestamo, };

@@ -11,12 +11,11 @@
                     class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
 
-                <div>
-                <label for="numeroPiezas" class="block text-sm font-medium text-gray-900">numeroPiezas</label>
+            <div>
+                <label for="numeroPiezas" class="block text-sm font-medium text-gray-900">Número de piezas</label>
                 <input type="number" name="numeroPiezas" id="numeroPiezas" required
                     class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
-
 
             <div>
                 <label for="eventoPrestamo" class="block text-sm font-medium text-gray-900">Evento</label>
@@ -26,7 +25,7 @@
 
             <div>
                 <label for="fechaPrestamo" class="block text-sm font-medium text-gray-900">Fecha de préstamo</label>
-                <input type="date" name="fechaPrestamo" id="FechaPrestamo" required
+                <input type="date" name="fechaPrestamo" id="fechaPrestamo" required
                     class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
 
@@ -47,6 +46,9 @@
                 <input type="text" name="observacionPrestamo" id="observacionPrestamo" required
                     class="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
+
+            <!-- Campo oculto para BajaLogica -->
+            <input type="hidden" name="BajaLogica" value="false">
 
             <div>
                 <button type="submit"

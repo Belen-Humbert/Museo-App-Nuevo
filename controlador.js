@@ -118,9 +118,11 @@ function PiezaBaja(numRe) {
 function guardarPrestamo(data) {
   console.log("--nuevo(Préstamo)-->[controlador]");
   console.log(data);
-  // let insert = data.insert === 'true'
 
-  let miPretamos = new Clases.Prestamo(
+  // Asegúrate de que estás definiendo BajaLogica correctamente
+  let BajaLogica = data.BajaLogica === 'true'; // Asegúrate de que esto sea correcto
+
+  let miPrestamo = new Clases.Prestamo(
     data.numeroPrestamo,
     data.numeroPiezas,
     data.eventoPrestamo,
@@ -128,12 +130,12 @@ function guardarPrestamo(data) {
     data.fechaDevolucion,
     data.cantidad,
     data.observacionPrestamo,
-
+    BajaLogica // Usa la variable definida aquí
   );
 
-  console.log(' miPretamos:', miPretamos);
+  console.log('miPrestamo:', miPrestamo);
 
-  const guardarExitoso = Modelo.guardarPrestamo(miPretamos);
+  const guardarExitoso = Modelo.guardarPrestamo(miPrestamo);
   console.log('Operación de guardar:', guardarExitoso);
 
   return guardarExitoso;
@@ -227,4 +229,18 @@ function actualizarPrestamo(PrestamoActualizado){
 
 }
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro,actualizarPrestamo};
+function PrestamoBaja(numRe) {
+  const numeroPrestamo = String(numRe); // Asegúrate de convertirlo a string
+  console.log('Número de Préstamo recibido en PrestamoBaja:', numeroPrestamo);
+  
+  const resultado = Modelo.actualizarBajaLogicaPrestamo(numeroPrestamo);
+  if (resultado) {
+    return { success: true, message: 'Préstamo eliminado lógicamente' };
+  } else {
+    return { success: false, message: 'Préstamo no encontrado' };
+  }
+}
+
+
+
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro,actualizarPrestamo, PrestamoBaja};
