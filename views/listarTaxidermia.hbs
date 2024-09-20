@@ -78,6 +78,8 @@
             </thead>
             <tbody>
                 {{#each taxidermia}}
+               {{#if this.BajaTax}}
+
                 <tr class="odd:bg-zinc-200 even:bg-[#cdcdcd] border-b">
                     <td class="m-auto px-6 py-3">
                         <label class="relative flex cursor-pointer items-center p-1 rounded-md">
@@ -103,14 +105,91 @@
                     <td class="px-6 py-4">
                         {{this.observacionTaxidermia}}
                     </td>
-                    <td class="px-2 py-4 space-x-2.5">
+
+                    <td class="px-2 py-4">
+                        <div class="flex flex-col space-y-2 w-full">
+                        <button class="eliminar-btn bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-500 w-full"
+                            data-numero="{{this.idTaxidermia}}"
+                            onclick="openConfirmDeleteModal(this)">
+                            Eliminar
+                        </button>
                         <form action="/modificarTaxidermia" method="post">
                             <input type="hidden" name="editar" value="{{this.idTaxidermia}}">
-                            <button type="submit" class="btn btn-success">Editar</button>
+                            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md w-full">Editar</button>
                         </form>
+                        </div>
                     </td>
-                    {{/each}}
+                     {{/if}}
+                     {{/each}}
             </tbody>
         </table>
     </div>
 </div>
+
+<!-- Modal de Confirmación -->
+<div id="confirmDeleteModal" class="relative z-10 hidden" aria-labelledby="confirmDeleteModalLabel" role="dialog"
+    aria-modal="true">
+    <!-- Background backdrop -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <!-- Modal panel -->
+            <div
+                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div
+                            class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="confirmDeleteModalLabel">
+                                Confirmación de Eliminación</h3>
+                            <div class="mt-2">
+                                <h6 class="mb-2 text-sm font-semibold text-gray-500">Detalles de la pieza</h6>
+                                <p>¿Estás seguro de que deseas eliminar la Taxidermia con
+                                    número <span id="TaxidermiaNumero"></span>?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <form action="/deleteTaxidermia" method="post">
+                        <input type="hidden" id="TaxidermiaNumeroInput" name="NroTax">
+                        <button type="submit"
+                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                            id="confirmDeleteBtn">Sí, estoy seguro</button>
+                    </form>
+                    <button type="button"
+                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                        onclick="toggleModal('confirmDeleteModal')">No deseo eliminar la taxidermia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleModal(modalID) {
+        document.getElementById(modalID).classList.toggle('hidden');
+    }
+</script>
+
+<script>
+    function openConfirmDeleteModal(button) {
+        const modal = document.getElementById('confirmDeleteModal');
+        const TaxidermiaNumero = button.getAttribute('data-numero');
+
+        document.getElementById('TaxidermiaNumero').innerText = TaxidermiaNumero;
+
+        // Establecer el valor del input oculto con el número de registro
+        document.getElementById('TaxidermiaNumeroInput').value = TaxidermiaNumero;
+
+        toggleModal('confirmDeleteModal');
+    }
+</script>

@@ -107,12 +107,13 @@ class Prestamoestado{
 
 class Taxidermia {
 
-    constructor(idTax, fechaM, obseTax, idPieza){
+    constructor(idTax, fechaM, obseTax, idPieza, baj = true){
 
         this.idTaxidermia = idTax;
         this.fechaMantenimiento = fechaM;
         this.observacionTaxidermia = obseTax;
         this.idPieza = idPieza;
+        this.BajaTax = baj;
         this.class == "Taxidermia";
     }
 
@@ -126,6 +127,7 @@ class Taxidermia {
         nuevoTaxi.fechaMantenimiento = json.fechaMantenimiento;
         nuevoTaxi.observacionTaxidermia = json.observacionTaxidermia;
         nuevoTaxi.idPieza = json.idPieza;
+        nuevoTaxi.BajaTax = json.BajaPieza;
         return nuevoTaxi;
 
         }

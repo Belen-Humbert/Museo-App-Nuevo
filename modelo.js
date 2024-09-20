@@ -207,6 +207,29 @@ function obtenerTaxidermia() {
   return taxidermia;
 }
 
+function actualizarBajaLogicaTax(NroTax) {
+  try {
+    let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
+    let taxidermia = [];
+    if (str_taxidermia) {
+        taxidermia = JSON.parse(str_taxidermia);
+    }
+    //console.log("Coleccion de piezas")
+    for(var i=0; i<taxidermia.length ; i++){
+      
+      if(taxidermia[i].idTaxidermia == NroTax){
+        taxidermia[i].BajaTax = false
+      }
+      console.log(taxidermia[i].idTaxidermia+"  "+taxidermia[i].BajaTax+"  "+NroTax)
+    }
+    fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
+
+  } catch (err) {
+    console.error('Error al actualizar baja lógica:', err);
+    return false;
+  }
+}
+
 function updateTaxidermia(taxidermiaActualizada){
 const taxidermia = obtenerTaxidermia();
 
