@@ -5,17 +5,29 @@ const DB_PATH = './db.txt';
 const USUARIOS_PATH = './db/usuarios.txt';
 
 function guardarUsuario(data) {
-  let str_usuarios = fs.readFileSync('./db/usuarios.txt', 'utf-8');
+  let str_usuarios = fs.readFileSync(USUARIOS_PATH, 'utf-8');
   let usuarios = [];
+  
+  // Si el archivo no está vacío, parseamos los usuarios
   if (str_usuarios) {
     usuarios = JSON.parse(str_usuarios);
-    console.log('Piezas existentes:', usuarios);
+    console.log('Usuarios existentes:', usuarios);
   }
-  console.log('Nuevo Usuario:', data);
+
+  // Verificamos si el usuario ya existe (evitamos duplicados)
+  const usuarioExistente = usuarios.find(u => u.usuario === data.usuario);
+  if (usuarioExistente) {
+    console.error('Error: El usuario ya existe');
+    return false;
+  }
+
+  // Agregamos el nuevo usuario
   usuarios.push(data);
-  console.log('Usuario después de agregar:', usuarios);
+  console.log('Usuarios después de agregar:', usuarios);
+
   try {
-    fs.writeFileSync('./db/usuarios.txt', JSON.stringify(usuarios));
+    // Guardamos la lista actualizada en el archivo
+    fs.writeFileSync(USUARIOS_PATH, JSON.stringify(usuarios));
     console.log('Datos guardados en ./db/usuarios.txt');
     return true;
   } catch (err) {

@@ -2,28 +2,33 @@ const Clases = require("./clases.js");
 const Modelo = require("./modelo.js");
 
 function nuevoUser(data) {
-  console.log("--nuevo(data)-->[controlador]");
+  console.log("--nuevoUser(data)-->[controlador]");
   console.log(data);
 
-  const usuario = Modelo.getUsuarios();
-  if (usuario.find(u => u.usuario === data.usuario)) {
-    return { exito: false, mensaje: "El nombre de usuario ya existe" }
+  // Obtener la lista de usuarios
+  const usuarios = Modelo.getUsuarios();
+  
+  // Verificar si el nombre de usuario ya existe
+  if (usuarios.find(u => u.usuario === data.usuario)) {
+    return { exito: false, mensaje: "El nombre de usuario ya existe" };
   }
 
-
+  // Crear el nuevo usuario
   let unUser = new Clases.Usuario(
     data.nombre,
     data.usuario,
     data.pass,
-    null,
+    null,  // Asume que no necesitas un campo extra en este momento
   );
 
   console.log('Usuario creado:', unUser);
+
+  // Guardar el usuario usando el modelo
   const guardarExitoso = Modelo.guardarUsuario(unUser);
   if (guardarExitoso) {
-    return { exito: false, mensaje: "Usuario registrado con éxito" }
+    return { exito: true, mensaje: "Usuario registrado con éxito" };  // Corregido a 'exito: true'
   } else {
-    return { exito: false, mensaje: "Error al guardad el usuario" }
+    return { exito: false, mensaje: "Error al guardar el usuario" };
   }
 }
 
