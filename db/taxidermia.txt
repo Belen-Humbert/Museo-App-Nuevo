@@ -1,1 +1,1 @@
-[{"idTaxidermia":"1","fechaMantenimiento":"2023-11-12","observacionTaxidermia":"dos"},{"idTaxidermia":"2","fechaMantenimiento":"2024-08-12","observacionTaxidermia":"hola gey"},{"idTaxidermia":"45","fechaMantenimiento":"2022-11-19","observacionTaxidermia":"tuki"}]
+[{"idTaxidermia":"1","fechaMantenimiento":"2024-09-20","observacionTaxidermia":"roja y azul ","BajaTax":false},{"idTaxidermia":"2","fechaMantenimiento":"2024-09-20","observacionTaxidermia":"flama","BajaTax":false},{"idTaxidermia":"2","fechaMantenimiento":"2024-09-20","observacionTaxidermia":"pololo","BajaTax":true}]

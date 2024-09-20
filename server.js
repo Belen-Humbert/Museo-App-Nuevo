@@ -344,6 +344,14 @@ app.post("/actualizarTaxidermia", (req, res) => {
   }
 });
 
+app.post("/deleteTaxidermia", (req, res) => {
+  console.log("llegó post");
+  console.log(req.body);
+  const NroTax = req.body.NroTax;
+  Controlador.TaxidermiaBaja(NroTax);
+  res.redirect("listarTaxidermia");
+});
+
 app.use((req, res, next) => {
   res
     .status(404)

@@ -199,6 +199,19 @@ function actualizarTaxidermia(taxidermiaActualizada){
 
 }
 
+function TaxidermiaBaja(NroTax){
+
+  const numeroTax = NroTax;
+  console.log('Número de Taxidermia recibido en TaxidermiaBaja:', numeroTax); // Agregada
+  const resultado = Modelo.actualizarBajaLogicaTax(numeroTax);
+  if (resultado) {
+    return{ success: true, message: 'Taxidermia eliminada lógicamente' };
+  } else {
+    return{ success: false, message: 'Taxidermia no encontrada' };
+  }
+
+}
+
 
 function PrestamoPorNro(idPres){
 
@@ -227,4 +240,4 @@ function actualizarPrestamo(PrestamoActualizado){
 
 }
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro,actualizarPrestamo};
+module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro, actualizarPrestamo, TaxidermiaBaja};
