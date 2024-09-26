@@ -1,24 +1,18 @@
-@startuml diagramaCasoUso
-actor Usuario
-participant "Controlador" as Controlador
-participant "Modelo" as Modelo
-participant "Base de Datos" as DB
+@startuml casoUso
+actor Administrador
+actor "Personal de Museo" as Personal
 
-Usuario -> Controlador: nuevo(data) // Registro
-Controlador -> Modelo: guardar(miPieza)
-Modelo -> DB: write db.txt
-DB --> Modelo: confirmación
-Controlador --> Usuario: { exito: true, mensaje: "Pieza registrada con éxito" }
-
-Usuario -> Controlador: actualizarPieza(piezaAct) // Modificación
-Controlador -> Modelo: updatePieza(piezaAct)
-Modelo -> DB: write db.txt
-DB --> Modelo: confirmación
-Controlador --> Usuario: { exito: true, mensaje: "Pieza actualizada con éxito" }
-
-Usuario -> Controlador: PiezaBaja(numeroRegistro) // Eliminación
-Controlador -> Modelo: actualizarBajaLogica(numeroRegistro)
-Modelo -> DB: write db.txt
-DB --> Modelo: confirmación
-Controlador --> Usuario: { exito: true, mensaje: "Pieza eliminada lógicamente" }
+rectangle "Sistema del Museo" {
+    Personal --> (Consultar piezas)
+    Personal --> (Realizar préstamo de pieza)
+    Personal --> (Devolver pieza)
+    Personal --> (Registrar pieza)
+    Personal --> (Consultar piezas)
+    Personal --> (Realizar préstamo de pieza)
+    Personal --> (Devolver pieza)
+    Personal --> (Consultar estado de pieza)
+    Personal --> (Generar reportes de inventario)
+    Personal --> (Registrar proceso de taxidermia)
+    Administrador --> (Administrar usuarios)
+}
 @enduml
