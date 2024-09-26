@@ -1,0 +1,24 @@
+@startuml diagramaCasoUso
+actor Usuario
+participant "Controlador" as Controlador
+participant "Modelo" as Modelo
+participant "Base de Datos" as DB
+
+Usuario -> Controlador: nuevo(data) // Registro
+Controlador -> Modelo: guardar(miPieza)
+Modelo -> DB: write db.txt
+DB --> Modelo: confirmación
+Controlador --> Usuario: { exito: true, mensaje: "Pieza registrada con éxito" }
+
+Usuario -> Controlador: actualizarPieza(piezaAct) // Modificación
+Controlador -> Modelo: updatePieza(piezaAct)
+Modelo -> DB: write db.txt
+DB --> Modelo: confirmación
+Controlador --> Usuario: { exito: true, mensaje: "Pieza actualizada con éxito" }
+
+Usuario -> Controlador: PiezaBaja(numeroRegistro) // Eliminación
+Controlador -> Modelo: actualizarBajaLogica(numeroRegistro)
+Modelo -> DB: write db.txt
+DB --> Modelo: confirmación
+Controlador --> Usuario: { exito: true, mensaje: "Pieza eliminada lógicamente" }
+@enduml

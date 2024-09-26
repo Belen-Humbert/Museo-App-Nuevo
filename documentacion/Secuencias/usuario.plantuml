@@ -1,0 +1,23 @@
+@startuml secuenciaUsuario
+actor Usuario
+participant "Controlador" as Controlador
+participant "Seguridad" as Seguridad
+participant "Modelo" as Modelo
+participant "Base de Datos" as DB
+
+Usuario -> Controlador: nuevoUser(data) //Nuevo Usuario
+Controlador -> Modelo: getUsuarios()
+Modelo -> DB: read usuarios.txt
+DB --> Modelo: usuarios
+Controlador -> Modelo: guardarUsuario(unUser)
+Modelo -> DB: write usuarios.txt
+DB --> Modelo: confirmación
+Controlador --> Usuario: {exito: true, mensaje: "Usuario registrado con éxito"}
+
+Usuario -> Controlador: login(data) //Inicio Sesión
+Controlador -> Seguridad: registrado(req.body)
+Seguridad -> DB: read usuarios.txt
+DB --> Seguridad: usuarios
+Seguridad -> Controlador: { autenticado: true, usuario: usuario }
+Controlador --> Usuario: redirigir("/inicio")
+@enduml
