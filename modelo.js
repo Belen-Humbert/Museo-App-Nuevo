@@ -294,6 +294,7 @@ function updatePrestamo(PrestamoActualizado){
 
 
 }
+
 function actualizarBajaLogicaPrestamo(numeroPrestamo) {
   try {
     let str_prestamos = fs.readFileSync('./db/prestamo.txt', 'utf-8');
@@ -335,4 +336,4 @@ function actualizarBajaLogicaPrestamo(numeroPrestamo) {
 }
 
 
-module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia,updatePrestamo,actualizarBajaLogicaPrestamo, };
+module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia,updatePrestamo, actualizarBajaLogicaTax, actualizarBajaLogicaPrestamo};

@@ -1,1 +1,57 @@
-[{"numeroPrestamo":"565","numeroPiezas":"545","eventoPrestamo":"dsf","fechaPrestamo":"2003-11-19","fechaDevolucion":"2004-11-19","cantidad":"7","observacionPrestamo":"nose","BajaLogica":false,"class":"Prestamo"}]
+[
+  {
+    "numeroPrestamo": "565",
+    "numeroPiezas": "545",
+    "eventoPrestamo": "dsf",
+    "fechaPrestamo": "2003-11-19",
+    "fechaDevolucion": "2004-11-19",
+    "cantidad": "7",
+    "observacionPrestamo": "nose",
+    "BajaLogica": true,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "8000",
+    "numeroPiezas": "6733",
+    "eventoPrestamo": "La ricota",
+    "fechaPrestamo": "2003-11-19",
+    "fechaDevolucion": "2993-11-19",
+    "cantidad": "7645",
+    "observacionPrestamo": "luakfk",
+    "BajaLogica": true,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "80090",
+    "numeroPiezas": "-1",
+    "eventoPrestamo": "dgggggggggggggggggg",
+    "fechaPrestamo": "1440-12-12",
+    "fechaDevolucion": "1224-12-12",
+    "cantidad": "7645",
+    "observacionPrestamo": "roto",
+    "BajaLogica": true,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "67",
+    "numeroPiezas": "676 676 239 67",
+    "eventoPrestamo": "Piza",
+    "fechaPrestamo": "2023-11-10",
+    "fechaDevolucion": "2024-12-10",
+    "cantidad": "78",
+    "observacionPrestamo": "tetp",
+    "BajaLogica": true,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "34",
+    "numeroPiezas": "45-46-34-23-45-12-57-789-5534",
+    "eventoPrestamo": "Vendimia",
+    "fechaPrestamo": "2023-11-19",
+    "fechaDevolucion": "2023-12-23",
+    "cantidad": "9",
+    "observacionPrestamo": "SE prestaron en buenas condiciones, las piezas fueren recibidas por el señor intendente y blaaaaaaaaaaaaaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaa a aaaaaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaaaaa aaaaaaaaaa  aaa aaaaaaaaaa  oki",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  }
+]
