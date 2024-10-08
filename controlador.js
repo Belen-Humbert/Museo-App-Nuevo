@@ -1,10 +1,9 @@
 const Clases = require("./clases.js");
 const Modelo = require("./modelo.js");
 
-function nuevoUser(data) {
-  console.log("--nuevoUser(data)-->[controlador]");
-  console.log(data);
 
+//---------- USUARIO --------------
+function nuevoUser(data) {
   // Obtener la lista de usuarios
   const usuarios = Modelo.getUsuarios();
   
@@ -20,9 +19,6 @@ function nuevoUser(data) {
     data.pass,
     null,  // Asume que no necesitas un campo extra en este momento
   );
-
-  console.log('Usuario creado:', unUser);
-
   // Guardar el usuario usando el modelo
   const guardarExitoso = Modelo.guardarUsuario(unUser);
   if (guardarExitoso) {
@@ -32,8 +28,9 @@ function nuevoUser(data) {
   }
 }
 
+//---------- PIEZA --------------
 function nuevo(data) {
-  console.log("--nuevo(data)-->[controlador]");
+  console.log("server --> controlador 'nuevo(data)'");
   console.log(data);
   let BajaLogica = data.BajaLogica === 'true'
 
@@ -56,6 +53,7 @@ function nuevo(data) {
 
   const guardarExitoso = Modelo.guardar(miPieza);
   console.log('Operación de guardar:', guardarExitoso);
+  console.log("controlador --> modelo 'guardar(miPieza)'");
 
   return guardarExitoso;
 }
@@ -65,9 +63,12 @@ function obtener() {
 }
 
 function listar() {
-
-  return Modelo.obtener();
-
+  console.log("server --> controlador.listar");
+  console.log("controlador --> modelo.obtener");
+  const piezas = Modelo.obtener();
+  console.log("modelo --> controlador 'datos de piezas'");
+  console.log("controlador --> server 'lista de piezas'");
+  return piezas;
 }
 
 function PiezaPorNro(numRe) {
@@ -85,36 +86,39 @@ function PiezaPorNro(numRe) {
 
 }
 
-// en proceso
 
 function actualizarPieza(piezaAct) {
-
   OperaciónOk =  Modelo.updatePieza(piezaAct);
-
+  console.log("controlador --> modelo 'updatePieza(piezaAct)'");
   if (OperaciónOk) {
     console.log('todo bien al fin');
     return true;
+    console.log("controlador --> server 'true'");
 
   } else {
-    console.log('todo mal otra vez');
     return false;
-
+    console.log("controlador --> server 'false'");
   }
 
 }
 
 //baja logica
 function PiezaBaja(numRe) {
+  console.log("server --> controlador 'PiezaBaja'");
   const numeroRegistro = numRe;
   console.log('Número de Registro recibido en PiezaBaja:', numeroRegistro); // Agregada
   const resultado = Modelo.actualizarBajaLogica(numeroRegistro);
+  console.log("server --> modelo 'actualizarBajaLogica(numeroRegistro)'");
   if (resultado) {
     return{ success: true, message: 'Pieza eliminada lógicamente' };
+    console.log("controlador -r-> server { success: true, message: 'Pieza eliminada lógicamente' }'");
   } else {
     return{ success: false, message: 'Pieza no encontrada' };
+    console.log("controlador -r-> server { success: false, message: 'Pieza no encontrada' }'");
   }
 }
 
+//---------- PRÉSTAMO --------------
 function guardarPrestamo(data) {
   console.log("--nuevo(Préstamo)-->[controlador]");
   console.log(data);
@@ -145,6 +149,45 @@ function obtenerPrestamo() {
   return Modelo.obtenerPrestamo();
 }
 
+function PrestamoPorNro(idPres){
+
+  const prestamoArray = Modelo.obtenerPrestamo();
+  const prestId = prestamoArray.find(prestamo => prestamo.numeroPrestamo === idPres);//busca el priemer numero en el array que coincida con el que se le pasa con el 
+
+  if (prestId) {
+    console.log('encontramos', prestId.numeroPrestamo);
+    return (prestId);
+  } else {
+    console.log('No encontre ni aka');
+  }
+
+}
+
+function actualizarPrestamo(PrestamoActualizado){
+  const operacionOk = Modelo.updatePrestamo(PrestamoActualizado);
+
+  if (operacionOk) {
+    console.log('esta funcionando');
+    return true;
+  } else {
+    console.log('no anda');
+    return false;
+  }
+
+}
+function PrestamoBaja(numRe) {
+  const numeroPrestamo = String(numRe); // Asegúrate de convertirlo a string
+  console.log('Número de Préstamo recibido en PrestamoBaja:', numeroPrestamo);
+  
+  const resultado = Modelo.actualizarBajaLogicaPrestamo(numeroPrestamo);
+  if (resultado) {
+    return { success: true, message: 'Préstamo eliminado lógicamente' };
+  } else {
+    return { success: false, message: 'Préstamo no encontrado' };
+  }
+}
+
+//---------- TAXIDERMIA --------------
 function nuevaTaxi(nuevaTaxidermia) {
   console.log("--nuevo(nuevaTaxidermia)-->[controlador]");
   console.log(nuevaTaxidermia);
@@ -215,43 +258,6 @@ function TaxidermiaBaja(NroTax){
 }
 
 
-function PrestamoPorNro(idPres){
-
-  const prestamoArray = Modelo.obtenerPrestamo();
-  const prestId = prestamoArray.find(prestamo => prestamo.numeroPrestamo === idPres);//busca el priemer numero en el array que coincida con el que se le pasa con el 
-
-  if (prestId) {
-    console.log('encontramos', prestId.numeroPrestamo);
-    return (prestId);
-  } else {
-    console.log('No encontre ni aka');
-  }
-
-}
-
-function actualizarPrestamo(PrestamoActualizado){
-  const operacionOk = Modelo.updatePrestamo(PrestamoActualizado);
-
-  if (operacionOk) {
-    console.log('esta funcionando');
-    return true;
-  } else {
-    console.log('no anda');
-    return false;
-  }
-
-}
-function PrestamoBaja(numRe) {
-  const numeroPrestamo = String(numRe); // Asegúrate de convertirlo a string
-  console.log('Número de Préstamo recibido en PrestamoBaja:', numeroPrestamo);
-  
-  const resultado = Modelo.actualizarBajaLogicaPrestamo(numeroPrestamo);
-  if (resultado) {
-    return { success: true, message: 'Préstamo eliminado lógicamente' };
-  } else {
-    return { success: false, message: 'Préstamo no encontrado' };
-  }
-}
 
 
 module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro, actualizarPrestamo, TaxidermiaBaja,PrestamoBaja};

@@ -1,0 +1,18 @@
+SequenceDiagram{
+    lifeline browser
+    lifeline server
+    lifeline seguridad
+    lifeline modelo
+
+    browser --> server 'POST /login'
+    server --> seguridad 'registrado(req.body)'
+    seguridad --> modelo 'getUsuarios()'
+    modelo -r-> seguridad '[{objUsuarios}]'
+    fragment alt "" {
+        seguridad -r-> server '{autenticado: true, usuario}'
+        server -r-> browser 'redirect: /inicio' 
+    case ""
+        seguridad -r-> server '{ autenticado: false, mensaje}'
+        server -r-> browser 'render: /'
+    }
+}
