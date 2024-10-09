@@ -4,10 +4,65 @@ lifeline server
 lifeline controlador
 lifeline modelo
 
+
+//----------- Listar Prestamo ---------------------------------------
+
+
+browser --> server "get/listarPrestamo"
+server --> controlador "obtenerPrestamo ()"
+controlador --> modelo "obtenerPrestamo ()"
+controlador <-r- modelo "[{prestamo}]"
+server <-r- controlador "[{prestamo}]"
+browser <-r- server "render: listarPrestamo.hbs,{prestamo}"
+
+//------------ Nuevo Prestamo ---------------------------------------
+
 browser --> server "get/prestamo"
-server --> controlador "guardarPrestamo (req.body)"
-controlador --> modelo "guardarPrestamo(miPretamos)"
+browser <-r- server "render: prestamo.hbs"
+browser --> server "POST /registrarprestamo"
+server --> controlador "guardarPrestamo(req.body)"
+controlador --> modelo "guardarPrestamo(miPrestamo)"
+  fragment alt "" {
+        controlador <-- modelo 'true (guardado exitoso)'
+        server <-- controlador 'guardarExitoso'
+        browser <-- server 'redirect: /listarPrestamo.hbs'
+    case ""
+        controlador <-- modelo 'false (error al guardar)'
+        server <-r- controlador 'guardarExitoso'
+        browser -r-> server 'error al guardar los datos'
+    }
 
 
+//----------- Editar Prestamo ---------------------------------------
+    browser --> server 'POST /modificarPrestamo'
+    browser <-r- server 'redirect: /editarPrestamo/{idPres}'
+    
+    browser --> server 'GET editarPrestamo/:idPres'
+    server --> controlador 'PrestamoPorNro(idPres)'
+    controlador --> modelo 'obtenerPrestamo()'
+    controlador <-r- modelo '[{prestamo}]'
+    server <-r- controlador '[{prestamo}]'
+    browser <-r- server 'render: modificarPrestamo'
 
+    browser --> server 'POST /actualizarPrestamo'
+    server --> controlador 'actualizarPrestamo(PrestamoActualizado)'
+    controlador --> modelo 'updatePrestamo(PrestamoActualizado)'
+
+    fragment alt "" {
+        controlador <-- modelo 'return: true'
+        server <-- controlador 'OperacionOk: true'
+        browser <-- server 'redirect: /listarPrestamo'
+    case ""
+        controlador <-r- modelo 'return: false'
+        server <-r- controlador 'OperacionOk: false'
+        browser <-r- server 'Error al actualizar el prestamo' //pregunta
+    }
+
+//----------- Baja Prestamo ---------------------------------------
+    browser --> server 'POST /deletePrestamo'
+    server --> controlador 'PrestamoBaja(NroReg)'
+    controlador --> modelo 'actualizarBajaLogicaPrestamo(numeroPrestamo)'
+    controlador <-r- modelo 'true (baja exitosa)'
+    server <-r- controlador 'true (baja exitosa)'
+    browser <-r- server 'redirect: /listarPrestamo'
 }
