@@ -1,0 +1,37 @@
+UseCaseDiagram {
+    attribute usecase [fillcolor=lightyellow3]
+    actor administrador
+
+    system "Museo App" as musApp [fillcolor=honeydew3] {
+        usecase login
+        usecase "Registrar Pieza" as regPieza
+        usecase "Listar Pieza" as lisPieza
+        usecase "Eliminar Pieza" as eliPieza
+        usecase "Registrar Préstamo" as regPrestamo
+        usecase "Listar Préstamo" as lisPrestamo
+        usecase "Eliminar Préstamo" as eliPrestamo
+        usecase "Registrar Taxidermia" as regTaxidermia
+        usecase "Listar Taxidermia" as lisTaxidermia
+        usecase "Eliminar Taxidermia" as eliTaxidermia
+        usecase "Agregar Noticia" as regNoticia
+        usecase "Listar Noticias" as lisNoticia
+        usecase "Eliminar Noticia" as eliNoticia
+    }
+
+    administrador assoc login
+    administrador assoc regPieza
+    administrador assoc lisPieza
+    administrador assoc regPrestamo
+    administrador assoc lisPrestamo
+    administrador assoc regTaxidermia
+    administrador assoc lisTaxidermia
+    administrador assoc regNoticia
+    administrador assoc lisNoticia
+
+    lisPieza -e-> eliPieza
+    lisPrestamo -e-> eliPrestamo
+    lisTaxidermia -e-> eliTaxidermia
+    lisNoticia -e-> eliNoticia
+
+
+}
