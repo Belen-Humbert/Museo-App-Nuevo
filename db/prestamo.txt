@@ -40,7 +40,7 @@
     "fechaDevolucion": "2024-12-10",
     "cantidad": "78",
     "observacionPrestamo": "tetp",
-    "BajaLogica": true,
+    "BajaLogica": false,
     "class": "Prestamo"
   },
   {
@@ -52,6 +52,17 @@
     "cantidad": "9",
     "observacionPrestamo": "SE prestaron en buenas condiciones, las piezas fueren recibidas por el señor intendente y blaaaaaaaaaaaaaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaa a aaaaaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaa aaaaaaaaaaaa aaaaaaaaaa  aaa aaaaaaaaaa  oki",
     "BajaLogica": false,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "1",
+    "numeroPiezas": "123",
+    "eventoPrestamo": "123",
+    "fechaPrestamo": "2024-10-11",
+    "fechaDevolucion": "2024-10-10",
+    "cantidad": "1",
+    "observacionPrestamo": "daw",
+    "BajaLogica": true,
     "class": "Prestamo"
   }
 ]

@@ -1,0 +1,59 @@
+SequenceDiagram{
+    lifeline browser
+    lifeline server
+    lifeline controlador
+    lifeline modelo
+//----------- Listar Pieza ---------------------------------------
+    browser --> server 'GET /menu'
+    server --> controlador 'listar()'
+    controlador --> modelo 'obtener()'
+    modelo -r-> controlador '[{piezas}]'
+    controlador -r-> server '[{piezas}]'
+    server -r-> browser 'render: menu,{piezas}'
+//------------ Nueva Pieza ---------------------------------------
+    browser --> server 'GET /nuevo'
+    server -r-> browser 'render: nuevo'
+    browser --> server 'POST /agregar'
+    server --> controlador 'nuevo(req.body)'
+    controlador --> modelo 'guardar(miPieza)'
+    fragment alt "" {
+        modelo -r-> controlador 'true (guardado exitoso)'
+        controlador -r-> server 'guardarExitoso'
+        server -r-> browser 'redirect: /menu'
+    case ""
+        modelo -r-> controlador 'false (error al guardar)'
+        controlador -r-> server 'guardarExitoso'
+        server -r-> browser 'error al guardar los datos'
+    }
+//----------- Editar Pieza ---------------------------------------
+    browser --> server 'POST /enviarNreg'
+    server -r-> browser 'redirect: /editarPieza/{NroReg}'
+    
+    browser --> server 'GET /editarPieza/:NroReg'
+    server --> controlador 'PiezaPorNro(numRe)'
+    controlador --> modelo 'obtener()'
+    modelo -r-> controlador '[{piezas}]'
+    controlador -r-> server '[{piezas}]'
+    server -r-> browser 'render: modificar'
+
+    browser --> server 'POST /actualizarPieza'
+    server --> controlador 'actualizarPieza(piezaAct)'
+    controlador --> modelo 'updatePieza(piezaAct)'
+
+    fragment alt "" {
+        modelo -r-> controlador 'return: true'
+        controlador -r-> server 'OperacionOk: true'
+        server -r-> browser 'redirect: /menu'
+    case ""
+        modelo -r-> controlador 'return: false'
+        controlador -r-> server 'OperacionOk: false'
+        server -r-> browser 'Error al actualizar la pieza'
+    }
+//----------- Baja Pieza ---------------------------------------
+    browser --> server 'POST /deletePieza'
+    server --> controlador 'PiezaBaja(numRe)'
+    controlador --> modelo 'actualizarBajaLogica(numeroRegistro)'
+    modelo -r-> controlador 'true (baja exitosa)'
+    controlador -r-> server 'true (baja exitosa)'
+    server -r-> browser 'redirect: /menu'
+}

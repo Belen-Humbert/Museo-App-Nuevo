@@ -1,12 +1,12 @@
 const Modelo = require('./modelo.js');
 
 function registrado(body) {
-  console.log("seguridad --> modelo 'getUsuarios()'");
   let usuarios = Modelo.getUsuarios();
-  console.log("seguridad <-r- modelo '[{Usuario}]'");
+  console.log("seguridad --> modelo.getUsuarios()");
   if (body.pass !== '') {
     let usuario = usuarios.find(x => body.user === x.usuario && body.pass === x.pass);
     if (usuario) {
+      console.log("seguridad --> server 'usuario encontrado'");
       return { 
         autenticado: true, 
         usuario: { 
@@ -16,6 +16,7 @@ function registrado(body) {
       };
     }
   }
+  console.log("seguridad --> server 'usuario no encontrado'");
   return { autenticado: false, mensaje: "Usuario o contraseña incorrectos" };
 }
 

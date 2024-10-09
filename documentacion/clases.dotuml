@@ -1,0 +1,64 @@
+ClassDiagram{
+    class Pieza{
+        NumeroRegistro: string
+        NombrePieza: string
+        MedidaPieza: string
+        MaterialObjeto: string
+        FechaAdquisicion: Date
+        FormaAdquirida: string
+        AñoPieza: integer
+        EstadoPieza: string
+        Cantidad: integer
+        Observacion: string
+        BajaLogica: boolean
+    }
+
+    class Prestamo{
+        numeroPrestamo: integer
+        numeroPiezas: integer
+        eventoPrestamo: string
+        fechaPrestamo: Date
+        fechaDevolucion: Date
+        cantidad: integer
+        observacionPrestamo: string
+    }
+
+    class Prestamoestado{
+        idPrestamoEstado: integer
+        bandera: boolean
+        estadoPieza: string
+
+    }
+
+    class Taxidermia{
+        idTaxidermia: integer
+        fechaMantenimiento: Date
+        observacionTaxidermia: string
+        idPieza: integer
+    }
+
+    class Piezaestado{
+        idPiezaEstado: integer
+        bandera: boolean
+    }
+
+    class EstadiPieza{
+        idEstadoPieza: integer
+        fechaEstado: Date
+        idPieza: integer
+        idPiezaEstado: integer
+    }
+
+    class Usuario{
+        nombre: string
+        usuario: string
+        pass: string
+        token: string
+    }
+
+    Pieza "1" -- "*" Prestamo : "contiene"
+    Pieza "1" -- "*" Taxidermia : "es sujeto de"
+    Pieza "1" -- "*" EstadiPieza : "cambia estado"
+    EstadiPieza "1" -- "1" Piezaestado : "tiene"
+    Prestamo "1" -- "*" Prestamoestado : "cambia estado"
+}

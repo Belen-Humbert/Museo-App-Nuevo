@@ -1,0 +1,13 @@
+SequenceDiagram{
+lifeline browser
+lifeline server
+lifeline controlador
+lifeline modelo
+
+browser --> server "get/prestamo"
+server --> controlador "guardarPrestamo (req.body)"
+controlador --> modelo "guardarPrestamo(miPretamos)"
+
+
+
+}

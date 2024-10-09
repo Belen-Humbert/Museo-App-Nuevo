@@ -1,92 +1,72 @@
 const fs = require('fs'); // Usa fs.promises para funciones asíncronas
 const Clases = require('./clases.js');
 
-const DB_PATH = './db.txt';
-const USUARIOS_PATH = './db/usuarios.txt';
-
+//---------- USUARIO --------------
 function guardarUsuario(data) {
-  let str_usuarios = fs.readFileSync(USUARIOS_PATH, 'utf-8');
+  let str_usuarios = fs.readFileSync('./db/usuarios.txt', 'utf-8');
   let usuarios = [];
-  
   // Si el archivo no está vacío, parseamos los usuarios
   if (str_usuarios) {
     usuarios = JSON.parse(str_usuarios);
-    console.log('Usuarios existentes:', usuarios);
   }
-
   // Verificamos si el usuario ya existe (evitamos duplicados)
   const usuarioExistente = usuarios.find(u => u.usuario === data.usuario);
   if (usuarioExistente) {
-    console.error('Error: El usuario ya existe');
     return false;
   }
-
   // Agregamos el nuevo usuario
   usuarios.push(data);
-  console.log('Usuarios después de agregar:', usuarios);
-
   try {
     // Guardamos la lista actualizada en el archivo
-    fs.writeFileSync(USUARIOS_PATH, JSON.stringify(usuarios));
-    console.log('Datos guardados en ./db/usuarios.txt');
+    fs.writeFileSync('./db/usuarios.txt', JSON.stringify(usuarios));
     return true;
   } catch (err) {
-    console.error('Error al guardar los datos:', err);
     return false;
   }
 }
 
 function getUsuarios() {
-    let str_usuarios = fs.readFileSync('./db/usuarios.txt', 'utf-8');
-    let usuarios = [];
-    if (str_usuarios) {
-        usuarios = JSON.parse(str_usuarios);
-    }
-    let objUsuarios = [];
-    usuarios.forEach(x => objUsuarios.push(Clases.Usuario.fromJSON(x)));
-
-    return objUsuarios;
+  let str_usuarios = fs.readFileSync('./db/usuarios.txt', 'utf-8');
+  let usuarios = [];
+  if (str_usuarios) {
+    usuarios = JSON.parse(str_usuarios);
+  }
+  let objUsuarios = [];
+  usuarios.forEach(x => objUsuarios.push(Clases.Usuario.fromJSON(x)));
+  console.log("modelo --> seguridad [{objUsuarios}]");
+  return objUsuarios;
 }
 
+//---------- PIEZA --------------
 function guardar(data) {
-  console.log("corriendo guardar(data)")
-  console.log(data)
+  console.log("modelo --> controlador 'guardar(data)'");
     let str_piezas = fs.readFileSync('./db.txt', 'utf-8');
-    console.log("str_piezas")
-    console.log(str_piezas)
     let piezas = [];/* */
     if (str_piezas) {
-        piezas = JSON.parse(str_piezas);
-        console.log('Piezas existentes:', piezas);
+      piezas = JSON.parse(str_piezas);
     }
-    console.log("piezas")
-    console.log(piezas)
-    console.log('Nueva pieza:', data);
     piezas.push(data);
-    console.log('Piezas después de agregar la nueva:', piezas);
-
     try {
-        fs.writeFileSync('./db.txt', JSON.stringify(piezas));
-        //fs.writeFileSync('./db.txt', JSON.stringify(data));
-        console.log('Datos guardados en db.txt');
-        return true;
+      fs.writeFileSync('./db.txt', JSON.stringify(piezas));
+      return true;
+      console.log("modelo --> controlador 'true'");
     } catch (err) {
-        console.error('Error al guardar los datos:', err);
-        return false;
+      return false;
+      console.log("modelo --> controlador 'false'");
     }
 }
 
 function obtener() {
-    let str_piezas = fs.readFileSync('./db.txt', 'utf-8');
-    let piezas = [];
-    if (str_piezas) {
-        piezas = JSON.parse(str_piezas);
-    }
-
-    return piezas;
+  let str_piezas = fs.readFileSync('./db.txt', 'utf-8');
+  let piezas = [];
+  if (str_piezas) {
+      piezas = JSON.parse(str_piezas);
+  }
+  console.log("modelo --> controlador 'datos de piezas'");
+  return piezas;
 }
 
-// baja lógica-----------------------------------------------------------
+// baja lógica
 function actualizarBajaLogica(numeroRegistro) {
   try {
     let str_piezas = fs.readFileSync('./db.txt', 'utf-8');
@@ -94,7 +74,6 @@ function actualizarBajaLogica(numeroRegistro) {
     if (str_piezas) {
         piezas = JSON.parse(str_piezas);
     }
-    //console.log("Coleccion de piezas")
     for(var i=0; i<piezas.length ; i++){
       
       if(piezas[i].NumeroRegistro == numeroRegistro){
@@ -103,44 +82,20 @@ function actualizarBajaLogica(numeroRegistro) {
       console.log(piezas[i].NumeroRegistro+"  "+piezas[i].BajaLogica+"  "+numeroRegistro)
     }
     fs.writeFileSync('./db.txt', JSON.stringify(piezas));
+    return true;
 
   } catch (err) {
-    console.error('Error al actualizar baja lógica:', err);
     return false;
   }
 }
 
-function guardarPrestamo(data) {
-  let str_prestamo = fs.readFileSync('./db/prestamo.txt', 'utf-8');
-  let prestamo = [];
-  if (str_prestamo) {
-    prestamo = JSON.parse(str_prestamo);
-      console.log('prestamo existente:', prestamo);
-  }
-
-  console.log('Nueva prestamo:', data);
-  prestamo.push(data);
-  console.log('prestamo después de agregar la nueva:', prestamo);
-
-  try {
-      fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamo));
-      console.log('Datos guardados en prestamo.txt');
-      return true;
-  } catch (err) {
-      console.error('Error al guardar los datos:', err);
-      return false;
-  }
-}
-
-
 function updatePieza(piezaAct) {
   const piezas = obtener();
-
+  console.log("modelo --> controlador 'updatePieza(piezaAct)'");
   let index = null;
   for (let i = 0; i < piezas.length; i++) {
     if (piezaAct.numero === piezas[i].NumeroRegistro) {
       index = i;
-      console.log("encontre esto", index);
     }
   }
   if (index !== -1) {
@@ -156,12 +111,30 @@ function updatePieza(piezaAct) {
 
     try {
       fs.writeFileSync("./db.txt", JSON.stringify(piezas));
-      console.log("pieza Nro", piezaAct.numero, "modificada");
       return true;
+      console.log("modelo --> controlador 'true'");
     } catch (err) {
-      console.log("pieza nro", piezaAct.numero, "no encontrada");
       return false;
+      console.log("modelo --> controlador 'false'");
     }
+  }
+  console.log("modelo --> controlador 'false'");
+}
+
+//---------- PRÉSTAMO --------------
+function guardarPrestamo(data) {
+  let str_prestamo = fs.readFileSync('./db/prestamo.txt', 'utf-8');
+  let prestamo = [];
+  if (str_prestamo) {
+    prestamo = JSON.parse(str_prestamo);
+  }
+  prestamo.push(data);
+
+  try {
+    fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamo));
+    return true;
+  } catch (err) {
+    return false;
   }
 }
 
@@ -171,107 +144,21 @@ function obtenerPrestamo() {
   if (str_prestamo) {
     prestamo = JSON.parse(str_prestamo);
   }
-
+  
   return prestamo;
-}
-
-function guardarTaxidermia(miTaxidermia) {
-  let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
-  let taxidermia = [];
-  if (str_taxidermia) {
-    taxidermia = JSON.parse(str_taxidermia);
-      console.log('Registros existentes:', taxidermia);
-  }
-
-  console.log('Nueva Taxidermia:', miTaxidermia);
-  taxidermia.push(miTaxidermia);
-  console.log('Registro después de agregar la nueva taxidermia:', taxidermia);
-
-  try {
-      fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
-      console.log('Datos guardados en taxidermia.txt');
-      return true;
-  } catch (err) {
-      console.error('Error al guardar los datos:', err);
-      return false;
-  }
-
-}
-
-function obtenerTaxidermia() {
-  let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
-  let taxidermia = [];
-  if (str_taxidermia) {
-    taxidermia = JSON.parse(str_taxidermia);
-  }
-  return taxidermia;
-}
-
-function actualizarBajaLogicaTax(NroTax) {
-  try {
-    let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
-    let taxidermia = [];
-    if (str_taxidermia) {
-        taxidermia = JSON.parse(str_taxidermia);
-    }
-    //console.log("Coleccion de piezas")
-    for(var i=0; i<taxidermia.length ; i++){
-      
-      if(taxidermia[i].idTaxidermia == NroTax){
-        taxidermia[i].BajaTax = false
-      }
-      console.log(taxidermia[i].idTaxidermia+"  "+taxidermia[i].BajaTax+"  "+NroTax)
-    }
-    fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
-
-  } catch (err) {
-    console.error('Error al actualizar baja lógica:', err);
-    return false;
-  }
-}
-
-function updateTaxidermia(taxidermiaActualizada){
-const taxidermia = obtenerTaxidermia();
-
-let indice = null;
-
-for (let i = 0; i < taxidermia.length; i++) {
-    if (taxidermiaActualizada.numero === taxidermia[i].idTaxidermia) {
-      indice = i;
-      console.log('encntre esta taxidermia', indice);
-    }
-  
-}
-if (indice !== -1) {
-  
-  taxidermia[indice].fechaMantenimiento = taxidermiaActualizada.fecha;
-  taxidermia[indice].observacionTaxidermia = taxidermiaActualizada.observa;
-
-  try {
-    fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
-    console.log('Datos guardados en taxidermia.txt');
-    return true;
-} catch (err) {
-    console.error('Error al guardar los datos:', err);
-    return false;
-}
-}
 }
 
 function updatePrestamo(PrestamoActualizado){
   const prestamo = obtenerPrestamo();
-  
   let indice = null;
   
   for (let i = 0; i < prestamo.length; i++) {
-      if (PrestamoActualizado.numeroPrestamo === prestamo[i].numeroPrestamo) {
-        indice = i;
-        console.log('encntre este Prestamo', indice);
-      }
+    if (PrestamoActualizado.numeroPrestamo === prestamo[i].numeroPrestamo) {
+      indice = i;
+    }
     
   }
   if (indice !== -1) {
-    
     prestamo[indice].numeroPrestamo = PrestamoActualizado.numeroPrestamo;
     prestamo[indice].numeroPiezas = PrestamoActualizado.numeroPiezas;
     prestamo[indice].eventoPrestamo = PrestamoActualizado.eventoPrestamo;
@@ -283,12 +170,10 @@ function updatePrestamo(PrestamoActualizado){
 
     try {
       fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamo));
-      console.log('Datos guardados en prestamo.txt');
       return true;
-  } catch (err) {
-      console.error('Error al guardar los datos:', err);
+    } catch (err) {
       return false;
-  }
+    }
   }
 
 
@@ -325,15 +210,82 @@ function actualizarBajaLogicaPrestamo(numeroPrestamo) {
       fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamos, null, 2)); // Formato legible
       return true; // Indica que la baja lógica fue exitosa
     } else {
-      console.log('Número de préstamo no encontrado.');
       return false; // Indica que no se encontró el registro
     }
 
   } catch (err) {
-    console.error('Error al actualizar baja lógica:', err);
     return false; // Manejo de errores
   }
 }
 
+//---------- TAXIDERMIA --------------
+function guardarTaxidermia(miTaxidermia) {
+  let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
+  let taxidermia = [];
+  if (str_taxidermia) {
+    taxidermia = JSON.parse(str_taxidermia);
+  }
+  
+  taxidermia.push(miTaxidermia);
+
+  try {
+      fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
+      return true;
+  } catch (err) {
+      return false;
+    }
+
+  }
+
+function obtenerTaxidermia() {
+  let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
+  let taxidermia = [];
+  if (str_taxidermia) {
+    taxidermia = JSON.parse(str_taxidermia);
+  }
+  return taxidermia;
+}
+
+function actualizarBajaLogicaTax(NroTax) {
+  try {
+    let str_taxidermia = fs.readFileSync('./db/taxidermia.txt', 'utf-8');
+    let taxidermia = [];
+    if (str_taxidermia) {
+      taxidermia = JSON.parse(str_taxidermia);
+    }
+    for(var i=0; i<taxidermia.length ; i++){
+      
+      if(taxidermia[i].idTaxidermia == NroTax){
+        taxidermia[i].BajaTax = false
+      }
+    }
+    fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
+
+  } catch (err) {
+    return false;
+  }
+}
+
+function updateTaxidermia(taxidermiaActualizada){
+  const taxidermia = obtenerTaxidermia();
+  let indice = null;
+
+  for (let i = 0; i < taxidermia.length; i++) {
+    if (taxidermiaActualizada.numero === taxidermia[i].idTaxidermia) {
+      indice = i;
+    } 
+  }
+  if (indice !== -1) {
+    taxidermia[indice].fechaMantenimiento = taxidermiaActualizada.fecha;
+    taxidermia[indice].observacionTaxidermia = taxidermiaActualizada.observa;
+
+    try {
+      fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+}
 
 module.exports = { guardar, obtener, guardarUsuario, getUsuarios, guardarPrestamo, obtenerPrestamo, actualizarBajaLogica,updatePieza, guardarTaxidermia, obtenerTaxidermia, updateTaxidermia,updatePrestamo, actualizarBajaLogicaTax, actualizarBajaLogicaPrestamo};
