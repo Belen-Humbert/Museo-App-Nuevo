@@ -228,7 +228,7 @@ app.get("/prestamo", autenticarUsuario, (req, res) => {
     titulo: "Nuevo prestamo"
   });
 });
-
+2
 app.get("/listarPrestamo", (req, res) => {
   const prestamo = Controlador.obtenerPrestamo();
   res.render("listarPrestamo", {
