@@ -207,7 +207,7 @@ function nuevaTaxi(nuevaTaxidermia) {
     console.log("Taxidermia registrada con exito");
     return true;
   } else{
-    console.log('algo fallo');
+    console.log('algo fallo en el controlador');
     return false;
   }
 
@@ -226,7 +226,8 @@ function TaxidermiaPorNro(idTax){
     console.log('encontramos', taxidId.idTaxidermia);
     return (taxidId);
   } else {
-    console.log('No encontre ni aka');
+    console.log('algo fallo en el controlador');
+    return false;
   }
 
 }
@@ -235,10 +236,10 @@ function actualizarTaxidermia(taxidermiaActualizada){
   const operacionOk = Modelo.updateTaxidermia(taxidermiaActualizada);
 
   if (operacionOk) {
-    console.log('esta funcionando');
+    console.log('esta funcionando en controlador');
     return true;
   } else {
-    console.log('no anda');
+    console.log('Algo fallo en el controlador');
     return false;
   }
 
@@ -250,9 +251,11 @@ function TaxidermiaBaja(NroTax){
   console.log('Número de Taxidermia recibido en TaxidermiaBaja:', numeroTax); // Agregada
   const resultado = Modelo.actualizarBajaLogicaTax(numeroTax);
   if (resultado) {
-    return{ success: true, message: 'Taxidermia eliminada lógicamente' };
+    console.log("esta funcionando en controlador TaxidermiaBaja");
+    return true;
   } else {
-    return{ success: false, message: 'Taxidermia no encontrada' };
+    console.log("taxidermia no encontrada");
+    return false;
   }
 
 }

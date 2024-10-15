@@ -232,6 +232,7 @@ function guardarTaxidermia(miTaxidermia) {
       fs.writeFileSync('./db/taxidermia.txt', JSON.stringify(taxidermia));
       return true;
   } catch (err) {
+    console.log('algo fallo en el modelo');
       return false;
     }
 

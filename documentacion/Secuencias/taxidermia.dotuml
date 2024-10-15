@@ -1,0 +1,72 @@
+SequenceDiagram [frame=true framecolor=blue bgcolor=white footer=true fontcolor=black]{
+    lifeline browser
+    lifeline server
+    lifeline controlador
+    lifeline modelo
+
+//-------------Listar Taxidermia---------------------
+
+    browser --> server 'GET/listarTaxidermia'
+    server --> controlador 'listarTaxidermia()'
+    controlador --> modelo 'obtenerTaxidermia()'
+    modelo -r-> controlador '[{taxidermia}]'
+    controlador -r-> server '[{taxidermia}]'
+    server -r-> browser 'GET/listarTaxidermia,{taxidermia}'
+
+//------------Agregar Taxidermia----------------------    
+    browser --> server 'GET/nuevaTaxidermia'
+    server -r-> browser 'render(nuevaTaxidermia)'
+    browser --> server 'POST/enviarTaxidermia'
+    server --> controlador 'nuevaTaxi(nuevaTaxidermia)'
+    controlador --> modelo 'guardarTaxidermia(miTaxidermia)'
+    fragment alt ""{
+    modelo -r-> controlador 'true'
+    controlador -r-> server 'true'
+    server -r-> server 'redirect:/listarTaxidermia'
+    server -r-> browser 'rednder: /listarTaxidermia, {taxidermia}'
+    case ""
+    modelo -r-> controlador 'false(algo fallo en el modelo)'
+    controlador -r-> server 'false(algo falló en el controlador)'
+    server -r-> browser 'false(error al guardar los datos)'
+    }
+//-----------Editar Taxidermia-------------------------
+    browser --> server 'POST/modificarTaxidermia'
+    server --> server 'redirect `/editarTaxidermia/${idTax}`'
+    server --> controlador 'TaxidermiaPorNro(idTax)'
+    controlador --> modelo 'obtenerTaxidermia()'
+    modelo -r-> controlador '[{taxidermia}]'
+    fragment alt ""{
+    controlador -r-> server '{taxidId}'
+    server -r-> browser 'render (/modificarTaxidermia, {taxidermia})'
+    case ""
+    controlador -r-> server 'false(Algo fallo en el controlador)'
+    server -r-> browser 'false(no encontre taxidermia con ese id)'
+    }
+    browser --> server 'POST/actualizarTaxidermia'
+    server --> controlador 'actualizarTaxidermia(taxidermiaActualizada)'
+    controlador --> modelo 'updateTaxidermia(taxidermiaActualizada)'
+    fragment alt "" {
+    modelo -r-> controlador 'true'
+    controlador -r-> server 'true (esta funcionando en controlador)'
+    server -r-> server 'redirect(listarTaxidermia)'
+    server -r-> browser 'render (/listarTaxidermia, {taxidermia})'
+    case ""
+    modelo -r-> controlador 'false'
+    controlador -r-> server '(algo fallo en el controlador) false'
+    server -r-> browser '(Algo fallo al actualizar taxidermia) false' 
+    }
+//------------Eliminar Taxidermia-------------------
+    browser --> server 'POST /deleteTaxidermia'
+    server --> controlador 'TaxidermiaBaja(NroTax)'
+    controlador --> modelo 'actualizarBajaLogicaTax(numeroTax)'
+    fragment alt "" {
+    modelo -r-> controlador 'true'
+    controlador -r-> server '(esta funcionando en controlador TaxidermiaBaja)true'
+    server -r-> server 'redirect(/listarTaxidermia)'
+    server -r-> browser 'render(/listarTaxidermia, {taxidermia})'
+    case ""
+    modelo -r-> controlador 'false'
+    controlador -r-> server '(taxidermia no encontrada)false'
+    server -r-> browser '(no se pudo eliminar)false'    
+    }
+}   

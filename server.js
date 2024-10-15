@@ -261,6 +261,7 @@ app.post("/enviarTaxidermia", (req, res) => {
   if (operacionExitosa) {
     res.redirect("/listarTaxidermia");
   } else {
+    console.log('error al mostrar los datos');
     return false;
   }
 });
@@ -284,6 +285,7 @@ app.post("/modificarTaxidermia", (req, res) => {
 app.get("/editarTaxidermia/:idTax", (req, res) => {
   const idTax = req.params.idTax;
   const taxidermia = Controlador.TaxidermiaPorNro(idTax);
+  if (taxidermia){
   res.render("modificarTaxidermia", {
     useTailwind: true,
     useCSS: false,
@@ -291,6 +293,10 @@ app.get("/editarTaxidermia/:idTax", (req, res) => {
     titulo: "Modificar Pieza",
     taxidermia,
   });
+}else{
+  console.log('no encontre taxidermia con ese id');
+  return false
+}
 });
 
 app.post("/actualizarTaxidermia", (req, res) => {
@@ -300,14 +306,20 @@ app.post("/actualizarTaxidermia", (req, res) => {
   if (operacionOk) {
     res.redirect("listarTaxidermia");
   } else {
+    console.log('Algo fallo al actualizar taxidermia')
     return false;
   }
 });
 
 app.post("/deleteTaxidermia", (req, res) => {
   const NroTax = req.body.NroTax;
-  Controlador.TaxidermiaBaja(NroTax);
+  const Okoperacion = Controlador.TaxidermiaBaja(NroTax);
+  if (Okoperacion){
   res.redirect("listarTaxidermia");
+}else{
+  console.log("No se pudo eliminar");
+  return false;
+}
 });
 
 //--------- USUARIO RUTAS --------------
