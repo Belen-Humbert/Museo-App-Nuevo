@@ -1,0 +1,60 @@
+<div class="container mx-auto px-2 py-2">
+    <h1 class="text-3xl font-bold text-center text-zinc-900 dark:text-white transition-colors duration-200">Editar Perfil</h1>
+    <p class="text-sm font-bold mb-8 text-center text-zinc-900 dark:text-white transition-colors duration-200">Actualiza tus datos de usuario</p>
+
+    <form action="/actualizarPerfil" method="POST" class="max-w-6xl mx-auto px-4 pt-6 pb-8 mb-4" onsubmit="return validarFormularioPerfil()">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="mb-4">
+                <label class="block text-zinc-700 dark:text-zinc-300 text-sm font-bold mb-2" for="nombre">
+                    Nombre
+                </label>
+                <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-zinc-700 dark:text-zinc-300 dark:bg-zinc-700 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200" id="nombre" name="nombre" type="text" value="{{usuario.nombre}}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-zinc-700 dark:text-zinc-300 text-sm font-bold mb-2" for="usuario">
+                    Usuario
+                </label>
+                <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-zinc-700 dark:text-zinc-300 dark:bg-zinc-700 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200" id="usuario" name="usuario" type="text" value="{{usuario.usuario}}" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-zinc-700 dark:text-zinc-300 text-sm font-bold mb-2" for="pass">
+                    Nueva Contraseña
+                </label>
+                <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-zinc-700 dark:text-zinc-300 dark:bg-zinc-700 leading-tight focus:outline-none focus:shadow-outline transition-colors duration-200" id="pass" name="pass" type="password" placeholder="Dejar en blanco para no cambiar">
+            </div>
+        </div>
+        <div class="flex items-center justify-between mt-6">
+            <button class="bg-amber-200 text-amber-500 hover:bg-amber-300 dark:bg-amber-800/60 px-4 py-2 rounded-lg transition-colors duration-200" type="submit">
+                <i class="ri-save-line mr-2"></i>Actualizar Perfil
+            </button>
+            <a class="bg-zinc-200 text-zinc-600 hover:bg-zinc-300 dark:bg-zinc-700 dark:text-zinc-300 px-4 py-2 rounded-lg transition-colors duration-200" href="/inicio">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+
+<script>
+function validarFormularioPerfil() {
+    var nombre = document.getElementById('nombre').value;
+    var usuario = document.getElementById('usuario').value;
+    var pass = document.getElementById('pass').value;
+
+    if (nombre.trim() === '') {
+        alert('El nombre no puede estar vacío.');
+        return false;
+    }
+
+    if (usuario.trim() === '') {
+        alert('El usuario no puede estar vacío.');
+        return false;
+    }
+
+    if (pass !== '' && pass.length < 6) {
+        alert('La nueva contraseña debe tener al menos 6 caracteres.');
+        return false;
+    }
+
+    return true;
+}
+</script>

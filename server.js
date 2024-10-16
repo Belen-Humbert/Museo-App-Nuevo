@@ -7,7 +7,7 @@ const session = require("express-session");
 
 // Inicialización de la aplicación Express
 const app = express();
-const port = 3000;
+const port = 3002;
 
 // Configuración de express-session
 app.use(
@@ -29,6 +29,11 @@ app.engine(
     extname: ".hbs", // Extensión de archivo para las plantillas
     defaultLayout: "main", // Plantilla de diseño por defecto
     layoutsDir: path.join(__dirname, "views/layouts"), // Directorio de layouts
+    helpers: {
+      eq: function (v1, v2) {
+        return v1 === v2;
+      }
+    }
   })
 );
 app.set("view engine", "hbs"); // Establecer Handlebars como motor de vistas
@@ -55,7 +60,11 @@ function autenticarUsuario(req, res, next) {
 
 //--------- DEFINICIÓN DE RUTAS --------------
 app.get("/", (req, res) => {
-  res.render("index", { useTailwind: true, useCSS: true, titulo: "Login", useNav: false });
+  res.render("index", { 
+    useNav: false, 
+    titulo: "Inicio de Sesión",
+    error: req.query.error // Asegúrate de pasar el error si existe
+  });
 });
 
 app.post("/login", (req, res) => {
@@ -72,9 +81,10 @@ app.post("/login", (req, res) => {
     console.log("server --> browser 'render: index con error'");
     res.render("index", {
       useTailwind: true,
-      titulo: "Login",
+      useCSS: false,
+      useNav: false,
+      titulo: "Inicio de Sesión",
       error: resultado.mensaje,
-      useNav: true
     });
   }
 });
@@ -84,7 +94,7 @@ app.get("/inicio", autenticarUsuario, (req, res) => {
   console.log("server --> browser 'render: inicio'");
   res.render("inicio", {
     useTailwind: true,
-    useCSS: true,
+    useCSS: false,
     useNav: true,
     titulo: "Inicio",
     usuario: req.session.usuario,
@@ -99,12 +109,10 @@ app.get("/menu", autenticarUsuario, (req, res) => {
   console.log("server --> controlador.listar");
   console.log("server --> browser 'render: menu'");
   res.render("menu", {
-    useTailwind: true,
-    useCSS: false,
+    useNav: true,
     piezas,
-    titulo: "Menú",
+    titulo: "Piezas del Museo",
     usuario: req.session.usuario,
-    useNav: true
   });
 });
 
@@ -112,10 +120,9 @@ app.get("/nuevo", autenticarUsuario, (req, res) => {
   console.log("browser --> server 'GET /nuevo'");
   console.log("server --> browser 'render: nuevo'");
   res.render("nuevo", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Nuevo Elemento",
+    titulo: "Registro de pieza",
+    usuario: req.session.usuario,
   });
 });
 
@@ -145,11 +152,10 @@ app.get("/editarPieza/:NroReg", (req, res) => {
   console.log("controlador --> server 'datos de la pieza'");
   console.log("server --> browser 'render: modificar'");
   res.render("modificar", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Modificar",
+    titulo: "Editar pieza",
     piezas,
+    usuario: req.session.usuario,
   });
 });
 
@@ -193,21 +199,19 @@ app.post("/registrarprestamo", (req, res) => {
 
 app.get("/prestamo", autenticarUsuario, (req, res) => {
   res.render("prestamo", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Nuevo prestamo"
+    titulo: "Registro de prestamo",
+    usuario: req.session.usuario,
   });
 });
-2
+
 app.get("/listarPrestamo", (req, res) => {
   const prestamo = Controlador.obtenerPrestamo();
   res.render("listarPrestamo", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Listar prestamo",
+    titulo: "Prestamos",
     prestamo,
+    usuario: req.session.usuario,
   });
 });
 
@@ -220,11 +224,10 @@ app.get("/editarPrestamo/:idPres", (req, res) => {
   const idPres = req.params.idPres;
   const prestamo = Controlador.PrestamoPorNro(idPres);
   res.render("modificarPrestamo", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Modificar prestamo",
+    titulo: "Editar prestamo",
     prestamo,
+    usuario: req.session.usuario,
   });
 });
 
@@ -235,10 +238,7 @@ app.post("/actualizarPrestamo", (req, res) => {
   if (operacionOk) {
     res.redirect("listarPrestamo");
   } else {
-    console.log("server --> browser 'error al actualizar'");
-    res.send("Error al actualizar el prestamo");
     return false;
-   
   }
 });
 
@@ -251,10 +251,9 @@ app.post("/deletePrestamo", (req, res) => {
 //--------- TAXIDERMIA RUTAS --------------
 app.get("/nuevaTaxidermia", (req, res) => {
   res.render("nuevaTaxidermia", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Nueva Taxidermia",
+    titulo: "Registro de Taxidermia",
+    usuario: req.session.usuario,
   });
 });
 
@@ -264,7 +263,6 @@ app.post("/enviarTaxidermia", (req, res) => {
   if (operacionExitosa) {
     res.redirect("/listarTaxidermia");
   } else {
-    console.log('error al mostrar los datos');
     return false;
   }
 });
@@ -272,11 +270,10 @@ app.post("/enviarTaxidermia", (req, res) => {
 app.get("/listarTaxidermia", (req, res) => {
   const taxidermia = Controlador.listarTaxidermia();
   res.render("listarTaxidermia", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Listar Taxidermia",
+    titulo: "Taxidermias",
     taxidermia,
+    usuario: req.session.usuario,
   });
 });
 
@@ -288,18 +285,12 @@ app.post("/modificarTaxidermia", (req, res) => {
 app.get("/editarTaxidermia/:idTax", (req, res) => {
   const idTax = req.params.idTax;
   const taxidermia = Controlador.TaxidermiaPorNro(idTax);
-  if (taxidermia){
   res.render("modificarTaxidermia", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
-    titulo: "Modificar Pieza",
+    titulo: "Editar taxidermia",
     taxidermia,
+    usuario: req.session.usuario,
   });
-}else{
-  console.log('no encontre taxidermia con ese id');
-  return false
-}
 });
 
 app.post("/actualizarTaxidermia", (req, res) => {
@@ -309,29 +300,22 @@ app.post("/actualizarTaxidermia", (req, res) => {
   if (operacionOk) {
     res.redirect("listarTaxidermia");
   } else {
-    console.log('Algo fallo al actualizar taxidermia')
     return false;
   }
 });
 
 app.post("/deleteTaxidermia", (req, res) => {
   const NroTax = req.body.NroTax;
-  const Okoperacion = Controlador.TaxidermiaBaja(NroTax);
-  if (Okoperacion){
+  Controlador.TaxidermiaBaja(NroTax);
   res.redirect("listarTaxidermia");
-}else{
-  console.log("No se pudo eliminar");
-  return false;
-}
 });
 
 //--------- USUARIO RUTAS --------------
 app.get("/registrar", (req, res) => {
   res.render("registro", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
     titulo: "Registro",
+    usuario: req.session.usuario,
   });
 });
 
@@ -341,11 +325,47 @@ app.post("/agregarUser", (req, res) => {
     res.redirect("/login?mensaje=" + encodeURIComponent(resultado.mensaje));
   } else {
     res.render("registro", {
-      useTailwind: true,
-      useCSS: false,
       useNav: true,
       titulo: "Registro de Usuario",
       error: resultado.mensaje,
+      usuario: req.session.usuario,
+    });
+  }
+});
+
+app.get("/editarPerfil", autenticarUsuario, (req, res) => {
+  res.render("editarPerfil", {
+    useNav: true,
+    titulo: "Perfil",
+    usuario: req.session.usuario,
+  });
+});
+
+app.post("/actualizarPerfil", autenticarUsuario, (req, res) => {
+  const usuarioActualizado = {
+    nombre: req.body.nombre,
+    usuario: req.session.usuario.usuario, // Usuario actual
+    nuevoUsuario: req.body.usuario, // Nuevo nombre de usuario si se cambió
+    pass: req.body.pass
+  };
+  
+  console.log("Datos a actualizar:", usuarioActualizado);
+  
+  const resultado = Controlador.actualizarUsuario(usuarioActualizado);
+  
+  if (resultado) {
+    // Actualizar la sesión con los nuevos datos
+    req.session.usuario = {
+      nombre: usuarioActualizado.nombre,
+      usuario: usuarioActualizado.nuevoUsuario || usuarioActualizado.usuario,
+    };
+    res.redirect("/inicio");
+  } else {
+    res.render("editarPerfil", {
+      useNav: true,
+      titulo: "Perfil",
+      usuario: req.session.usuario,
+      error: "No se pudo actualizar el perfil"
     });
   }
 });

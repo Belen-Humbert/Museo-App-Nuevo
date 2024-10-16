@@ -1,81 +1,69 @@
-{{! Dashboard Tabla Taxidermia }}
-<div class="container mx-auto py-8">
+{{! Dashboard Tabla Préstamos }}
+<div class="container mx-auto py-8 transition-colors duration-200">
   <div class="mb-4 flex justify-between">
-    <h1 class="text-3xl font-bold text-[#58595E] pl-2">Registro de Préstamos</h1>
+    <h1 class="text-3xl font-bold text-zinc-900 dark:text-zinc-100 pl-2 transition-colors duration-200">Registro de
+      Préstamos</h1>
     <div class="flex space-x-3">
-      <div class="search-container flex items-center bg-gray-300 rounded-full overflow-hidden transition-all duration-300 ease-in-out w-10 h-10">
-        <div class="search-icon flex items-center justify-center w-10 h-10 cursor-pointer" onclick="toggleSearchInput()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-            <path d="M21 21l-6 -6" />
-          </svg>
-        </div>
-        <input id="searchInput" class="search-input w-0 bg-transparent border-none outline-none transition-all duration-300 ease-in-out px-3 py-2 hidden" placeholder="Buscar..." type="text" onkeyup="filterTable()" />
+      <div class="relative">
+        <i
+          class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 dark:text-zinc-500"></i>
+        <input type="text" placeholder="Buscar"
+          class="pl-10 pr-4 py-2 rounded-lg w-64 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 transition-colors duration-200 dark:text-white"
+          id="searchInput" onkeyup="filterTable()">
       </div>
-      <a href="/prestamo" class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium text-gray-700 bg-gray-300 h-10 px-4 py-2 hover:bg-[#223362] hover:text-white duration-200">
-        Agregar nuevo préstamo
+      <a href="/prestamo"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200 dark:bg-blue-800/60 dark:text-blue-500">
+        Agregar Préstamo
       </a>
     </div>
   </div>
-  <div class="relative w-full overflow-auto rounded-xl shadow-md">
-    <table class="w-full text-sm text-left text-gray-500" id="prestamoTable">
-      <thead class="text-xs text-gray-700 bg-[#cdcdcd]">
+  <div class="relative w-full overflow-auto rounded-lg shadow-md">
+    <table class="w-full text-sm text-left text-zinc-700 dark:text-zinc-300 transition-colors duration-200"
+      id="prestamoTable">
+      <thead
+        class="text-xs text-zinc-800 dark:text-zinc-200 bg-zinc-200 dark:bg-zinc-700 transition-colors duration-200 text-center">
         <tr>
-          <th scope="col" class="m-auto px-6 py-3">
-            <label class="relative flex cursor-pointer items-center p-1 rounded-md">
-              <input type="checkbox" class="peer cursor-pointer appearance-none relative h-5 w-5 bg-gray-500/25 border border-gray-400 transition-all checked:border-yellow-500 checked:bg-yellow-500 rounded-md" />
-              <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-            </label>
-          </th>
-          <th scope="col" class="px-6 py-3">N° de préstamo</th>
-          <th scope="col" class="px-6 py-3">Número de pieza</th>
-          <th scope="col" class="px-6 py-3">Evento</th>
-          <th scope="col" class="px-6 py-3">Fecha de Préstamo</th>
-          <th scope="col" class="px-6 py-3">Fecha de devolución</th>
-          <th scope="col" class="px-6 py-3">Cantidad</th>
-          <th scope="col" class="px-6 py-3">Observación</th>
-          <th scope="col" class="px-6 py-3">Acciones</th>
+          <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">N° de préstamo</th>
+          <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Número de pieza</th>
+          <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Evento</th>
+          <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Fecha de Préstamo</th>
+          <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Fecha de devolución</th>
+          <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Cantidad</th>
+          <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Observación</th>
+          <th class="py-2 px-2 w-28 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Acciones</th>
         </tr>
       </thead>
       <tbody>
         {{#each prestamo}}
-          {{#if this.BajaLogica}}
-            {{!-- No renderiza nada si BajaLogica es verdadero --}}
-          {{else}}
-            <tr class="odd:bg-zinc-200 even:bg-[#cdcdcd] border-b">
-              <td class="m-auto px-6 py-3">
-                <label class="relative flex cursor-pointer items-center p-1 rounded-md">
-                  <input type="checkbox" class="peer cursor-pointer appearance-none relative h-5 w-5 bg-gray-500/25 border border-gray-400 transition-all checked:border-yellow-500 checked:bg-yellow-500 rounded-md" />
-                  <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                </label>
-              </td>
-              <td class="px-6 py-4">{{this.numeroPrestamo}}</td>
-              <td class="px-6 py-4">{{this.numeroPiezas}}</td>
-              <td class="px-6 py-4">{{this.eventoPrestamo}}</td>
-              <td class="px-6 py-4">{{this.fechaPrestamo}}</td>
-              <td class="px-6 py-4">{{this.fechaDevolucion}}</td>
-              <td class="px-6 py-4">{{this.cantidad}}</td>
-              <td class="px-6 py-4">{{this.observacionPrestamo}}</td>
-              <td class="px-2 py-4 space-x-2.5">
-                <form action="/modificarPrestamo" method="post">
-                  <input type="hidden" name="editar" value="{{this.numeroPrestamo}}" />
-                  <button type="submit" class="btn btn-success">Editar</button>
-                </form>
-                <button class="eliminar-btn bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-500" data-numero="{{this.numeroPrestamo}}" data-nombre="{{this.eventoPrestamo}}" onclick="openConfirmDeleteModal(this)">
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          {{/if}}
+        {{#if this.BajaLogica}}
+        {{!-- No renderiza nada si BajaLogica es verdadero --}}
+        {{else}}
+        <tr
+          class="odd:bg-zinc-100 even:bg-zinc-200 dark:odd:bg-zinc-800 dark:even:bg-zinc-700 border-b border-zinc-300 dark:border-zinc-600 transition-colors duration-200">
+          <td class="py-2 px-2 text-center">{{this.numeroPrestamo}}</td>
+          <td class="py-2 px-2 text-center">{{this.numeroPiezas}}</td>
+          <td class="py-2 px-2 text-center">{{this.eventoPrestamo}}</td>
+          <td class="py-2 px-2 text-center">{{this.fechaPrestamo}}</td>
+          <td class="py-2 px-2 text-center">{{this.fechaDevolucion}}</td>
+          <td class="py-2 px-2 text-center">{{this.cantidad}}</td>
+          <td class="py-2 px-2 text-center">{{this.observacionPrestamo}}</td>
+          <td class="p-3">
+            <div class="flex flex-col space-y-2 w-full">
+              <button
+                class="eliminar-btn bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-500 w-full transition-colors duration-200 dark:bg-red-800/60 dark:text-red-500"
+                data-numero="{{this.numeroPrestamo}}" data-nombre="{{this.eventoPrestamo}}"
+                onclick="openConfirmDeleteModal(this)">
+                Eliminar
+              </button>
+              <form action="/modificarPrestamo" method="post">
+                <input type="hidden" name="editar" value="{{this.numeroPrestamo}}" />
+                <button type="submit"
+                  class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md w-full transition-colors duration-200 dark:bg-yellow-800/60 dark:text-yellow-500">Editar</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {{/if}}
         {{/each}}
       </tbody>
     </table>
@@ -83,33 +71,43 @@
 </div>
 
 <!-- Modal de Confirmación -->
-<div id="confirmDeleteModal" class="relative z-10 hidden" aria-labelledby="confirmDeleteModalLabel" role="dialog" aria-modal="true">
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+<div id="confirmDeleteModal" class="relative z-10 hidden" aria-labelledby="confirmDeleteModalLabel" role="dialog"
+  aria-modal="true">
+  <div class="fixed inset-0 bg-zinc-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
   <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-white dark:bg-zinc-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <div class="bg-white dark:bg-zinc-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
-            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-              <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+            <div
+              class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-red-900 sm:mx-0 sm:h-10 sm:w-10">
+              <svg class="h-6 w-6 text-red-600 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
             </div>
             <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-              <h3 class="text-base font-semibold leading-6 text-gray-900" id="confirmDeleteModalLabel">Confirmación de Eliminación</h3>
+              <h3 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
+                id="confirmDeleteModalLabel">Confirmación de Eliminación</h3>
               <div class="mt-2">
-                <h6 class="mb-2 text-sm font-semibold text-gray-500">Detalles del préstamo</h6>
-                <p>¿Estás seguro de que deseas eliminar el préstamo <span id="piezaNombre"></span> con número de registro <span id="piezaNumero"></span>?</p>
+                <p class="text-sm text-zinc-700 dark:text-zinc-300">¿Estás seguro de que deseas eliminar el préstamo
+                  <span id="piezaNombre"></span> con número de registro <span id="piezaNumero"></span>?</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+        <div class="bg-zinc-100 dark:bg-zinc-700 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
           <form action="/deletePrestamo" method="post">
             <input type="hidden" id="piezaNumeroInput" name="NroReg" value="">
-            <button type="submit" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" id="confirmDeleteBtn">Sí, estoy seguro</button>
+            <button type="submit"
+              class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto transition-colors duration-200"
+              id="confirmDeleteBtn">Sí, estoy seguro</button>
           </form>
-          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" onclick="toggleModal('confirmDeleteModal')">No deseo eliminar la pieza</button>
+          <button type="button"
+            class="mt-3 inline-flex w-full justify-center rounded-md bg-white dark:bg-zinc-600 px-3 py-2 text-sm font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm ring-1 ring-inset ring-zinc-300 dark:ring-zinc-500 hover:bg-zinc-50 dark:hover:bg-zinc-500 sm:mt-0 sm:w-auto transition-colors duration-200"
+            onclick="toggleModal('confirmDeleteModal')">No deseo eliminar la pieza</button>
         </div>
       </div>
     </div>
@@ -117,51 +115,51 @@
 </div>
 
 <script>
-    function toggleSearchInput() {
-        const input = document.getElementById('searchInput');
-        input.classList.toggle('hidden');
-        input.focus(); // Enfoca el campo de búsqueda al mostrarlo
-    }
+  function toggleSearchInput() {
+    const input = document.getElementById('searchInput');
+    input.classList.toggle('hidden');
+    input.focus(); // Enfoca el campo de búsqueda al mostrarlo
+  }
 
-    function filterTable() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const table = document.getElementById('prestamoTable');
-        const rows = table.getElementsByTagName('tr');
+  function filterTable() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('prestamoTable');
+    const rows = table.getElementsByTagName('tr');
 
-        for (let i = 1; i < rows.length; i++) { // Comienza en 1 para omitir el encabezado
-            const cells = rows[i].getElementsByTagName('td');
-            let rowVisible = false;
+    for (let i = 1; i < rows.length; i++) { // Comienza en 1 para omitir el encabezado
+      const cells = rows[i].getElementsByTagName('td');
+      let rowVisible = false;
 
-            for (let j = 0; j < cells.length; j++) {
-                if (cells[j]) {
-                    const cellValue = cells[j].textContent || cells[j].innerText;
-                    if (cellValue.toLowerCase().indexOf(filter) > -1) {
-                        rowVisible = true;
-                        break; // Si se encuentra coincidencia, no es necesario seguir buscando en esa fila
-                    }
-                }
-            }
-
-            rows[i].style.display = rowVisible ? '' : 'none'; // Muestra u oculta la fila
+      for (let j = 0; j < cells.length; j++) {
+        if (cells[j]) {
+          const cellValue = cells[j].textContent || cells[j].innerText;
+          if (cellValue.toLowerCase().indexOf(filter) > -1) {
+            rowVisible = true;
+            break; // Si se encuentra coincidencia, no es necesario seguir buscando en esa fila
+          }
         }
+      }
+
+      rows[i].style.display = rowVisible ? '' : 'none'; // Muestra u oculta la fila
     }
+  }
 
-    function toggleModal(modalID) {
-        document.getElementById(modalID).classList.toggle('hidden');
-    }
+  function toggleModal(modalID) {
+    document.getElementById(modalID).classList.toggle('hidden');
+  }
 
-    function openConfirmDeleteModal(button) {
-        const modal = document.getElementById('confirmDeleteModal');
-        const piezaNombre = button.getAttribute('data-nombre');
-        const piezaNumero = button.getAttribute('data-numero');
+  function openConfirmDeleteModal(button) {
+    const modal = document.getElementById('confirmDeleteModal');
+    const piezaNombre = button.getAttribute('data-nombre');
+    const piezaNumero = button.getAttribute('data-numero');
 
-        document.getElementById('piezaNombre').innerText = piezaNombre;
-        document.getElementById('piezaNumero').innerText = piezaNumero;
+    document.getElementById('piezaNombre').innerText = piezaNombre;
+    document.getElementById('piezaNumero').innerText = piezaNumero;
 
-        // Establecer el valor del input oculto con el número de registro
-        document.getElementById('piezaNumeroInput').value = piezaNumero;
+    // Establecer el valor del input oculto con el número de registro
+    document.getElementById('piezaNumeroInput').value = piezaNumero;
 
-        toggleModal('confirmDeleteModal');
-    }
+    toggleModal('confirmDeleteModal');
+  }
 </script>

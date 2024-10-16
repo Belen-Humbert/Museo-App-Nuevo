@@ -1,60 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" class="light">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{titulo}}</title>
-  {{#if useTailwind}}
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  {{/if}}
-  
-  {{#if useCSS}}
-  <link rel="stylesheet" href="style.css">
-  {{/if}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titulo}} - Museo Lavalle</title>
+    <link href="/css/output.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Nunito Variable';
+            src: url('/font/Nunito/Nunito-VariableFont_wght.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+        }
+
+        body,
+        html {
+            font-family: 'Nunito Variable';
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                "aside nav nav nav"
+                "aside main main main";
+            grid-template-rows: auto 1fr;
+            grid-template-columns: auto 1fr 1fr 1fr;
+            height: 100vh;
+        }
+
+        nav {
+            grid-area: nav;
+        }
+
+        aside {
+            grid-area: aside;
+            width: 16rem;
+        }
+
+        main {
+            grid-area: main;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scrollable-content {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+    </style>
 </head>
-<body>
-  {{#if useNav}}
-  <div class="">
 
-    <header class="flex items-center justify-between bg-gray-100 text-gray-500 px-6 py-4">
-        <div class="flex items-center gap-4">
-            <img src="img/LogoFondoTransparente.png" alt="Company Logo" width="50" height="50" />
-            <span class="font-semibold">Museo Lavalle</span>
-        </div>
-        <div>
-            <ul class="flex items-center justify-center gap-7 text-lg font-semibold">
-                <li class="hover:text-gray-800 hover:border-b hover:border-[#F5B410] ease-out duration-300">
-                    <a class="nav-link" href="/inicio">Inicio</a>
-                </li>
-                <li class="hover:text-gray-800 hover:border-b hover:border-[#F5B410] ease-out duration-300">
-                    <a class="nav-link" href="/menu">Ver piezas</a>
-                </li>
-                <li class="hover:text-gray-800 hover:border-b hover:border-[#F5B410] ease-out duration-300">
-                    <a class="nav-link" href="/logout">Gestionar</a>
-                </li>
-                <li class="hover:text-gray-800 hover:border-b hover:border-[#F5B410] ease-out duration-300">
-                    <a class="nav-link" href="/registrarPrestamo">Noticias</a>
-                </li>
-            </ul>
-        </div>
-        <div id="toggle" class="flex items-center gap-2 p-2 pr-5 rounded-full cursor-pointer">
-            <span class="relative flex h-7 w-7 shrink-0 overflow-hidden rounded-full ">
-                <img src="https://ui-avatars.com/api/?name={{usuario.nombre}}" alt=""
-                    class="flex h-full w-full items-center justify-center rounded-full bg-muted">
-            </span>
-            <span class="font-medium">{{usuario.nombre}}</span>
-            <span><svg id="dropdown" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M6 9l6 6l6 -6" />
-                </svg></span>
-        </div>
-  </div>
-  {{/if}}
+<body class="bg-zinc-100 dark:bg-zinc-900 transition-colors duration-200 h-full">
+    {{#if useNav}}
+    <div class="grid-container">
+        <!-- Sidebar -->
+        <aside class="p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex flex-col items-center justify-center mb-8">
+                    <img class="h-8 w-auto" src="img/LogoFondoTransparente.png" alt="Museo Lavalle">
+                    <p class="text-xl font-bold text-zinc-600 dark:text-zinc-300">Museo</p>
+                </div>
+                <nav class="flex-1">
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="/inicio"
+                                class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Inicio')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
+                                <i class="ri-dashboard-line mr-3"></i>Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/menu"
+                                class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Piezas del Museo')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
+                                <i class="ri-shapes-line mr-3"></i>Piezas del Museo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/listarPrestamo"
+                                class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Prestamos')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
+                                <i class="ri-arrow-left-right-fill mr-3"></i>Préstamos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/listarTaxidermia"
+                                class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Taxidermias')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
+                                <i class="ri-user-2-line mr-3"></i>Taxidermia
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
-  <div class="mx-auto p-4">
+            <!-- Usuario -->
+            <div class="mt-auto">
+                <div id="userMenuToggle"
+                    class="bg-white dark:bg-zinc-900 border-[1px] border-zinc-300 dark:border-zinc-800 rounded-lg shadow-sm overflow-hidden transition-colors duration-200">
+                    <div id="userMenuOptions" class="hidden px-4 py-2">
+                        <a href="/editarPerfil"
+                            class="block py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200">
+                            <i class="ri-user-settings-line mr-2"></i>Editar Perfil
+                        </a>
+                        <a href="#" id="toggleDarkMode"
+                            class="block py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200">
+                            <i class="ri-contrast-2-line mr-2"></i><span id="modeText">Modo Oscuro</span>
+                        </a>
+                        <a href="/logout"
+                            class="block py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200">
+                            <i class="ri-logout-box-line mr-2"></i>Cerrar Sesión
+                        </a>
+                    </div>
+                    <div
+                        class="flex items-center py-2 px-3 cursor-pointer transition-colors duration-200">
+                        <img class="h-8 w-8 rounded-full mr-2" src="https://ui-avatars.com/api/?name={{usuario.nombre}}&color=7dd3fc&background=0c4a6e "
+                            alt="avatar">
+                        <span
+                            class="font-medium text-zinc-800 dark:text-zinc-200 flex-1 transition-colors duration-200">{{usuario.nombre}}</span>
+                        <i class="ri-arrow-up-s-line text-zinc-600 dark:text-zinc-400 transition-colors duration-200"
+                            id="menuArrow"></i>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="py-4 pr-4">
+            <div
+                class="bg-white dark:bg-zinc-900 border-[1px] border-zinc-300 dark:border-zinc-800 rounded-lg p-6 transition-colors duration-200 scrollable-content">
+                {{{body}}}
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userMenuToggle = document.getElementById('userMenuToggle');
+            const userMenuOptions = document.getElementById('userMenuOptions');
+            const menuArrow = document.getElementById('menuArrow');
+            const toggleDarkMode = document.getElementById('toggleDarkMode');
+            const modeText = document.getElementById('modeText');
+            const html = document.documentElement;
+
+            function toggleMenu() {
+                userMenuOptions.classList.toggle('hidden');
+                menuArrow.classList.toggle('ri-arrow-up-s-line');
+                menuArrow.classList.toggle('ri-arrow-down-s-line');
+            }
+
+            userMenuToggle.addEventListener('click', function (event) {
+                event.stopPropagation();
+                toggleMenu();
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!userMenuToggle.contains(event.target)) {
+                    userMenuOptions.classList.add('hidden');
+                    menuArrow.classList.remove('ri-arrow-down-s-line');
+                    menuArrow.classList.add('ri-arrow-up-s-line');
+                }
+            });
+
+            toggleDarkMode.addEventListener('click', function (event) {
+                event.preventDefault();
+                html.classList.toggle('dark');
+                if (html.classList.contains('dark')) {
+                    modeText.textContent = 'Modo Claro';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    modeText.textContent = 'Modo Oscuro';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Verificar el tema guardado en localStorage
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+                modeText.textContent = 'Modo Claro';
+            } else {
+                html.classList.remove('dark');
+                modeText.textContent = 'Modo Oscuro';
+            }
+        });
+    </script>
+
+    {{else}}
     {{{body}}}
-  </div>
+    {{/if}}
 </body>
+
 </html>

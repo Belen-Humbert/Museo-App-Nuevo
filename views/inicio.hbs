@@ -1,108 +1,53 @@
-<div class="iniciovista">
+<div class="container mx-auto px-4 py-2">
+  <h1 class="text-3xl font-bold mb-8 text-center text-zinc-900 dark:text-zinc-300 transition-colors duration-200">Bienvenido al Sistema de Gestión del Museo</h1>
 
-  <a href="/nuevo">
-    <div class="op5" id="cuadro">
-      <?xml version="1.0" encoding="UTF-8"?>
-      <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
-        xmlns="http://www.w3.org/2000/svg" color="#000000">
-        <path
-          d="M3 20.4V3.6C3 3.26863 3.26863 3 3.6 3H20.4C20.7314 3 21 3.26863 21 3.6V20.4C21 20.7314 20.7314 21 20.4 21H3.6C3.26863 21 3 20.7314 3 20.4Z"
-          stroke="#000000" stroke-width="1.5"></path>
-        <path d="M6 18L18 18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M12 14V6M12 6L15.5 9.5M12 6L8.5 9.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-      <p>Subir piezas</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <div class="border-[1px] border-blue-200 bg-blue-100 dark:bg-blue-800/20 dark:border-blue-500/20 rounded-lg shadow-lg p-6 transition-colors duration-200 flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-xl font-semibold mb-4 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Piezas de Museo</h2>
+        <p class="mb-4 text-zinc-700 dark:text-zinc-300 transition-colors duration-200">Gestiona, añade o modifica las piezas del museo.</p>
+      </div>
+      <div class="mt-auto">
+        <a href="/menu" class="block w-full shadow text-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-500/70 transition-colors duration-200">Ver Piezas</a>
+      </div>
     </div>
-  </a>
 
-  <a href="/menu">
-    <div class="op5" id="cuadro">
-      <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5"
-        fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
-        <path d="M3 13C6.6 5 17.4 5 21 13" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round"></path>
-        <path
-          d="M12 17C10.3431 17 9 15.6569 9 14C9 12.3431 10.3431 11 12 11C13.6569 11 15 12.3431 15 14C15 15.6569 13.6569 17 12 17Z"
-          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-
-      <p>Ver piezas</p>
-
+    <div class="border-[1px] border-amber-200 bg-amber-100 dark:bg-amber-800/20 dark:border-amber-500/20 rounded-lg shadow-lg p-6 transition-colors duration-200 flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-xl font-semibold mb-4 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Préstamo de Piezas</h2>
+        <p class="mb-4 text-zinc-700 dark:text-zinc-300 transition-colors duration-200">Registra y administra los préstamos de piezas del museo.</p>
+      </div>
+      <div class="mt-auto">
+        <a href="/listarPrestamo" class="block w-full shadow text-center bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-500/70 transition-colors duration-200">Gestionar Préstamos</a>
+      </div>
     </div>
-  </a>
 
-  <a href="/prestamo">
-    <div class="op5" id="cuadro">
-      <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24"
-        fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
-        <path
-          d="M3 7.5V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V16.5"
-          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M6 21V17" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M18 21V13.6C18 13.2686 17.7314 13 17.4 13H15" stroke="#000000" stroke-width="1.5"
-          stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M16 3V8.4C16 8.73137 15.7314 9 15.4 9H13.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round"></path>
-        <path d="M8 3V6" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M1 12H12M12 12L9 9M12 12L9 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-      <p>Subir prestamos</p>
-
+    <div class="border-[1px] border-yellow-200 bg-yellow-100 dark:bg-yellow-800/20 dark:border-yellow-500/20 rounded-lg shadow-lg p-6 transition-colors duration-200 flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-xl font-semibold mb-4 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Registro de Taxidermia</h2>
+        <p class="mb-4 text-zinc-700 dark:text-zinc-300 transition-colors duration-200">Añade y gestiona los registros de taxidermia del museo.</p>
+      </div>
+      <div class="mt-auto">
+        <a href="/listarTaxidermia" class="block w-full shadow text-center bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-500/70 transition-colors duration-200">Ver Taxidermias</a>
+      </div>
     </div>
-  </a>
-  <a href="/listarPrestamo">
-  <div class="op5" id="cuadro">
-    <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24"
-      fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
-      <path
-        d="M3 6.5V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V17.5"
-        stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      <path d="M8 3H16V8.4C16 8.73137 15.7314 9 15.4 9H8.6C8.26863 9 8 8.73137 8 8.4V3Z" stroke="#000000"
-        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      <path d="M18 21V13.6C18 13.2686 17.7314 13 17.4 13H15" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-        stroke-linejoin="round"></path>
-      <path d="M6 21V17.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-      <path d="M12 12H1M1 12L4 9M1 12L4 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-        stroke-linejoin="round"></path>
-    </svg>
-    <p>Ver prestamos</p>
-
   </div>
-</a>
-  <a href="/nuevaTaxidermia">
-    <div class="op5" id="cuadro">
-      <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5"
-        fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
-        <path d="M9 12L15 12" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        </path>
-        <path
-          d="M4 21.4V2.6C4 2.26863 4.26863 2 4.6 2H16.2515C16.4106 2 16.5632 2.06321 16.6757 2.17574L19.8243 5.32426C19.9368 5.43679 20 5.5894 20 5.74853V21.4C20 21.7314 19.7314 22 19.4 22H4.6C4.26863 22 4 21.7314 4 21.4Z"
-          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M16 2V5.4C16 5.73137 16.2686 6 16.6 6H20" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-      <p>Subir Taxidermia</p>
 
+  <div>
+    <h2 class="text-2xl font-semibold mb-4 text-zinc-900 dark:text-white">Resumen de Piezas</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="border-[1px] border-blue-200 bg-blue-100 dark:bg-blue-800/20 dark:border-blue-500/20 rounded-lg shadow-lg p-4 transition-colors duration-200">
+        <h3 class="font-semibold mb-2 text-zinc-800 dark:text-zinc-200">Total de Piezas</h3>
+        <p class="text-2xl text-zinc-900 dark:text-white">{{totalPiezas}}</p>
+      </div>
+      <div class="border-[1px] border-amber-200 bg-amber-100 dark:bg-amber-800/20 dark:border-amber-500/20 rounded-lg shadow-lg p-4 transition-colors duration-200">
+        <h3 class="font-semibold mb-2 text-zinc-800 dark:text-zinc-200">Piezas en Préstamo</h3>
+        <p class="text-2xl text-zinc-900 dark:text-white">{{piezasEnPrestamo}}</p>
+      </div>
+      <div class="border-[1px] border-yellow-200 bg-yellow-100 dark:bg-yellow-800/20 dark:border-yellow-500/20 rounded-lg shadow-lg p-4 transition-colors duration-200">
+        <h3 class="font-semibold mb-2 text-zinc-800 dark:text-zinc-200">Piezas de Taxidermia</h3>
+        <p class="text-2xl text-zinc-900 dark:text-white">{{piezasTaxidermia}}</p>
+      </div>
     </div>
-
-  </a>
-  <a href="/listarTaxidermia">
-    <div class="op5" id="cuadro">
-      <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5"
-        fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000">
-        <path
-          d="M4 12V2.6C4 2.26863 4.26863 2 4.6 2H16.2515C16.4106 2 16.5632 2.06321 16.6757 2.17574L19.8243 5.32426C19.9368 5.43679 20 5.5894 20 5.74853V21.4C20 21.7314 19.7314 22 19.4 22H11"
-          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        <path d="M16 2V5.4C16 5.73137 16.2686 6 16.6 6H20" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-          stroke-linejoin="round"></path>
-        <path d="M1.99219 19H4.99219M7.99219 19H4.99219M4.99219 19V16M4.99219 19V22" stroke="#000000" stroke-width="1.5"
-          stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-      <p>Ver Taxidermia</p>
-
-
-    </div>
-  </a>
+  </div>
 </div>
