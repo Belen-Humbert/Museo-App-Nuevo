@@ -235,7 +235,10 @@ app.post("/actualizarPrestamo", (req, res) => {
   if (operacionOk) {
     res.redirect("listarPrestamo");
   } else {
+    console.log("server --> browser 'error al actualizar'");
+    res.send("Error al actualizar el prestamo");
     return false;
+   
   }
 });
 

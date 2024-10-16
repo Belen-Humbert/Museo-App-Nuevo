@@ -134,7 +134,9 @@ function guardarPrestamo(data) {
     fs.writeFileSync('./db/prestamo.txt', JSON.stringify(prestamo));
     return true;
   } catch (err) {
+
     return false;
+    
   }
 }
 
