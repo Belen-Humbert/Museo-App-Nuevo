@@ -1,4 +1,4 @@
-SequenceDiagram [frame=true framecolor=blue bgcolor=white footer=true fontcolor=black]{
+SequenceDiagram [label=SequenceDiagramTaxidermia frame=true framecolor=blue bgcolor=white footer=true fontcolor=black]{
     lifeline browser
     lifeline server
     lifeline controlador
@@ -11,7 +11,7 @@ SequenceDiagram [frame=true framecolor=blue bgcolor=white footer=true fontcolor=
     controlador --> modelo 'obtenerTaxidermia()'
     modelo -r-> controlador '[{taxidermia}]'
     controlador -r-> server '[{taxidermia}]'
-    server -r-> browser 'GET/listarTaxidermia,{taxidermia}'
+    server -r-> browser 'render(listarTaxidermia.hbs,{taxidermia})'
 
 //------------Agregar Taxidermia----------------------    
     browser --> server 'GET/nuevaTaxidermia'
@@ -19,11 +19,11 @@ SequenceDiagram [frame=true framecolor=blue bgcolor=white footer=true fontcolor=
     browser --> server 'POST/enviarTaxidermia'
     server --> controlador 'nuevaTaxi(nuevaTaxidermia)'
     controlador --> modelo 'guardarTaxidermia(miTaxidermia)'
-    fragment alt ""{
+    fragment alt "" [color=blue]{
     modelo -r-> controlador 'true'
     controlador -r-> server 'true'
     server -r-> server 'redirect:/listarTaxidermia'
-    server -r-> browser 'rednder: /listarTaxidermia, {taxidermia}'
+    server -r-> browser 'render(listarTaxidermia.hbs, {taxidermia})'
     case ""
     modelo -r-> controlador 'false(algo fallo en el modelo)'
     controlador -r-> server 'false(algo falló en el controlador)'
@@ -35,9 +35,9 @@ SequenceDiagram [frame=true framecolor=blue bgcolor=white footer=true fontcolor=
     server --> controlador 'TaxidermiaPorNro(idTax)'
     controlador --> modelo 'obtenerTaxidermia()'
     modelo -r-> controlador '[{taxidermia}]'
-    fragment alt ""{
+    fragment alt ""[color=blue]{
     controlador -r-> server '{taxidId}'
-    server -r-> browser 'render (/modificarTaxidermia, {taxidermia})'
+    server -r-> browser 'render(modificarTaxidermia.hbs, {taxidermia})'
     case ""
     controlador -r-> server 'false(Algo fallo en el controlador)'
     server -r-> browser 'false(no encontre taxidermia con ese id)'
@@ -45,11 +45,11 @@ SequenceDiagram [frame=true framecolor=blue bgcolor=white footer=true fontcolor=
     browser --> server 'POST/actualizarTaxidermia'
     server --> controlador 'actualizarTaxidermia(taxidermiaActualizada)'
     controlador --> modelo 'updateTaxidermia(taxidermiaActualizada)'
-    fragment alt "" {
+    fragment alt "" [color=blue] {
     modelo -r-> controlador 'true'
     controlador -r-> server 'true (esta funcionando en controlador)'
-    server -r-> server 'redirect(listarTaxidermia)'
-    server -r-> browser 'render (/listarTaxidermia, {taxidermia})'
+    server -r-> server 'redirect(/listarTaxidermia)'
+    server -r-> browser 'render(listarTaxidermia.hbs, {taxidermia})'
     case ""
     modelo -r-> controlador 'false'
     controlador -r-> server '(algo fallo en el controlador) false'
@@ -59,11 +59,11 @@ SequenceDiagram [frame=true framecolor=blue bgcolor=white footer=true fontcolor=
     browser --> server 'POST /deleteTaxidermia'
     server --> controlador 'TaxidermiaBaja(NroTax)'
     controlador --> modelo 'actualizarBajaLogicaTax(numeroTax)'
-    fragment alt "" {
+    fragment alt ""  [color=blue] {
     modelo -r-> controlador 'true'
     controlador -r-> server '(esta funcionando en controlador TaxidermiaBaja)true'
     server -r-> server 'redirect(/listarTaxidermia)'
-    server -r-> browser 'render(/listarTaxidermia, {taxidermia})'
+    server -r-> browser 'render(listarTaxidermia.hbs, {taxidermia})'
     case ""
     modelo -r-> controlador 'false'
     controlador -r-> server '(taxidermia no encontrada)false'
