@@ -77,7 +77,7 @@ function actualizarBajaLogica(numeroRegistro) {
     for(var i=0; i<piezas.length ; i++){
       
       if(piezas[i].NumeroRegistro == numeroRegistro){
-        piezas[i].BajaLogica = false
+        piezas[i].BajaLogica = true
       }
       console.log(piezas[i].NumeroRegistro+"  "+piezas[i].BajaLogica+"  "+numeroRegistro)
     }
