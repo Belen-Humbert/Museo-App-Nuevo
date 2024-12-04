@@ -32,7 +32,7 @@ function nuevoUser(data) {
 function nuevo(data) {
   console.log("server --> controlador 'nuevo(data)'");
   console.log(data);
-  let BajaLogica = data.BajaLogica === 'false'
+  let BajaLogica = data.BajaLogica === 'false' //=== devuelve true si ambos son iguales
 
   let miPieza = new Clases.Pieza(
     data.NumeroRegistro,

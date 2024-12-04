@@ -1,5 +1,5 @@
 class Pieza {
-    constructor(nroR, nomP, medidaP, materialOb, fechaAd, formaAdq, añoPi, estadoPi, cantidad, Obse, supr = true) {
+    constructor(nroR, nomP, medidaP, materialOb, fechaAd, formaAdq, añoPi, estadoPi, cantidad, Obse, supr) {
         this.NumeroRegistro = nroR;
         this.NombrePieza = nomP;
         this.MedidaPieza = medidaP;
