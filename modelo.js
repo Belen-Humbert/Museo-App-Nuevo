@@ -31,10 +31,8 @@ function getUsuarios() {
   if (str_usuarios) {
     usuarios = JSON.parse(str_usuarios);
   }
-  let objUsuarios = [];
-  usuarios.forEach(x => objUsuarios.push(Clases.Usuario.fromJSON(x)));
-  console.log("modelo --> seguridad [{objUsuarios}]");
-  return objUsuarios;
+  console.log("modelo --> seguridad [usuarios]");
+  return usuarios;
 }
 
 //---------- PIEZA --------------
