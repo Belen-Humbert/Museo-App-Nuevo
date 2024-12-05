@@ -34,7 +34,7 @@ SequenceDiagram{
     controlador --> modelo 'obtener()'
     modelo -r-> controlador '[{piezas}]'
     controlador -r-> server '[{piezas}]'
-    server -r-> browser 'render: modificar'
+    server -r-> browser 'render: modificar{piezas}'
 
     browser --> server 'POST /actualizarPieza'
     server --> controlador 'actualizarPieza(piezaAct)'
@@ -52,8 +52,14 @@ SequenceDiagram{
 //----------- Baja Pieza ---------------------------------------
     browser --> server 'POST /deletePieza'
     server --> controlador 'PiezaBaja(numRe)'
-    controlador --> modelo 'actualizarBajaLogica(numeroRegistro)'
+    controlador --> modelo 'actualizarBajaLogica(numeroRegistro)' 
+    fragment alt "" {
     modelo -r-> controlador 'true (baja exitosa)'
     controlador -r-> server 'true (baja exitosa)'
     server -r-> browser 'redirect: /menu'
-}
+    case ""
+    modelo -r-> controlador 'return: false'
+    controlador -r-> server 'Pieza no encontrada: false'
+    server -r-> browser 'Error al eliminar la pieza'
+    }
+    }

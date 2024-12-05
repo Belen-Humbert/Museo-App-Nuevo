@@ -11,7 +11,7 @@ SequenceDiagram [label=SequenceDiagramTaxidermia frame=true framecolor=blue bgco
     controlador --> modelo 'obtenerTaxidermia()'
     modelo -r-> controlador '[{taxidermia}]'
     controlador -r-> server '[{taxidermia}]'
-    server -r-> browser 'render(listarTaxidermia.hbs,{taxidermia})'
+    server -r-> browser 'render(listarTaxidermia,{taxidermia})'
 
 //------------Agregar Taxidermia----------------------    
     browser --> server 'GET/nuevaTaxidermia'
@@ -35,9 +35,11 @@ SequenceDiagram [label=SequenceDiagramTaxidermia frame=true framecolor=blue bgco
     server --> controlador 'TaxidermiaPorNro(idTax)'
     controlador --> modelo 'obtenerTaxidermia()'
     modelo -r-> controlador '[{taxidermia}]'
+    
     fragment alt ""[color=blue]{
-    controlador -r-> server '{taxidId}'
-    server -r-> browser 'render(modificarTaxidermia.hbs, {taxidermia})'
+    modelo -r-> controlador 'return: true'
+    controlador -r-> server 'return {taxidId}'
+    server -r-> browser 'render(modificarTaxidermia, {taxidermia})'
     case ""
     controlador -r-> server 'false(Algo fallo en el controlador)'
     server -r-> browser 'false(no encontre taxidermia con ese id)'
@@ -49,11 +51,11 @@ SequenceDiagram [label=SequenceDiagramTaxidermia frame=true framecolor=blue bgco
     modelo -r-> controlador 'true'
     controlador -r-> server 'true (esta funcionando en controlador)'
     server -r-> server 'redirect(/listarTaxidermia)'
-    server -r-> browser 'render(listarTaxidermia.hbs, {taxidermia})'
+    server -r-> browser 'render(listarTaxidermia, {taxidermia})'
     case ""
     modelo -r-> controlador 'false'
-    controlador -r-> server '(algo fallo en el controlador) false'
-    server -r-> browser '(Algo fallo al actualizar taxidermia) false' 
+    controlador -r-> server 'false (algo fallo en el controlador)'
+    server -r-> browser 'false (Algo fallo al actualizar taxidermia)' 
     }
 //------------Eliminar Taxidermia-------------------
     browser --> server 'POST /deleteTaxidermia'
@@ -61,12 +63,12 @@ SequenceDiagram [label=SequenceDiagramTaxidermia frame=true framecolor=blue bgco
     controlador --> modelo 'actualizarBajaLogicaTax(numeroTax)'
     fragment alt ""  [color=blue] {
     modelo -r-> controlador 'true'
-    controlador -r-> server '(esta funcionando en controlador TaxidermiaBaja)true'
+    controlador -r-> server 'true (esta funcionando en controlador TaxidermiaBaja)'
     server -r-> server 'redirect(/listarTaxidermia)'
-    server -r-> browser 'render(listarTaxidermia.hbs, {taxidermia})'
+    server -r-> browser 'render(listarTaxidermia, {taxidermia})'
     case ""
     modelo -r-> controlador 'false'
-    controlador -r-> server '(taxidermia no encontrada)false'
-    server -r-> browser '(no se pudo eliminar)false'    
+    controlador -r-> server 'false (taxidermia no encontrada)'
+    server -r-> browser '(no se pudo eliminar)'    
     }
 }   

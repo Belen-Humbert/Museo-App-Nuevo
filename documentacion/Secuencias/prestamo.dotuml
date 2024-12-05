@@ -13,7 +13,7 @@ server --> controlador "obtenerPrestamo ()"
 controlador --> modelo "obtenerPrestamo ()"
 controlador <-r- modelo "[{prestamo}]"
 server <-r- controlador "[{prestamo}]"
-browser <-r- server "render: listarPrestamo.hbs,{prestamo}"
+browser <-r- server "render: listarPrestamo,{prestamo}"
 
 //------------ Nuevo Prestamo ---------------------------------------
 
@@ -25,24 +25,25 @@ controlador --> modelo "guardarPrestamo(miPrestamo)"
   fragment alt "" {
         controlador <-- modelo 'true (guardado exitoso)'
         server <-- controlador 'guardarExitoso'
-        browser <-- server 'redirect: /listarPrestamo.hbs'
+        browser <-- server 'redirect: /listarPrestamo'
     case ""
         controlador <-- modelo 'false (error al guardar)'
         server <-r- controlador 'guardarExitoso'
-        browser -r-> server 'error al guardar los datos'
+        browser <-r- server 'error al guardar los datos'
     }
 
 
 //----------- Editar Prestamo ---------------------------------------
     browser --> server 'POST /modificarPrestamo'
-    browser <-r- server 'redirect: /editarPrestamo/{idPres}'
+    server <-r- server 'redirect: /editarPrestamo/{idPres}'
     
-    browser --> server 'GET editarPrestamo/:idPres'
+
+    //browser --> server 'GET editarPrestamo/:idPres'
     server --> controlador 'PrestamoPorNro(idPres)'
     controlador --> modelo 'obtenerPrestamo()'
     controlador <-r- modelo '[{prestamo}]'
     server <-r- controlador '[{prestamo}]'
-    browser <-r- server 'render: modificarPrestamo'
+    browser <-r- server 'render: modificarPrestamo{prestamo}'
 
     browser --> server 'POST /actualizarPrestamo'
     server --> controlador 'actualizarPrestamo(PrestamoActualizado)'
@@ -62,7 +63,14 @@ controlador --> modelo "guardarPrestamo(miPrestamo)"
     browser --> server 'POST /deletePrestamo'
     server --> controlador 'PrestamoBaja(NroReg)'
     controlador --> modelo 'actualizarBajaLogicaPrestamo(numeroPrestamo)'
-    controlador <-r- modelo 'true (baja exitosa)'
-    server <-r- controlador 'true (baja exitosa)'
-    browser <-r- server 'redirect: /listarPrestamo'
+    
+    fragment alt "" {
+        controlador <-r- modelo 'true (baja exitosa)'
+        server <-r- controlador 'true (prestamo eliminado logicamente)'
+        browser <-r- server 'redirect: /listarPrestamo'
+    case ""
+        controlador <-r- modelo 'return: false'
+        server <-r- controlador 'return: false (prestamo no encontrado)'
+        browser <-r- server 'Error al eliminar prestamo'
+    }
 }
