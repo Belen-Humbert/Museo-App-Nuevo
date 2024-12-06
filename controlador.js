@@ -47,7 +47,8 @@ function listar() {
 function PiezaPorNro(numRe) {
 
   const piezasArray = Modelo.obtener();
-  const piezaId = piezasArray.find(pieza => pieza.NumeroRegistro === numRe);//busca el priemer numero en el array que coincida con el que se le pasa con el 
+  const piezasActivas = piezasArray.filter(pieza => pieza.BajaLogica === false);//El método filter() es una función de arrays en JavaScript que crea un nuevo array con todos los elementos que cumplan una condición específica.
+  const piezaId = piezasActivas.find(pieza => pieza.NumeroRegistro === numRe);//busca el priemer numero en el array que coincida con el que se le pasa con el 
 
 
   if (piezaId) {
@@ -125,7 +126,8 @@ function obtenerPrestamo() {
 function PrestamoPorNro(idPres){
 
   const prestamoArray = Modelo.obtenerPrestamo();
-  const prestId = prestamoArray.find(prestamo => prestamo.numeroPrestamo === idPres);//busca el priemer numero en el array que coincida con el que se le pasa con el 
+  const prestamosActivos = prestamoArray.filter(prestamo => prestamo.BajaLogica === false);
+  const prestId = prestamosActivos.find(prestamo => prestamo.numeroPrestamo === idPres);//busca el priemer numero en el array que coincida con el que se le pasa con el 
 
   if (prestId) {
     console.log('encontramos', prestId.numeroPrestamo);
@@ -193,7 +195,8 @@ function listarTaxidermia() {
 function TaxidermiaPorNro(idTax){
 
   const taxidermiaArray = Modelo.obtenerTaxidermia();
-  const taxidId = taxidermiaArray.find(taxidermia => taxidermia.idTaxidermia === idTax);//busca el priemer numero en el array que coincida con el que se le pasa con el 
+  const taxidermiasActivos = taxidermiaArray.filter(taxidermia => taxidermia.BajaTax === true);
+  const taxidId = taxidermiasActivos.find(taxidermia => taxidermia.idTaxidermia === idTax);//busca el priemer numero en el array que coincida con el que se le pasa con el 
 
   if (taxidId) {
     console.log('encontramos', taxidId.idTaxidermia);

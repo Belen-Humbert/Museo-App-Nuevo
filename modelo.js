@@ -275,7 +275,6 @@ function updateTaxidermia(taxidermiaActualizada) {
 module.exports = {
   guardar,
   obtener,
-  guardarUsuario,
   getUsuarios,
   guardarPrestamo,
   obtenerPrestamo,
