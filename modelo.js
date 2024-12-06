@@ -2,29 +2,6 @@ const fs = require("fs"); // Usa fs.promises para funciones asíncronas
 const Clases = require("./clases.js");
 
 //---------- USUARIO --------------
-function guardarUsuario(data) {
-  let str_usuarios = fs.readFileSync("./db/usuarios.txt", "utf-8");
-  let usuarios = [];
-  // Si el archivo no está vacío, parseamos los usuarios
-  if (str_usuarios) {
-    usuarios = JSON.parse(str_usuarios);
-  }
-  // Verificamos si el usuario ya existe (evitamos duplicados)
-  const usuarioExistente = usuarios.find((u) => u.usuario === data.usuario);
-  if (usuarioExistente) {
-    return false;
-  }
-  // Agregamos el nuevo usuario
-  usuarios.push(data);
-  try {
-    // Guardamos la lista actualizada en el archivo
-    fs.writeFileSync("./db/usuarios.txt", JSON.stringify(usuarios));
-    return true;
-  } catch (err) {
-    return false;
-  }
-}
-
 function getUsuarios() {
   let str_usuarios = fs.readFileSync("./db/usuarios.txt", "utf-8");
   let usuarios = [];

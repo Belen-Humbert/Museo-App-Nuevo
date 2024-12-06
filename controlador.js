@@ -1,33 +1,6 @@
 const Clases = require("./clases.js");
 const Modelo = require("./modelo.js");
 
-
-//---------- USUARIO --------------
-function nuevoUser(data) {
-  // Obtener la lista de usuarios
-  const usuarios = Modelo.getUsuarios();
-  
-  // Verificar si el nombre de usuario ya existe
-  if (usuarios.find(u => u.usuario === data.usuario)) {
-    return { exito: false, mensaje: "El nombre de usuario ya existe" };
-  }
-
-  // Crear el nuevo usuario
-  let unUser = new Clases.Usuario(
-    data.nombre,
-    data.usuario,
-    data.pass,
-    null,  // Asume que no necesitas un campo extra en este momento
-  );
-  // Guardar el usuario usando el modelo
-  const guardarExitoso = Modelo.guardarUsuario(unUser);
-  if (guardarExitoso) {
-    return { exito: true, mensaje: "Usuario registrado con éxito" };  // Corregido a 'exito: true'
-  } else {
-    return { exito: false, mensaje: "Error al guardar el usuario" };
-  }
-}
-
 //---------- PIEZA --------------
 function nuevo(data) {
   console.log("server --> controlador 'nuevo(data)'");
@@ -263,4 +236,4 @@ function TaxidermiaBaja(NroTax){
 
 
 
-module.exports = { nuevoUser, nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro, actualizarPrestamo, TaxidermiaBaja,PrestamoBaja};
+module.exports = { nuevo, obtener, listar, PiezaPorNro, guardarPrestamo, obtenerPrestamo, PiezaBaja, actualizarPieza, nuevaTaxi, listarTaxidermia, TaxidermiaPorNro, actualizarTaxidermia, PrestamoPorNro, actualizarPrestamo, TaxidermiaBaja,PrestamoBaja};
