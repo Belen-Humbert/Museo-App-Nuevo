@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
   res.render("index", {
     useNav: false,
     titulo: "Inicio de Sesión",
-    error: req.query.error // Asegúrate de pasar el error si existe
+    error: req.query.error
   });
 });
 
@@ -361,7 +361,7 @@ app.get("/logout", (req, res) => {
 });
 
 //--------- SERVER RUTAS --------------
-app.use((req, res, next) => {
+app.use((req, res) => {
   res
     .status(404)
     .render("404", { useTailwind: true, titulo: "Página no encontrada" });
