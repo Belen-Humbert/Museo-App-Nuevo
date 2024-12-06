@@ -15,7 +15,7 @@ function getUsuarios() {
 //---------- PIEZA --------------
 function guardar(data) {
   console.log("modelo --> controlador 'guardar(data)'");
-  let str_piezas = fs.readFileSync("./db.txt", "utf-8");
+  let str_piezas = fs.readFileSync("./db/piezas.txt", "utf-8");
   let piezas = []; /* */
   if (str_piezas) {
     piezas = JSON.parse(str_piezas);
@@ -32,7 +32,7 @@ function guardar(data) {
 }
 
 function obtener() {
-  let str_piezas = fs.readFileSync("./db.txt", "utf-8");
+  let str_piezas = fs.readFileSync("./db/piezas.txt", "utf-8");
   let piezas = [];
   if (str_piezas) {
     piezas = JSON.parse(str_piezas);
@@ -44,7 +44,7 @@ function obtener() {
 // baja lógica
 function actualizarBajaLogica(numeroRegistro) {
   try {
-    let str_piezas = fs.readFileSync("./db.txt", "utf-8");
+    let str_piezas = fs.readFileSync("./db/piezas.txt", "utf-8");
     let piezas = [];
     if (str_piezas) {
       piezas = JSON.parse(str_piezas);
@@ -61,7 +61,7 @@ function actualizarBajaLogica(numeroRegistro) {
           numeroRegistro
       );
     }
-    fs.writeFileSync("./db.txt", JSON.stringify(piezas));
+    fs.writeFileSync("./db/piezas.txt", JSON.stringify(piezas));
     return true;
   } catch (err) {
     return false;
@@ -89,7 +89,7 @@ function updatePieza(piezaAct) {
     piezas[index].Observacion = piezaAct.obser;
 
     try {
-      fs.writeFileSync("./db.txt", JSON.stringify(piezas));
+      fs.writeFileSync("./db/piezas.txt", JSON.stringify(piezas));
       console.log("modelo --> controlador 'true'");
       return true;
     } catch (err) {
