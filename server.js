@@ -60,8 +60,8 @@ function autenticarUsuario(req, res, next) {
 
 //--------- DEFINICIÓN DE RUTAS --------------
 app.get("/", (req, res) => {
-  res.render("index", { 
-    useNav: false, 
+  res.render("index", {
+    useNav: false,
     titulo: "Inicio de Sesión",
     error: req.query.error // Asegúrate de pasar el error si existe
   });
@@ -92,34 +92,46 @@ app.post("/login", (req, res) => {
 app.get("/inicio", autenticarUsuario, (req, res) => {
   console.log("browser --> server 'GET /inicio'");
   console.log("server --> browser 'render: inicio'");
+  const piezas = Controlador.listar();
+  const piezasActivas = piezas.filter(pieza => pieza.BajaLogica === false);
+  const prestamos = Controlador.obtenerPrestamo();
+  const prestamosActivos = prestamos.filter(prestamo => prestamo.BajaLogica === false);
+  const taxidermias = Controlador.listarTaxidermia();
+  const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === true);
+
   res.render("inicio", {
     useTailwind: true,
     useCSS: false,
     useNav: true,
     titulo: "Inicio",
+    piezas: piezasActivas,
+    prestamos: prestamosActivos,
+    taxidermias: taxidermiasActivos,
     usuario: req.session.usuario,
   });
 });
 
 
 //--------- PIEZA RUTAS --------------
-app.get("/menu", autenticarUsuario, (req, res) => {
-  console.log("browser --> server 'GET /menu'");
+app.get("/listarPieza", autenticarUsuario, (req, res) => {
+  console.log("browser --> server 'GET /listarPieza'");
   const piezas = Controlador.listar();
+  const piezasActivas = piezas.filter(pieza => pieza.BajaLogica === false);
+
   console.log("server --> controlador.listar");
-  console.log("server --> browser 'render: menu'");
-  res.render("menu", {
+  console.log("server --> browser 'render: listarPieza'");
+  res.render("listarPieza", {
     useNav: true,
-    piezas,
+    piezas: piezasActivas,
     titulo: "Piezas del Museo",
     usuario: req.session.usuario,
   });
 });
 
-app.get("/nuevo", autenticarUsuario, (req, res) => {
+app.get("/nuevaPieza", autenticarUsuario, (req, res) => {
   console.log("browser --> server 'GET /nuevo'");
   console.log("server --> browser 'render: nuevo'");
-  res.render("nuevo", {
+  res.render("nuevaPieza", {
     useNav: true,
     titulo: "Registro de pieza",
     usuario: req.session.usuario,
@@ -131,7 +143,7 @@ app.post("/agregar", (req, res) => {
   const operacionExitosa = Controlador.nuevo(req.body);
   console.log("server --> controlador 'nuevo(req.body)'");
   if (operacionExitosa) {
-    res.redirect("/menu");
+    res.redirect("/listarPieza");
   } else {
     res.send("Error al guardar los datos");
   }
@@ -151,7 +163,7 @@ app.get("/editarPieza/:NroReg", (req, res) => {
   const piezas = Controlador.PiezaPorNro(numRe);
   console.log("controlador --> server 'datos de la pieza'");
   console.log("server --> browser 'render: modificar'");
-  res.render("modificar", {
+  res.render("modificarPieza", {
     useNav: true,
     titulo: "Editar pieza",
     piezas,
@@ -167,8 +179,8 @@ app.post("/actualizarPieza", (req, res) => {
   console.log("controlador --> server 'resultado de la actualización'");
 
   if (operacionExitosa) {
-    console.log("server --> browser 'redirect: /menu'");
-    res.redirect("/menu");
+    console.log("server --> browser 'redirect: /listarPieza'");
+    res.redirect("/listarPieza");
   } else {
     console.log("server --> browser 'error al actualizar'");
     res.send("Error al actualizar la pieza");
@@ -180,9 +192,9 @@ app.post("/deletePieza", (req, res) => {
   const NroReg = req.body.NroReg;
   const resultado = Controlador.PiezaBaja(NroReg);
   console.log("server --> controlador 'PiezaBaja'");
-  if(resultado){ 
-  res.redirect("menu");
-  }else{
+  if (resultado) {
+    res.redirect("listarPieza");
+  } else {
     res.send("Error al eliminar la pieza")
   }
 });
@@ -210,11 +222,12 @@ app.get("/prestamo", autenticarUsuario, (req, res) => {
 });
 
 app.get("/listarPrestamo", (req, res) => {
-  const prestamo = Controlador.obtenerPrestamo();
+  const prestamos = Controlador.obtenerPrestamo();
+  const prestamosActivos = prestamos.filter(prestamo => prestamo.BajaLogica === false);
   res.render("listarPrestamo", {
     useNav: true,
     titulo: "Prestamos",
-    prestamo,
+    prestamo: prestamosActivos,
     usuario: req.session.usuario,
   });
 });
@@ -251,7 +264,7 @@ app.post("/deletePrestamo", (req, res) => {
   const resultado = Controlador.PrestamoBaja(NroReg);
   if (resultado) {
     res.redirect("listarPrestamo");
-  }else{
+  } else {
     res.send("Error al eliminar prestamo");
   }
 });
@@ -276,11 +289,13 @@ app.post("/enviarTaxidermia", (req, res) => {
 });
 
 app.get("/listarTaxidermia", (req, res) => {
-  const taxidermia = Controlador.listarTaxidermia();
+  const taxidermias = Controlador.listarTaxidermia();
+  const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === true);
+
   res.render("listarTaxidermia", {
     useNav: true,
     titulo: "Taxidermias",
-    taxidermia,
+    taxidermia: taxidermiasActivos,
     usuario: req.session.usuario,
   });
 });
@@ -300,7 +315,7 @@ app.get("/editarTaxidermia/:idTax", (req, res) => {
       taxidermia,
       usuario: req.session.usuario,
     });
-  }else{
+  } else {
     res.send("No encontre taxidermia con ese id");
   }
 });
@@ -321,8 +336,8 @@ app.post("/deleteTaxidermia", (req, res) => {
   resultado = Controlador.TaxidermiaBaja(NroTax);
 
   if (resultado) {
-    res.redirect("listarTaxidermia");    
-  }else{
+    res.redirect("listarTaxidermia");
+  } else {
     res.send("No se pudo eliminar");
   }
 });
@@ -336,58 +351,7 @@ app.get("/registrar", (req, res) => {
   });
 });
 
-app.post("/agregarUser", (req, res) => {
-  const resultado = Controlador.nuevoUser(req.body);
-  if (resultado.exito) {
-    res.redirect("/login?mensaje=" + encodeURIComponent(resultado.mensaje));
-  } else {
-    res.render("registro", {
-      useNav: true,
-      titulo: "Registro de Usuario",
-      error: resultado.mensaje,
-      usuario: req.session.usuario,
-    });
-  }
-});
-
-app.get("/editarPerfil", autenticarUsuario, (req, res) => {
-  res.render("editarPerfil", {
-    useNav: true,
-    titulo: "Perfil",
-    usuario: req.session.usuario,
-  });
-});
-
- app.post("/actualizarPerfil", autenticarUsuario, (req, res) => {
-  const usuarioActualizado = {
-    nombre: req.body.nombre,
-    usuario: req.session.usuario.usuario, // Usuario actual
-    nuevoUsuario: req.body.usuario, // Nuevo nombre de usuario si se cambió
-    pass: req.body.pass
-  };
-  
-  console.log("Datos a actualizar:", usuarioActualizado);
-  
-  const resultado = Controlador.actualizarUsuario(usuarioActualizado);
-  
-  if (resultado) {
-    // Actualizar la sesión con los nuevos datos
-    req.session.usuario = {
-      nombre: usuarioActualizado.nombre,
-      usuario: usuarioActualizado.nuevoUsuario || usuarioActualizado.usuario,
-    };
-    res.redirect("/inicio");
-  } else {
-    res.render("editarPerfil", {
-      useNav: true,
-      titulo: "Perfil",
-      usuario: req.session.usuario,
-      error: "No se pudo actualizar el perfil"
-    });
-  }
-});
-
- app.get("/logout", (req, res) => {
+app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error("Error al cerrar sesión:", err);
