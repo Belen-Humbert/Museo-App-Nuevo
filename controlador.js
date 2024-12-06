@@ -195,7 +195,7 @@ function listarTaxidermia() {
 function TaxidermiaPorNro(idTax){
 
   const taxidermiaArray = Modelo.obtenerTaxidermia();
-  const taxidermiasActivos = taxidermiaArray.filter(taxidermia => taxidermia.BajaTax === true);
+  const taxidermiasActivos = taxidermiaArray.filter(taxidermia => taxidermia.BajaTax === false);
   const taxidId = taxidermiasActivos.find(taxidermia => taxidermia.idTaxidermia === idTax);//busca el priemer numero en el array que coincida con el que se le pasa con el 
 
   if (taxidId) {

@@ -107,7 +107,7 @@ class Prestamoestado{
 
 class Taxidermia {
 
-    constructor(idTax, fechaM, obseTax, idPieza, baj = true){
+    constructor(idTax, fechaM, obseTax, idPieza, baj = false){
 
         this.idTaxidermia = idTax;
         this.fechaMantenimiento = fechaM;

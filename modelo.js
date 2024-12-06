@@ -235,7 +235,7 @@ function actualizarBajaLogicaTax(NroTax) {
     let encontrado = false; // Para rastrear si se encuentra el registro
     for (var i = 0; i < taxidermia.length; i++) {
       if (taxidermia[i].idTaxidermia == NroTax) {
-        taxidermia[i].BajaTax = false;
+        taxidermia[i].BajaTax = true;
         encontrado = true;
       }
     }

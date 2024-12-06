@@ -4,22 +4,22 @@ SequenceDiagram{
     lifeline controlador
     lifeline modelo
 //----------- Listar Pieza ---------------------------------------
-    browser --> server 'GET /menu'
+    browser --> server 'GET /listarPieza'
     server --> controlador 'listar()'
     controlador --> modelo 'obtener()'
     modelo -r-> controlador '[{piezas}]'
     controlador -r-> server '[{piezas}]'
-    server -r-> browser 'render: menu,{piezas}'
+    server -r-> browser 'render: listarPieza,{piezas}'
 //------------ Nueva Pieza ---------------------------------------
-    browser --> server 'GET /nuevo'
-    server -r-> browser 'render: nuevo'
+    browser --> server 'GET /nuevaPieza'
+    server -r-> browser 'render: nuevaPieza'
     browser --> server 'POST /agregar'
     server --> controlador 'nuevo(req.body)'
     controlador --> modelo 'guardar(miPieza)'
     fragment alt "" {
         modelo -r-> controlador 'true (guardado exitoso)'
         controlador -r-> server 'guardarExitoso'
-        server -r-> browser 'redirect: /menu'
+        server -r-> browser 'redirect: /listarPieza'
     case ""
         modelo -r-> controlador 'false (error al guardar)'
         controlador -r-> server 'guardarExitoso'
@@ -43,7 +43,7 @@ SequenceDiagram{
     fragment alt "" {
         modelo -r-> controlador 'return: true'
         controlador -r-> server 'OperacionOk: true'
-        server -r-> browser 'redirect: /menu'
+        server -r-> browser 'redirect: /listarPieza'
     case ""
         modelo -r-> controlador 'return: false'
         controlador -r-> server 'OperacionOk: false'
@@ -56,7 +56,7 @@ SequenceDiagram{
     fragment alt "" {
     modelo -r-> controlador 'true (baja exitosa)'
     controlador -r-> server 'true (baja exitosa)'
-    server -r-> browser 'redirect: /menu'
+    server -r-> browser 'redirect: /listarPieza'
     case ""
     modelo -r-> controlador 'return: false'
     controlador -r-> server 'Pieza no encontrada: false'

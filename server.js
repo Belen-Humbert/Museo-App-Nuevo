@@ -290,7 +290,7 @@ app.post("/enviarTaxidermia", (req, res) => {
 
 app.get("/listarTaxidermia", (req, res) => {
   const taxidermias = Controlador.listarTaxidermia();
-  const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === true);
+  const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === false);
 
   res.render("listarTaxidermia", {
     useNav: true,
