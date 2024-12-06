@@ -1,1 +1,16 @@
-[{"nombre":"Belen","usuario":"bel_humbert","pass":"0395","token":null,"class":"Usuario"},{"nombre":"Luana","usuario":"luana","pass":"1234","token":null,"class":"Usuario"},{"nombre":"tito","usuario":"tito","pass":"123","token":null,"class":"Usuario"},{"nombre":"coso","usuario":"coso","pass":"123","token":null,"class":"Usuario"},{"nombre":"alejo","usuario":"alejo","pass":"123","token":null,"class":"Usuario"}]
+[
+  {
+    "nombre": "Museo Lavalle",
+    "usuario": "MuseoLavalle",
+    "pass": "Museo1234",
+    "token": null,
+    "class": "Usuario"
+  },
+  {
+    "nombre": "Museo Admin",
+    "usuario": "MuseoAdmin",
+    "pass": "MuseoLavalle1234",
+    "token": null,
+    "class": "Usuario"
+  }
+]

@@ -1,1 +1,112 @@
-[{"numeroPrestamo":"1","numeroPiezas":"1","eventoPrestamo":"parque","fechaPrestamo":"2024-12-05","fechaDevolucion":"2024-12-05","cantidad":"1000","observacionPrestamo":"droga","BajaLogica":true,"class":"Prestamo"},{"numeroPrestamo":"123","numeroPiezas":"1","eventoPrestamo":"c","fechaPrestamo":"2024-12-20","fechaDevolucion":"2024-12-12","cantidad":"2","observacionPrestamo":"c","BajaLogica":false,"class":"Prestamo"},{"numeroPrestamo":"1","numeroPiezas":"123","eventoPrestamo":"nose","fechaPrestamo":"1111-11-11","fechaDevolucion":"1111-11-11","cantidad":"12","observacionPrestamo":"responsable","BajaLogica":false,"class":"Prestamo"}]
+[
+  {
+    "numeroPrestamo": "2",
+    "numeroPiezas": "5",
+    "eventoPrestamo": "museo",
+    "fechaPrestamo": "2023-07-01",
+    "fechaDevolucion": "2023-07-15",
+    "cantidad": "1500",
+    "observacionPrestamo": "Exposición temporal",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "3",
+    "numeroPiezas": "3",
+    "eventoPrestamo": "galería",
+    "fechaPrestamo": "2024-01-10",
+    "fechaDevolucion": "2024-01-25",
+    "cantidad": "2000",
+    "observacionPrestamo": "Requiere restauración previa",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "4",
+    "numeroPiezas": "10",
+    "eventoPrestamo": "feria",
+    "fechaPrestamo": "2023-05-20",
+    "fechaDevolucion": "2023-06-01",
+    "cantidad": "3000",
+    "observacionPrestamo": "Transportar con cuidado",
+    "BajaLogica": true,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "5",
+    "numeroPiezas": "2",
+    "eventoPrestamo": "universidad",
+    "fechaPrestamo": "2022-11-12",
+    "fechaDevolucion": "2022-11-15",
+    "cantidad": "800",
+    "observacionPrestamo": "Material educativo",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "6",
+    "numeroPiezas": "8",
+    "eventoPrestamo": "evento privado",
+    "fechaPrestamo": "2024-03-08",
+    "fechaDevolucion": "2024-03-12",
+    "cantidad": "4000",
+    "observacionPrestamo": "Custodia especial requerida",
+    "BajaLogica": true,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "7",
+    "numeroPiezas": "6",
+    "eventoPrestamo": "festival",
+    "fechaPrestamo": "2023-08-14",
+    "fechaDevolucion": "2023-08-20",
+    "cantidad": "2500",
+    "observacionPrestamo": "Alto tráfico esperado",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "8",
+    "numeroPiezas": "4",
+    "eventoPrestamo": "instituto",
+    "fechaPrestamo": "2023-12-01",
+    "fechaDevolucion": "2023-12-10",
+    "cantidad": "1200",
+    "observacionPrestamo": "Proveer documentos adicionales",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "9",
+    "numeroPiezas": "7",
+    "eventoPrestamo": "comunidad",
+    "fechaPrestamo": "2023-10-05",
+    "fechaDevolucion": "2023-10-15",
+    "cantidad": "5000",
+    "observacionPrestamo": "Instalación supervisada",
+    "BajaLogica": true,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "10",
+    "numeroPiezas": "1",
+    "eventoPrestamo": "organización benéfica",
+    "fechaPrestamo": "2024-02-14",
+    "fechaDevolucion": "2024-02-20",
+    "cantidad": "600",
+    "observacionPrestamo": "Beneficio a comunidades vulnerables",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  },
+  {
+    "numeroPrestamo": "11",
+    "numeroPiezas": "9",
+    "eventoPrestamo": "ayuntamiento",
+    "fechaPrestamo": "2022-04-12",
+    "fechaDevolucion": "2022-04-22",
+    "cantidad": "3500",
+    "observacionPrestamo": "Documentación completa entregada",
+    "BajaLogica": false,
+    "class": "Prestamo"
+  }
+]
