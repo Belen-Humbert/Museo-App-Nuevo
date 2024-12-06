@@ -1,6 +1,6 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="flex min-h-full flex-col justify-center px-6 py-3 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
+    <h2 class="mt-4 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
       Nuevo Registro de Taxidermia
     </h2>
   </div>
@@ -12,13 +12,8 @@
           Número de registro
         </label>
         <div class="mt-2">
-          <input
-            id="numero"
-            name="NumeroRegistro"
-            type="number"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white bg-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"
-          />
+          <input id="numero" name="NumeroRegistro" type="number" required
+            class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" />
         </div>
       </div>
 
@@ -27,13 +22,8 @@
           Fecha de Mantenimiento
         </label>
         <div class="mt-2">
-          <input
-            id="fecha"
-            name="FechaMantenimiento"
-            type="date"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white bg-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"
-          />
+          <input id="fecha" name="FechaMantenimiento" type="date" required
+            class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" />
         </div>
       </div>
 
@@ -42,23 +32,17 @@
           Observación
         </label>
         <div class="mt-2">
-          <input
-            id="observa"
-            name="Observacion"
-            type="text"
-            required
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white bg-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"
-          />
+          <input id="observa" name="Observacion" type="text" required
+            class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6" />
         </div>
       </div>
 
-      <div>
-        <button
-          type="submit"
-          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400"
-        >
-          Enviar
-        </button>
+      <div class="flex space-x-4">
+        <a href="/listarTaxidermia"
+          class="flex w-full justify-center rounded-md bg-transparent px-3 py-1.5 text-sm font-semibold leading-6 text-red-600 border border-red-600 hover:bg-red-600 hover:text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Cancelar</a>
+
+        <button type="submit"
+          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enviar</button>
       </div>
     </form>
   </div>
