@@ -1,10 +1,10 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="flex min-h-full flex-col justify-center px-6 py-3 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <h2
-      class="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900"
+      class="mt-4 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-300"
     >Modificar Préstamo:</h2>
     <h6
-      class="mt-1 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+      class="mt-1 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-gray-300"
     >{{prestamo.numeroPrestamo}}</h6>
   </div>
 
@@ -14,7 +14,7 @@
       <div>
         <label
           for="numeroPrestamo"
-          class="block text-sm font-medium leading-6 text-gray-900"
+          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
         >Numero de Prestamo</label>
         <div class="mt-2">
           <input
@@ -24,7 +24,8 @@
             required
             readonly
             value="{{prestamo.numeroPrestamo}}"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-200
+            bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -32,7 +33,7 @@
       <div>
         <label
           for="numeroPiezas"
-          class="block text-sm font-medium leading-6 text-gray-900"
+          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
         >Numero de Piezas</label>
         <div class="mt-2">
           <input
@@ -41,7 +42,8 @@
             type="text"
             required
             value="{{prestamo.numeroPiezas}}"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-200
+            bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -49,7 +51,7 @@
       <div>
         <label
           for="eventoPrestamo"
-          class="block text-sm font-medium leading-6 text-gray-900"
+          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
         >Tipo de Evento</label>
         <div class="mt-2">
           <input
@@ -58,7 +60,8 @@
             type="text"
             required
             value="{{prestamo.eventoPrestamo}}"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-200
+            bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -66,7 +69,7 @@
       <div>
         <label
           for="fechaPrestamo"
-          class="block text-sm font-medium leading-6 text-gray-900"
+          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
         >Fecha de Prestamo</label>
         <div class="mt-2">
           <input
@@ -75,7 +78,8 @@
             type="date"
             required
             value="{{prestamo.fechaPrestamo}}"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-200
+            bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -83,7 +87,7 @@
       <div>
         <label
           for="fechaDevolucion"
-          class="block text-sm font-medium leading-6 text-gray-900"
+          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
         >Fecha de Devolucion</label>
         <div class="mt-2">
           <input
@@ -92,7 +96,8 @@
             type="date"
             required
             value="{{prestamo.fechaDevolucion}}"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-200
+            bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -100,7 +105,7 @@
       <div>
         <label
           for="cantidad"
-          class="block text-sm font-medium leading-6 text-gray-900"
+          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
         >Cantidad</label>
         <div class="mt-2">
           <input
@@ -109,7 +114,8 @@
             type="number"
             required
             value="{{prestamo.cantidad}}"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-200
+            bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -117,7 +123,7 @@
       <div>
         <label
           for="observacionPrestamo"
-          class="block text-sm font-medium leading-6 text-gray-900"
+          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
         >Observacion</label>
         <div class="mt-2">
           <input
@@ -126,22 +132,21 @@
             type="text"
             required
             value="{{prestamo.observacionPrestamo}}"
-            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-200
+            bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
+      <div class="flex space-x-4">
+        <a
+          href="/listarPrestamo"
+          class="flex w-full justify-center rounded-md bg-transparent px-3 py-1.5 text-sm font-semibold leading-6 text-red-600 border border-red-600 hover:bg-red-600 hover:text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+        >Cancelar</a>
 
-      <div>
         <button
           type="submit"
           class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >Guardar Cambios</button>
-      </div>
-      <div>
-        <a
-          href="/listarPrestamo"
-          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >Cancelar</a>
       </div>
     </form>
   </div>
