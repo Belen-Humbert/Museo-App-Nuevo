@@ -92,12 +92,12 @@ function actualizarPieza(piezaAct) {
   console.log("controlador --> modelo 'updatePieza(piezaAct)'");
   if (OperaciónOk) {
     console.log('todo bien al fin');
-    return true;
     console.log("controlador --> server 'true'");
+    return true;
 
   } else {
-    return false;
     console.log("controlador --> server 'false'");
+    return false;
   }
 
 }
@@ -110,11 +110,11 @@ function PiezaBaja(numRe) {
   const resultado = Modelo.actualizarBajaLogica(numeroRegistro);
   console.log("server --> modelo 'actualizarBajaLogica(numeroRegistro)'");
   if (resultado) {
-    return{ success: true, message: 'Pieza eliminada lógicamente' };
     console.log("controlador -r-> server { success: true, message: 'Pieza eliminada lógicamente' }'");
+    return{ success: true, message: 'Pieza eliminada lógicamente' };
   } else {
-    return{ success: false, message: 'Pieza no encontrada' };
     console.log("controlador -r-> server { success: false, message: 'Pieza no encontrada' }'");
+    return{ success: false, message: 'Pieza no encontrada' };
   }
 }
 

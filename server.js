@@ -178,9 +178,13 @@ app.post("/actualizarPieza", (req, res) => {
 app.post("/deletePieza", (req, res) => {
   console.log("browser --> server 'POST /deletePieza'");
   const NroReg = req.body.NroReg;
-  Controlador.PiezaBaja(NroReg);
+  const resultado = Controlador.PiezaBaja(NroReg);
   console.log("server --> controlador 'PiezaBaja'");
+  if(resultado){ 
   res.redirect("menu");
+  }else{
+    res.send("Error al eliminar la pieza")
+  }
 });
 
 //--------- PRÉSTAMO RUTAS --------------
@@ -238,14 +242,18 @@ app.post("/actualizarPrestamo", (req, res) => {
   if (operacionOk) {
     res.redirect("listarPrestamo");
   } else {
-    return false;
+    res.send("Error al actualizar prestamo");
   }
 });
 
 app.post("/deletePrestamo", (req, res) => {
   const NroReg = req.body.NroReg;
-  Controlador.PrestamoBaja(NroReg);
-  res.redirect("listarPrestamo");
+  const resultado = Controlador.PrestamoBaja(NroReg);
+  if (resultado) {
+    res.redirect("listarPrestamo");
+  }else{
+    res.send("Error al eliminar prestamo");
+  }
 });
 
 //--------- TAXIDERMIA RUTAS --------------
@@ -263,7 +271,7 @@ app.post("/enviarTaxidermia", (req, res) => {
   if (operacionExitosa) {
     res.redirect("/listarTaxidermia");
   } else {
-    return false;
+    res.send("Error al guardar los datos");
   }
 });
 
@@ -285,12 +293,16 @@ app.post("/modificarTaxidermia", (req, res) => {
 app.get("/editarTaxidermia/:idTax", (req, res) => {
   const idTax = req.params.idTax;
   const taxidermia = Controlador.TaxidermiaPorNro(idTax);
-  res.render("modificarTaxidermia", {
-    useNav: true,
-    titulo: "Editar taxidermia",
-    taxidermia,
-    usuario: req.session.usuario,
-  });
+  if (taxidermia) {
+    res.render("modificarTaxidermia", {
+      useNav: true,
+      titulo: "Editar taxidermia",
+      taxidermia,
+      usuario: req.session.usuario,
+    });
+  }else{
+    res.send("No encontre taxidermia con ese id");
+  }
 });
 
 app.post("/actualizarTaxidermia", (req, res) => {
@@ -300,14 +312,19 @@ app.post("/actualizarTaxidermia", (req, res) => {
   if (operacionOk) {
     res.redirect("listarTaxidermia");
   } else {
-    return false;
+    res.send("Algo falló al actualizar taxidermia");
   }
 });
 
 app.post("/deleteTaxidermia", (req, res) => {
   const NroTax = req.body.NroTax;
-  Controlador.TaxidermiaBaja(NroTax);
-  res.redirect("listarTaxidermia");
+  resultado = Controlador.TaxidermiaBaja(NroTax);
+
+  if (resultado) {
+    res.redirect("listarTaxidermia");    
+  }else{
+    res.send("No se pudo eliminar");
+  }
 });
 
 //--------- USUARIO RUTAS --------------
@@ -341,7 +358,7 @@ app.get("/editarPerfil", autenticarUsuario, (req, res) => {
   });
 });
 
-app.post("/actualizarPerfil", autenticarUsuario, (req, res) => {
+ app.post("/actualizarPerfil", autenticarUsuario, (req, res) => {
   const usuarioActualizado = {
     nombre: req.body.nombre,
     usuario: req.session.usuario.usuario, // Usuario actual
@@ -370,7 +387,7 @@ app.post("/actualizarPerfil", autenticarUsuario, (req, res) => {
   }
 });
 
-app.get("/logout", (req, res) => {
+ app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error("Error al cerrar sesión:", err);
