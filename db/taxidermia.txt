@@ -1,12 +1,62 @@
 [
-    {"idTaxidermia":"3","fechaMantenimiento":"2022-08-15","observacionTaxidermia":"Buen estado, requiere revisión periódica","BajaTax":false},
-    {"idTaxidermia":"4","fechaMantenimiento":"2023-03-10","observacionTaxidermia":"Óptimo, pero con signos de desgaste en zonas específicas","BajaTax":false},
-    {"idTaxidermia":"5","fechaMantenimiento":"2021-11-18","observacionTaxidermia":"Frágil, revisar con urgencia","BajaTax":true},
-    {"idTaxidermia":"6","fechaMantenimiento":"2020-05-07","observacionTaxidermia":"Señales de humedad, restauración necesaria","BajaTax":true},
-    {"idTaxidermia":"7","fechaMantenimiento":"2019-07-22","observacionTaxidermia":"Estado aceptable, mantener en lugar seco","BajaTax":false},
-    {"idTaxidermia":"8","fechaMantenimiento":"2024-01-15","observacionTaxidermia":"Perfecto estado, mantenimiento reciente","BajaTax":false},
-    {"idTaxidermia":"9","fechaMantenimiento":"2018-12-04","observacionTaxidermia":"Presencia de hongos, tratamiento urgente","BajaTax":true},
-    {"idTaxidermia":"10","fechaMantenimiento":"2023-09-10","observacionTaxidermia":"Leves daños en estructura interna, restaurar","BajaTax":false},
-    {"idTaxidermia":"11","fechaMantenimiento":"2022-02-28","observacionTaxidermia":"Pérdida de color, aplicar productos específicos","BajaTax":false},
-    {"idTaxidermia":"12","fechaMantenimiento":"2023-06-05","observacionTaxidermia":"Daños menores en la base de soporte","BajaTax":false}
+    {
+        "idTaxidermia": "3",
+        "fechaMantenimiento": "2022-08-15",
+        "observacionTaxidermia": "Buen estado, requiere revisión periódica. Asociado a la pieza: Cetro ceremonial (Símbolo de poder político y religioso).",
+        "BajaTax": false
+    },
+    {
+        "idTaxidermia": "4",
+        "fechaMantenimiento": "2023-03-10",
+        "observacionTaxidermia": "Óptimo, pero con signos de desgaste en zonas específicas. Asociado a la pieza: Cofre decorativo (Posiblemente usado para guardar joyas o documentos importantes).",
+        "BajaTax": false
+    },
+    {
+        "idTaxidermia": "5",
+        "fechaMantenimiento": "2021-11-18",
+        "observacionTaxidermia": "Frágil, revisar con urgencia. Asociado a la pieza: Vasija ceremonial (Presenta patrones geométricos típicos de la cultura Maya).",
+        "BajaTax": true
+    },
+    {
+        "idTaxidermia": "6",
+        "fechaMantenimiento": "2020-05-07",
+        "observacionTaxidermia": "Señales de humedad, restauración necesaria. Asociado a la pieza: Escudo medieval (Usado en batallas. Detalles de grabados heráldicos).",
+        "BajaTax": true
+    },
+    {
+        "idTaxidermia": "7",
+        "fechaMantenimiento": "2019-07-22",
+        "observacionTaxidermia": "Estado aceptable, mantener en lugar seco. Asociado a la pieza: Anillo de sello (Representa el estatus de la nobleza. Piedra grabada con escudo familiar).",
+        "BajaTax": false
+    },
+    {
+        "idTaxidermia": "8",
+        "fechaMantenimiento": "2024-01-15",
+        "observacionTaxidermia": "Perfecto estado, mantenimiento reciente. Asociado a la pieza: Lanza tribal (Utilizada en ceremonias y cacerías. Decorada con plumas).",
+        "BajaTax": false
+    },
+    {
+        "idTaxidermia": "9",
+        "fechaMantenimiento": "2018-12-04",
+        "observacionTaxidermia": "Presencia de hongos, tratamiento urgente. Asociado a la pieza: Cáliz de obsidiana (Usado en rituales prehispánicos. Superficie lisa y bien pulida).",
+        "BajaTax": true
+    },
+    {
+        "idTaxidermia": "10",
+        "fechaMantenimiento": "2023-09-10",
+        "observacionTaxidermia": "Leves daños en estructura interna, restaurar. Asociado a la pieza: Reloj solar portátil (Diseñado para viajeros. Sistema de grabados calibrado).",
+        "BajaTax": false
+    },
+    {
+        "idTaxidermia": "11",
+        "fechaMantenimiento": "2022-02-28",
+        "observacionTaxidermia": "Pérdida de color, aplicar productos específicos. Asociado a la pieza: Espada ceremonial (Empuñadura con inscripciones religiosas).",
+        "BajaTax": false
+    },
+    {
+        "idTaxidermia": "12",
+        "fechaMantenimiento": "2023-06-05",
+        "observacionTaxidermia": "Daños menores en la base de soporte. Asociado a la pieza: Relicario antiguo (Diseño intrincado con escenas religiosas).",
+        "BajaTax": false
+    }
 ]
