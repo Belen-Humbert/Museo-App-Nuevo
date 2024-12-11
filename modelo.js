@@ -22,7 +22,7 @@ function guardar(data) {
   }
   piezas.push(data);
   try {
-    fs.writeFileSync("./db.txt", JSON.stringify(piezas));
+    fs.writeFileSync("./db/piezas.txt", JSON.stringify(piezas));
     console.log("gurdado exitoso");
     return true;
   } catch (err) {
