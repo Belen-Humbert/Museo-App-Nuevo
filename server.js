@@ -3,18 +3,21 @@ const path = require("path");// utilidad incorporada que proporciona node para t
 const exphbs = require("express-handlebars");//Importamos el motor de plantillas para generar vistas dinámicas.
 const Seguridad = require("./seguridad.js");
 const Controlador = require("./controlador.js");
-const session = require("express-session");//permite manejar sesiones en tu aplicación
+const session = require("express-session");
 
-const app = express();//Crea una instancia de la aplicación Express pata para manejar las rutas 
-const port = 3002;// define el puerto donde la aplicación estará disponible.
+// Inicialización de la aplicación Express
+const app = express();
+const port = 3002;
 
-app.use( session({//habilitamos el uso de sesines
-    secret: "secreto_de_tito_session",//Es una clave secreta utilizada para firmar las cookies de sesión
-    resave: false, //Evita que las sesiones se guarden nuevamente si no han sido modificadas.
-    saveUninitialized: false, //Evita que la sesion se almacene si no tiene datos guradados en ella
+// Configuración de express-session
+app.use(
+  session({
+    secret: "secreto_de_tito_session", // Clave para firmar la cookie de sesión
+    resave: false, // No guardar sesión si no ha cambiado
+    saveUninitialized: false, // Guardar sesión nueva aunque no tenga datos
     cookie: {
-      secure: false, // Permite que la cookie se envíe por HTTP. Si lo pones en true, solo funcionará con HTTPS
-      maxAge: 2 * 60 * 60 * 1000 //define el tiempo que durara la cooke
+      secure: false, // Cambia a true si usas HTTPS
+      maxAge: 2 * 60 * 60 * 1000 //la sesión expirará después de 2 horas de inactividad
     }
   })
 );
@@ -42,7 +45,7 @@ app.use(express.json());//Permite que la aplicación entienda datos en formato J
 app.use(express.urlencoded({ extended: false }));//Permite entender datos enviados desde formularios HTML
 
 // Servir archivos estáticos desde el directorio 'public'
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));  //Permite que recursos como CSS o imágenes sean accesibles públicamente
 
 // Middleware para verificar la autenticación
 function autenticarUsuario(req, res, next) {
@@ -70,7 +73,7 @@ app.post("/login", (req, res) => {
   console.log("server --> seguridad.registrado");
   if (resultado.autenticado) {
     console.log("seguridad --> server 'autenticado: true'");
-    req.session.usuario = resultado.usuario;
+    req.session.usuario = resultado.usuario; //asigna una sesión al usuario autenticado
     console.log("server --> browser 'redirect: /inicio'");
     res.redirect("/inicio");
   } else {

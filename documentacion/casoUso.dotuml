@@ -13,9 +13,10 @@ UseCaseDiagram {
         usecase "Registrar Taxidermia" as regTaxidermia
         usecase "Listar Taxidermia" as lisTaxidermia
         usecase "Eliminar Taxidermia" as eliTaxidermia
-        usecase "Agregar Noticia" as regNoticia
-        usecase "Listar Noticias" as lisNoticia
-        usecase "Eliminar Noticia" as eliNoticia
+        usecase "Modificar Taxidermia" as modTaxidermia
+        usecase "Modificar Prestamo" as modPrestamo
+        usecase "Modificar Pieza" as modPieza
+
     }
 
     administrador assoc login
@@ -25,13 +26,15 @@ UseCaseDiagram {
     administrador assoc lisPrestamo
     administrador assoc regTaxidermia
     administrador assoc lisTaxidermia
-    administrador assoc regNoticia
-    administrador assoc lisNoticia
+   
+    
 
     lisPieza -e-> eliPieza
+    lisPieza -e-> modPieza
     lisPrestamo -e-> eliPrestamo
+    lisPrestamo -e-> modPrestamo
     lisTaxidermia -e-> eliTaxidermia
-    lisNoticia -e-> eliNoticia
+    lisTaxidermia -e-> modTaxidermia
 
 
 }
