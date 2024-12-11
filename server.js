@@ -7,7 +7,7 @@ const session = require("express-session");
 
 // Inicialización de la aplicación Express
 const app = express();
-const port = 3002;
+const port = 3000;
 
 // Configuración de express-session
 app.use(
@@ -97,7 +97,7 @@ app.get("/inicio", autenticarUsuario, (req, res) => {
   const prestamos = Controlador.obtenerPrestamo();
   const prestamosActivos = prestamos.filter(prestamo => prestamo.BajaLogica === false);
   const taxidermias = Controlador.listarTaxidermia();
-  const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === true);
+  const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === false);
 
   res.render("inicio", {
     useTailwind: true,
