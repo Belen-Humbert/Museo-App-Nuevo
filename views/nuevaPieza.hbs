@@ -13,14 +13,14 @@
             </div>
 
             <div>
-                <label for="nombre" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Nombre de la 
+                <label for="nombre" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Nombre de la
                     Pieza</label>
                 <input type="text" name="NombrePieza" id="nombre" required
                     class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
             </div>
 
             <div>
-                <label for="medida" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Medida de la 
+                <label for="medida" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Medida de la
                     Pieza</label>
                 <input type="text" name="MedidaPieza" id="medida" required
                     class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
@@ -48,16 +48,22 @@
             </div>
 
             <div>
-                <label for="anio" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Año de la Pieza</label>
+                <label for="anio" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Año de la
+                    Pieza</label>
                 <input type="number" name="AñoPieza" id="anio" required
                     class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
             </div>
 
             <div>
-                <label for="estado" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Estado de la 
+                <label for="estado" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Estado de la
                     Pieza</label>
-                <input type="text" name="EstadoPieza" id="estado" required
-                    class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                <select name="EstadoPieza" id="estado" required
+                    class="mt-2 block w-full rounded-md border-0 py-2 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
+                    <option disabled>Seleccione estado</option>
+                    <option value="Sana">Sana</option>
+                    <option value="Rota">Rota</option>
+                    <option value="En Reparación">En reparación</option>
+                </select>
             </div>
 
             <div>
@@ -85,3 +91,92 @@
         </form>
     </div>
 </div>
+
+{{!-- Modal de error --}}
+<div id="errorModal" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50" style="display: none;">
+    <div class="border-[1px] border-blue-200 bg-blue-100 dark:bg-blue-800 dark:border-blue-500 rounded-lg text-black dark:text-gray-100 shadow-lg p-6 transition-colors duration-200 px-4 py-2 flex items-center space-x-4">
+        <p id="errorMessage"></p>
+        <button class="close-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+        </button>
+
+    </div>
+</div>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+        const numeroRegistro = document.getElementById('numero').value;
+        const nombrePieza = document.getElementById('nombre').value;
+        const medidaPieza = document.getElementById('medida').value;
+        const materialObjeto = document.getElementById('material').value;
+        const fechaAdquisicion = document.getElementById('fecha').value;
+        const formaAdquirida = document.getElementById('forma').value;
+        const anioPieza = document.getElementById('anio').value;
+        const estadoPieza = document.getElementById('estado').value;
+        const cantidad = document.getElementById('cantidad').value;
+        const observacion = document.getElementById('observacion').value;
+
+        let valid = true;
+        let messages = [];
+
+        // Validaciones de los inputs
+        if (!/^\d+$/.test(numeroRegistro)) {
+            valid = false;
+            messages.push("El número de registro debe ser un número entero positivo.");
+        }
+        if (!/^[a-zA-Z0-9\s]+$/.test(nombrePieza)) {
+            valid = false;
+            messages.push("El nombre de la pieza solo puede contener caracteres alfanuméricos.");
+        }
+        if (!/^\d+\s*[a-zA-Z]+$/.test(medidaPieza)) {
+            valid = false;
+            messages.push("La medida de la pieza debe seguir el formato 'número unidad'.");
+        }
+        if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;]+$/.test(materialObjeto)) {
+            valid = false;
+            messages.push("El material del objeto solo puede contener caracteres alfanuméricos.");
+        }
+        if (fechaAdquisicion === "") {
+            valid = false;
+            messages.push("La fecha de adquisición es requerida.");
+        }
+        if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;]+$/.test(formaAdquirida)) {
+            valid = false;
+            messages.push("La forma adquirida solo puede contener caracteres alfanuméricos.");
+        }
+        if (!/^\d+$/.test(anioPieza) || anioPieza < 0) {
+            valid = false;
+            messages.push("El año de la pieza debe ser un número entero positivo.");
+        }
+        if (estadoPieza === "") {
+            valid = false;
+            messages.push("Debes seleccionar el estado de la pieza.");
+        }
+        if (!/^\d+$/.test(cantidad) || cantidad <= 0) {
+            valid = false;
+            messages.push("La cantidad debe ser un número entero positivo.");
+        }
+        if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;]+$/.test(observacion)) {
+            valid = false;
+            messages.push("La observación solo puede contener caracteres alfanuméricos.");
+        }
+
+        //Enviar error
+        if (!valid) {
+            event.preventDefault();
+            const errorModal = document.getElementById('errorModal');
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = messages.join("\n");
+            errorModal.style.display = 'flex';
+        } else {
+            this.submit();
+        }
+    });
+
+    //Para cerrar el modal de error
+    const closeButton = document.querySelector('.close-button');
+    closeButton.addEventListener('click', function () {
+        const errorModal = document.getElementById('errorModal');
+        errorModal.style.display = 'none';
+    });
+</script>
