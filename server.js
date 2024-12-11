@@ -1,34 +1,31 @@
-const express = require("express");
-const path = require("path");
-const exphbs = require("express-handlebars");
+const express = require("express");//importamo express que proporciona herramientas para manejo de rutas y middlewars.
+const path = require("path");// utilidad incorporada que proporciona node para trabajar con rutas y directorios de archivos.
+const exphbs = require("express-handlebars");//Importamos el motor de plantillas para generar vistas dinámicas.
 const Seguridad = require("./seguridad.js");
 const Controlador = require("./controlador.js");
-const session = require("express-session");
+const session = require("express-session");//permite manejar sesiones en tu aplicación
 
-// Inicialización de la aplicación Express
-const app = express();
-const port = 3002;
+const app = express();//Crea una instancia de la aplicación Express pata para manejar las rutas 
+const port = 3002;// define el puerto donde la aplicación estará disponible.
 
-// Configuración de express-session
-app.use(
-  session({
-    secret: "secreto_de_tito_session",
-    resave: false,
-    saveUninitialized: false,
+app.use( session({//habilitamos el uso de sesines
+    secret: "secreto_de_tito_session",//Es una clave secreta utilizada para firmar las cookies de sesión
+    resave: false, //Evita que las sesiones se guarden nuevamente si no han sido modificadas.
+    saveUninitialized: false, //Evita que la sesion se almacene si no tiene datos guradados en ella
     cookie: {
-      secure: false, // Cambia a true si usas HTTPS
-      maxAge: 2 * 60 * 60 * 1000
+      secure: false, // Permite que la cookie se envíe por HTTP. Si lo pones en true, solo funcionará con HTTPS
+      maxAge: 2 * 60 * 60 * 1000 //define el tiempo que durara la cooke
     }
   })
 );
 
-// Configuración de express-handlebars como motor de plantillas
+//Configuramos express-handlebars como motor de plantillas para la aplicación Express
 app.engine(
-  "hbs",
+  "hbs", //Define la extensión que se usa para identificar los archivos de plantillas
   exphbs.engine({
-    extname: ".hbs", // Extensión de archivo para las plantillas
-    defaultLayout: "main", // Plantilla de diseño por defecto
-    layoutsDir: path.join(__dirname, "views/layouts"), // Directorio de layouts
+    extname: ".hbs", //Especifica la extensión de archivo que usarán las plantillas
+    defaultLayout: "main", //Define el layout por defecto que se usará para todas las vistas
+    layoutsDir: path.join(__dirname, "views/layouts"), //Define el directorio donde se encuentran el layout
     helpers: {
       eq: function (v1, v2) {
         return v1 === v2;
@@ -36,13 +33,13 @@ app.engine(
     }
   })
 );
-app.set("view engine", "hbs"); // Establecer Handlebars como motor de vistas
-app.set("views", path.join(__dirname, "views")); // Directorio de vistas
 
+app.set("view engine", "hbs"); //Establecemos a Handlebars (hbs) como el motor de vistas de la aplicación
+app.set("views", path.join(__dirname, "views")); // Define dónde Express buscará los archivos de las vistas
 
 // Middleware para parsear JSON y datos de formularios
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());//Permite que la aplicación entienda datos en formato JSON
+app.use(express.urlencoded({ extended: false }));//Permite entender datos enviados desde formularios HTML
 
 // Servir archivos estáticos desde el directorio 'public'
 app.use(express.static(path.join(__dirname, "public")));
@@ -52,7 +49,7 @@ function autenticarUsuario(req, res, next) {
   console.log("server --> autenticarUsuario 'verificar sesión'");
   if (req.session.usuario) {
     console.log("autenticarUsuario --> server 'sesión válida'");
-    return next();
+    return next();//permite continuar a la ruta solicitada
   }
 
   res.redirect("/");

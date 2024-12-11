@@ -61,7 +61,8 @@
                         <div class="flex flex-col space-y-2 w-full">
                             <button
                                 class="eliminar-btn bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-500 w-full transition-colors duration-200 dark:bg-red-800/60 dark:text-red-500"
-                                data-numero="{{this.NumeroRegistro}}" onclick="openConfirmDeleteModal(this)">
+                                data-numero="{{this.NumeroRegistro}}" onclick="openConfirmDeleteModal(this)"> <!-- Al hacer clic, llama a la función openConfirmDeleteModal pasando como argumento el botón en sí (this).-->
+
                                 Eliminar
                             </button>
                             <form action="/enviarNreg" method="post">
@@ -125,16 +126,15 @@
 
 <script>
     function toggleModal(modalID) {
-        document.getElementById(modalID).classList.toggle('hidden');
+        document.getElementById(modalID).classList.toggle('hidden');//Alterna la visibilidad del modal:
     }
 
-    function openConfirmDeleteModal(button) {
-        const piezaNombre = button.getAttribute('data-nombre');
-        const piezaNumero = button.getAttribute('data-numero');
+    function openConfirmDeleteModal(button) {//obtiene los datos del boton clickeado
 
-        document.getElementById('piezaNombre').innerText = piezaNombre;
+        const piezaNumero = button.getAttribute('data-numero');//obtiene el valor del atributo del boton
+
         document.getElementById('piezaNumero').innerText = piezaNumero;
-        document.getElementById('piezaNumeroInput').value = piezaNumero;
+        document.getElementById('piezaNumeroInput').value = piezaNumero;//Busca el elemento <input> con el ID piezaNumeroInput dentro del formulario que esta en el modal y le pasa el numero de registro
 
         toggleModal('confirmDeleteModal');
     }
