@@ -5,15 +5,24 @@
       Préstamos</h1>
     <div class="flex space-x-3">
       <div class="relative">
-        <i
-          class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 dark:text-zinc-500"></i>
+        <svg xmlns="http://www.w3.org/2000/svg"
+          class="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 dark:text-zinc-500 w-4"
+          viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+          </path>
+        </svg>
         <input type="text" placeholder="Buscar"
           class="pl-10 pr-4 py-2 rounded-lg w-64 border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 transition-colors duration-200 dark:text-white"
           id="searchInput" onkeyup="filterTable()">
       </div>
       <a href="/prestamo"
-        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200 dark:bg-blue-800/60 dark:text-blue-500">
-        Agregar Préstamo
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md w-full transition-colors duration-200 dark:bg-blue-800/60 dark:text-blue-500 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-3" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M11 11.0001L11 2.0005L13 2.00049L13 11.0001L22.0001 10.9999L22.0002 12.9999L13 13.0001L13.0001 22L11.0001 22L11.0001 13.0001L2.00004 13.0003L2 11.0003L11 11.0001Z">
+          </path>
+        </svg>Agregar Préstamo
       </a>
     </div>
   </div>
@@ -47,15 +56,25 @@
           <td class="p-3">
             <div class="flex flex-col space-y-2 w-full">
               <button
-                class="eliminar-btn bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-500 w-full transition-colors duration-200 dark:bg-red-800/60 dark:text-red-500"
+                class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-500 w-full transition-colors duration-200 dark:bg-red-800/60 dark:text-red-500 flex justify-center"
                 data-numero="{{this.numeroPrestamo}}" data-nombre="{{this.eventoPrestamo}}"
                 onclick="openConfirmDeleteModal(this)">
-                Eliminar
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z">
+                  </path>
+                </svg> Eliminar
               </button>
               <form action="/modificarPrestamo" method="post">
                 <input type="hidden" name="editar" value="{{this.numeroPrestamo}}" />
                 <button type="submit"
-                  class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md w-full transition-colors duration-200 dark:bg-yellow-800/60 dark:text-yellow-500">Editar</button>
+                  class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md w-full transition-colors duration-200 dark:bg-yellow-800/60 dark:text-yellow-500 flex justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z">
+                    </path>
+                  </svg>Editar
+                </button>
               </form>
             </div>
           </td>

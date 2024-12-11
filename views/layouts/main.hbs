@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{titulo}} - Museo Lavalle</title>
     <link href="/css/output.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Nunito Variable';
@@ -72,25 +71,43 @@
                         <li>
                             <a href="/inicio"
                                 class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Inicio')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
-                                <i class="ri-dashboard-line mr-3"></i>Inicio
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-3" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M14 21C13.4477 21 13 20.5523 13 20V12C13 11.4477 13.4477 11 14 11H20C20.5523 11 21 11.4477 21 12V20C21 20.5523 20.5523 21 20 21H14ZM4 13C3.44772 13 3 12.5523 3 12V4C3 3.44772 3.44772 3 4 3H10C10.5523 3 11 3.44772 11 4V12C11 12.5523 10.5523 13 10 13H4ZM9 11V5H5V11H9ZM4 21C3.44772 21 3 20.5523 3 20V16C3 15.4477 3.44772 15 4 15H10C10.5523 15 11 15.4477 11 16V20C11 20.5523 10.5523 21 10 21H4ZM5 19H9V17H5V19ZM15 19H19V13H15V19ZM13 4C13 3.44772 13.4477 3 14 3H20C20.5523 3 21 3.44772 21 4V8C21 8.55228 20.5523 9 20 9H14C13.4477 9 13 8.55228 13 8V4ZM15 5V7H19V5H15Z">
+                                    </path>
+                                </svg> Inicio
                             </a>
                         </li>
                         <li>
                             <a href="/listarPieza"
                                 class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Piezas del Museo')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
-                                <i class="ri-shapes-line mr-3"></i>Piezas del Museo
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-3" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M11.9998 1L6 11H18L11.9998 1ZM11.9998 4.8873L14.4676 9H9.53232L11.9998 4.8873ZM6.75 20C5.23122 20 4 18.7688 4 17.25C4 15.7312 5.23122 14.5 6.75 14.5C8.26878 14.5 9.5 15.7312 9.5 17.25C9.5 18.7688 8.26878 20 6.75 20ZM6.75 22C9.37335 22 11.5 19.8734 11.5 17.25C11.5 14.6266 9.37335 12.5 6.75 12.5C4.12665 12.5 2 14.6266 2 17.25C2 19.8734 4.12665 22 6.75 22ZM15 15.5V19.5H19V15.5H15ZM13 21.5V13.5H21V21.5H13Z">
+                                    </path>
+                                </svg> Piezas del Museo
                             </a>
                         </li>
                         <li>
                             <a href="/listarPrestamo"
                                 class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Prestamos')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
-                                <i class="ri-arrow-left-right-fill mr-3"></i>Préstamos
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-3" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path d="M16 16V12L21 17L16 22V18H4V16H16ZM8 2V5.999L20 6V8H8V12L3 7L8 2Z"></path>
+                                </svg> Préstamos
                             </a>
                         </li>
                         <li>
                             <a href="/listarTaxidermia"
                                 class="flex items-center p-2 rounded-lg text-zinc-600 hover:bg-blue-100 hover:text-blue-600 dark:text-zinc-300 dark:hover:bg-blue-900/30 dark:hover:text-blue-500 transition-colors duration-200 {{#if (eq titulo 'Taxidermias')}}bg-blue-200 !text-blue-500 dark:bg-gray-700 dark:text-gray-100 shadow-sm border-[1px] border-blue-200 dark:bg-blue-800/20 dark:border-blue-500/20{{/if}}">
-                                <i class="ri-user-2-line mr-3"></i>Taxidermia
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-3" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H4ZM13 16.083V20H17.6586C16.9423 17.9735 15.1684 16.4467 13 16.083ZM11 20V16.083C8.83165 16.4467 7.05766 17.9735 6.34141 20H11ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.2104 11 16 9.21043 16 7C16 4.78957 14.2104 3 12 3C9.78957 3 8 4.78957 8 7C8 9.21043 9.78957 11 12 11Z">
+                                    </path>
+                                </svg> Taxidermia
                             </a>
                         </li>
                     </ul>
@@ -103,12 +120,16 @@
                     class="bg-white dark:bg-zinc-900 border-[1px] border-zinc-300 dark:border-zinc-800 rounded-lg shadow-sm overflow-hidden transition-colors duration-200">
                     <div id="userMenuOptions" class="hidden px-4 py-2">
                         <a href="#" id="toggleDarkMode"
-                            class="block py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200">
-                            <i class="ri-contrast-2-line mr-2"></i><span id="modeText">Modo Oscuro</span>
+                            class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200 flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C17.5228 1.9967 22 6.47386 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967ZM5.32889 16.422C6.76378 18.5675 9.20868 19.9803 11.9836 19.9803C16.4018 19.9803 19.9836 16.3985 19.9836 11.9803C19.9836 9.2053 18.5707 6.76034 16.4251 5.32547C17.2705 8.35324 16.5025 11.7369 14.1213 14.1181C11.7401 16.4993 8.3566 17.2672 5.32889 16.422Z">
+                                </path>
+                            </svg><span id="modeText">Modo Oscuro</span>
                         </a>
                         <a href="/logout"
-                            class="block py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200">
-                            <i class="ri-logout-box-line mr-2"></i>Cerrar Sesión
+                            class="py-2 text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-200 flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path></svg></i>Cerrar Sesión
                         </a>
                     </div>
                     <div class="flex items-center py-2 px-3 cursor-pointer transition-colors duration-200">
@@ -117,8 +138,14 @@
                             alt="avatar">
                         <span
                             class="font-medium text-zinc-800 dark:text-zinc-200 flex-1 transition-colors duration-200">{{usuario.nombre}}</span>
-                        <i class="ri-arrow-up-s-line text-zinc-600 dark:text-zinc-400 transition-colors duration-200"
-                            id="menuArrow"></i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" id="menuArrow"
+                            class="w-5 text-zinc-600 dark:text-zinc-400 transition-transform duration-200 transform"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M11.9999 10.8284L7.0502 15.7782L5.63599 14.364L11.9999 8L18.3639 14.364L16.9497 15.7782L11.9999 10.8284Z">
+                            </path>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -144,8 +171,13 @@
 
             function toggleMenu() {
                 userMenuOptions.classList.toggle('hidden');
-                menuArrow.classList.toggle('ri-arrow-up-s-line');
-                menuArrow.classList.toggle('ri-arrow-down-s-line');
+                const menuArrow = document.getElementById('menuArrow');
+
+                const currentRotation = menuArrow.style.transform || 'rotate(0deg)';
+
+                menuArrow.style.transform = currentRotation === 'rotate(0deg)'
+                    ? 'rotate(180deg)'
+                    : 'rotate(0deg)';
             }
 
             userMenuToggle.addEventListener('click', function (event) {
@@ -156,8 +188,7 @@
             document.addEventListener('click', function (event) {
                 if (!userMenuToggle.contains(event.target)) {
                     userMenuOptions.classList.add('hidden');
-                    menuArrow.classList.remove('ri-arrow-down-s-line');
-                    menuArrow.classList.add('ri-arrow-up-s-line');
+                    menuArrow.style.transform = 'rotate(0deg)';
                 }
             });
 
