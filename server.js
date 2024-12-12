@@ -343,13 +343,7 @@ app.post("/deleteTaxidermia", (req, res) => {
 });
 
 //--------- USUARIO RUTAS --------------
-app.get("/registrar", (req, res) => {
-  res.render("registro", {
-    useNav: true,
-    titulo: "Registro",
-    usuario: req.session.usuario,
-  });
-});
+
 
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {

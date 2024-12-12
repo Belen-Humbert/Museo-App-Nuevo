@@ -131,12 +131,12 @@ function updatePrestamo(PrestamoActualizado) {
   const prestamo = obtenerPrestamo();
   let indice = null;
 
-  for (let i = 0; i < prestamo.length; i++) {
-    if (PrestamoActualizado.numeroPrestamo === prestamo[i].numeroPrestamo) {
+  for (let i = 0; i < prestamo.length; i++) {//si el numero del prestamo enviado desde el form es igual al numero de algun prestamo en en el array de prestamos 
+    if (PrestamoActualizado.numeroPrestamo === prestamo[i].numeroPrestamo) {//obtiene el numero de posicion de ese prestamo y lo guarda en indice
       indice = i;
     }
   }
-  if (indice !== -1) {
+  if (indice !== -1) {//prestamo[numero de posicion en el array].propiedadDeLaClase =(asigna el nuevo valor) PrestamoActualizado.NuevoValorEnviadoDesdeForm
     prestamo[indice].numeroPrestamo = PrestamoActualizado.numeroPrestamo;
     prestamo[indice].numeroPiezas = PrestamoActualizado.numeroPiezas;
     prestamo[indice].eventoPrestamo = PrestamoActualizado.eventoPrestamo;
