@@ -14,7 +14,7 @@ app.use(
   session({
     secret: "secreto_de_tito_session", // Clave para firmar la cookie de sesión
     resave: false, // No guardar sesión si no ha cambiado
-    saveUninitialized: false, // Guardar sesión nueva aunque no tenga datos
+    saveUninitialized: false, // No guardar sesión nueva que no tengan datos
     cookie: {
       secure: false, // Cambia a true si usas HTTPS
       maxAge: 2 * 60 * 60 * 1000 //la sesión expirará después de 2 horas de inactividad
@@ -80,8 +80,6 @@ app.post("/login", (req, res) => {
     console.log("seguridad --> server 'autenticado: false'");
     console.log("server --> browser 'render: index con error'");
     res.render("index", {
-      useTailwind: true,
-      useCSS: false,
       useNav: false,
       titulo: "Inicio de Sesión",
       error: resultado.mensaje,
@@ -100,8 +98,6 @@ app.get("/inicio", autenticarUsuario, (req, res) => {
   const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === false);
 
   res.render("inicio", {
-    useTailwind: true,
-    useCSS: false,
     useNav: true,
     titulo: "Inicio",
     piezas: piezasActivas,
@@ -343,7 +339,6 @@ app.post("/deleteTaxidermia", (req, res) => {
 });
 
 //--------- USUARIO RUTAS --------------
-
 
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
