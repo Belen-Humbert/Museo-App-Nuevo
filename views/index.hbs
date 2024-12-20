@@ -7,9 +7,6 @@
         <div class="right-section">
             <div class="login-container">
                 <form class="login-form" action="/login" method="POST">
-                    {{#if error}}
-                    <p style="color: red;">{{error}}</p>
-                    {{/if}}
                     <h2 class="login-title"><i class="fas fa-user-circle"></i>Iniciar Sesión</h2>
                     <div class="form-control">
                         <i class="fas fa-user icon"></i>
@@ -25,3 +22,37 @@
         </div>
     </div>
 </div>
+
+{{!-- Modal de error --}}
+<div id="errorModal" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50" style="display: none;">
+  <div
+    class="border-[1px] border-red-300 bg-red-200 dark:bg-red-800 dark:border-red-500 rounded-lg text-black dark:text-gray-100 shadow-lg p-6 transition-colors duration-200 px-4 py-2 flex items-center space-x-4">
+    <p id="errorMessage"></p>
+    <button class="close-button">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z">
+        </path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const error = "{{error}}";
+    if (error) {
+      const errorModal = document.getElementById('errorModal');
+      const errorMessage = document.getElementById('errorMessage');
+      errorMessage.textContent = error;
+      errorModal.style.display = 'flex';
+    }
+  });
+
+  // Para cerrar el modal de error
+  const closeButton = document.querySelector('.close-button');
+  closeButton.addEventListener('click', function () {
+    const errorModal = document.getElementById('errorModal');
+    errorModal.style.display = 'none';
+  });
+</script>

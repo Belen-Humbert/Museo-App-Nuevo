@@ -152,7 +152,7 @@ body {
     border-color: #027186;
 }
 
-button {
+.login-button {
     width: 100%;
     padding: 15px;
     border: none;
@@ -167,7 +167,7 @@ button {
     align-items: center;
 }
 
-button:hover {
+.login-button:hover {
     background-color: #223362;
 }
 
