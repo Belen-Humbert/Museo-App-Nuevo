@@ -77,12 +77,13 @@
                         {{/if}}
                     </td>
                     <td class="py-2 px-2 text-center">{{this.Cantidad}}</td>
-                    <td class="py-2 px-2 text-center">{{this.Observacion}}</td>
+                    <td class="py-2 px-2 text-center w-52">{{this.Observacion}}</td>
                     <td class="px-2 py-4">
                         <div class="flex flex-col space-y-2 w-full">
                             <button
                                 class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-500 w-full transition-colors duration-200 dark:bg-red-800/60 dark:text-red-500 flex justify-center"
-                                data-numero="{{this.NumeroRegistro}}" onclick="openConfirmDeleteModal(this)">
+                                data-numero="{{this.NumeroRegistro}}"
+                                data-nombre="{{this.NombrePieza}}" onclick="openConfirmDeleteModal(this)">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"></path></svg> Eliminar
                             </button>
                             <form action="/enviarNreg" method="post">
@@ -123,9 +124,7 @@
                             <h3 class="text-base font-semibold leading-6 text-zinc-900 dark:text-zinc-100"
                                 id="confirmDeleteModalLabel">Confirmación de Eliminación</h3>
                             <div class="mt-2">
-                                <p class="text-sm text-zinc-700 dark:text-zinc-300">¿Estás seguro de que deseas eliminar
-                                    la pieza <span id="piezaNombre"></span> con número de registro <span
-                                        id="piezaNumero"></span>?</p>
+                                <p class="text-sm text-zinc-700 dark:text-zinc-300">¿Estás seguro de que deseas eliminar la pieza <span id="piezaNombre"></span> con número de registro <span id="piezaNumero"></span>?</p>
                             </div>
                         </div>
                     </div>
@@ -154,8 +153,12 @@
     function openConfirmDeleteModal(button) {//obtiene los datos del boton clickeado
 
         const piezaNumero = button.getAttribute('data-numero');//obtiene el valor del atributo del boton
+        const piezaNombre = button.getAttribute('data-nombre');//obtiene el valor del atributo del boton
 
-        
+
+        document.getElementById('piezaNombre').innerText = piezaNombre;
+
+        document.getElementById('piezaNumero').innerText = piezaNumero;
         document.getElementById('piezaNumeroInput').value = piezaNumero;//Busca el elemento <input> con el ID piezaNumeroInput dentro del formulario que esta en el modal y le pasa el numero de registro
 
         toggleModal('confirmDeleteModal');
