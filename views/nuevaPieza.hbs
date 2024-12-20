@@ -15,6 +15,11 @@
             <div>
                 <label for="nombre" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Nombre de la
                     Pieza</label>
+                <Select id="nombre" name="NombrePieza" required>
+                    {{#foreach piezas}}
+                    <option value="{{this.NumeroRegistro}}">{{this.NumeroRegistro}} - {{this.NombrePieza}}</option>
+                    {{/foreach}}
+                </Select>
                 <input type="text" name="NombrePieza" id="nombre" required
                     class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
             </div>
@@ -94,10 +99,15 @@
 
 {{!-- Modal de error --}}
 <div id="errorModal" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50" style="display: none;">
-    <div class="border-[1px] border-blue-200 bg-blue-100 dark:bg-blue-800 dark:border-blue-500 rounded-lg text-black dark:text-gray-100 shadow-lg p-6 transition-colors duration-200 px-4 py-2 flex items-center space-x-4">
+    <div
+        class="border-[1px] border-blue-200 bg-blue-100 dark:bg-blue-800 dark:border-blue-500 rounded-lg text-black dark:text-gray-100 shadow-lg p-6 transition-colors duration-200 px-4 py-2 flex items-center space-x-4">
         <p id="errorMessage"></p>
         <button class="close-button">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z">
+                </path>
+            </svg>
         </button>
 
     </div>
@@ -155,10 +165,6 @@
         if (!/^\d+$/.test(cantidad) || cantidad <= 0) {
             valid = false;
             messages.push("La cantidad debe ser un número entero positivo.");
-        }
-        if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;]+$/.test(observacion)) {
-            valid = false;
-            messages.push("La observación solo puede contener caracteres alfanuméricos.");
         }
 
         //Enviar error

@@ -10,7 +10,7 @@
     <form class="space-y-6" action="/actualizarPieza" method="POST">
       <div>
         <div class="mt-2">
-          <input id="numero" name="numero" type="hidden" required  readonly value="{{piezas.NumeroRegistro}}"
+          <input id="numero" name="numero" type="hidden" required readonly value="{{piezas.NumeroRegistro}}"
             class="block w-full rounded-md border-0 py-1.5 text-gray-200
             bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
         </div>
@@ -65,19 +65,25 @@
           <input id="Año" name="Año" type="number" required value="{{piezas.AñoPieza}}"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2 dark:text-gray-300 dark:bg-zinc-800" />
         </div>
+        
         <div class="sm:col-span-3">
           <label for="estado" class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300">Estado de la
             pieza</label>
           <div class="mt-2">
             <select id="estado" name="estado" required
               class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 value:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2 dark:text-gray-300 dark:bg-zinc-800">
-              <option value={{piezas.EstadoPieza}} disabled>Actual: {{piezas.EstadoPieza}}</option>
-              <option value="Sana">Sana</option>
-              <option value="Rota">Rota</option>
-              <option value="En Reparación">En reparación</option>
+              <!-- Opción para mostrar el estado actual de la pieza en la base de datos -->
+              <option value="{{piezas.EstadoPieza}}" disabled>Actual: {{piezas.EstadoPieza}}</option>
+
+              <!-- Opciones del select con la lógica para marcar la opción seleccionada -->
+              <option value="Sana" {{#if (eq piezas.EstadoPieza 'Sana' )}}selected{{/if}}>Sana</option>
+              <option value="Rota" {{#if (eq piezas.EstadoPieza 'Rota' )}}selected{{/if}}>Rota</option>
+              <option value="En Reparación" {{#if (eq piezas.EstadoPieza 'En Reparación' )}}selected{{/if}}>En
+                reparación</option>
             </select>
           </div>
         </div>
+
         <div class="sm:col-span-3">
           <label for="cantidad" class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300">Cantidad de
             piezas</label>
@@ -176,7 +182,7 @@
       valid = false;
       messages.push("La cantidad de piezas debe ser un número entero positivo.");
     }
-    if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;]+$/.test(obser)) {
+    if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;:()]+$/.test(observa)) {
       valid = false;
       messages.push("La observación solo puede contener caracteres alfanuméricos.");
     }

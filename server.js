@@ -267,8 +267,12 @@ app.post("/deletePrestamo", (req, res) => {
 
 //--------- TAXIDERMIA RUTAS --------------
 app.get("/nuevaTaxidermia", (req, res) => {
+  console.log("browser --> server 'GET /listarPieza'");
+  const piezas = Controlador.listar();
+  const piezasActivas = piezas.filter(pieza => pieza.BajaLogica === false);
   res.render("nuevaTaxidermia", {
     useNav: true,
+    piezas: piezasActivas,
     titulo: "Registro de Taxidermia",
     usuario: req.session.usuario,
   });
@@ -287,6 +291,19 @@ app.post("/enviarTaxidermia", (req, res) => {
 app.get("/listarTaxidermia", (req, res) => {
   const taxidermias = Controlador.listarTaxidermia();
   const taxidermiasActivos = taxidermias.filter(taxidermia => taxidermia.BajaTax === false);
+  
+  // Obtener todas las piezas
+  const piezas = Controlador.listar();
+  
+  // Añadir el nombre de la pieza a cada registro de taxidermia
+  taxidermiasActivos.forEach(taxidermia => {
+    const pieza = piezas.find(p => p.NumeroRegistro === taxidermia.numeroPiezas);
+    if (pieza) {
+      taxidermia.nombrePieza = pieza.NombrePieza;
+    } else {
+      taxidermia.nombrePieza = "Pieza no encontrada";
+    }
+  });
 
   res.render("listarTaxidermia", {
     useNav: true,
@@ -304,9 +321,13 @@ app.post("/modificarTaxidermia", (req, res) => {
 app.get("/editarTaxidermia/:idTax", (req, res) => {
   const idTax = req.params.idTax;
   const taxidermia = Controlador.TaxidermiaPorNro(idTax);
+  console.log("browser --> server 'GET /listarPieza'");
+  const piezas = Controlador.listar();
+  const piezasActivas = piezas.filter(pieza => pieza.BajaLogica === false);
   if (taxidermia) {
     res.render("modificarTaxidermia", {
       useNav: true,
+      piezas: piezasActivas,
       titulo: "Editar taxidermia",
       taxidermia,
       usuario: req.session.usuario,
@@ -361,3 +382,4 @@ app.listen(port, () => {
     `Corriendo en \x1b[35m'http://localhost:${port}'\x1b[30m crtl + click izq para ir\x1b[0m`
   );
 });
+

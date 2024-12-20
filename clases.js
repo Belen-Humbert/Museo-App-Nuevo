@@ -32,12 +32,12 @@ class Prestamo {
 
 class Taxidermia {
 
-    constructor(idTax, fechaM, obseTax, idPieza, baj = false) {
+    constructor(idTax, numPieza, fechaM, obseTax, baj = false) {
 
         this.idTaxidermia = idTax;
+        this.numeroPiezas = numPieza;
         this.fechaMantenimiento = fechaM;
         this.observacionTaxidermia = obseTax;
-        this.idPieza = idPieza;
         this.BajaTax = baj;
         this.class == "Taxidermia";
     }
@@ -47,7 +47,6 @@ class Usuario {
         this.nombre = nombre;
         this.usuario = usuario;
         this.pass = pass;
-        this.token = token;
         this.class = "Usuario";
     }
 }

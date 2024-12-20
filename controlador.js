@@ -169,9 +169,9 @@ function nuevaTaxi(nuevaTaxidermia) {
 
   let miTaxidermia = new Clases.Taxidermia(
     nuevaTaxidermia.NumeroRegistro,
+    nuevaTaxidermia.numeroPiezas,
     nuevaTaxidermia.FechaMantenimiento,
     nuevaTaxidermia.Observacion,
-    nuevaTaxidermia.idPieza
     );
 
   console.log('Registro de Taxidermia Creado:', miTaxidermia);

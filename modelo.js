@@ -259,7 +259,9 @@ function updateTaxidermia(taxidermiaActualizada) {
       indice = i;
     }
   }
+
   if (indice !== -1) {
+    taxidermia[indice].numeroPiezas = taxidermiaActualizada.numeroPiezas;
     taxidermia[indice].fechaMantenimiento = taxidermiaActualizada.fecha;
     taxidermia[indice].observacionTaxidermia = taxidermiaActualizada.observa;
 

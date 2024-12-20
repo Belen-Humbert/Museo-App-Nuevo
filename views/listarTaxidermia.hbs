@@ -34,8 +34,12 @@
                 <tr>
                     <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">N° Registro
                     </th>
-                    <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Fecha de
-                        Mantenimiento</th>
+                    <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Número Pieza
+                    </th>
+                    <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Nombre Pieza
+                    </th>
+                    <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Fecha de Mantenimiento
+                    </th>
                     <th class="py-2 px-2 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Observaciones
                     </th>
                     <th class="py-2 px-2 w-28 text-zinc-800 dark:text-zinc-200 transition-colors duration-200">Acciones
@@ -48,6 +52,8 @@
                     class="odd:bg-zinc-100 even:bg-zinc-200 dark:odd:bg-zinc-800 dark:even:bg-zinc-700 
                    {{#if @last}} border-b-0 {{else}} border-b border-zinc-300 dark:border-zinc-600 {{/if}} transition-colors duration-200">
                     <td class="py-2 px-2 text-center">{{this.idTaxidermia}}</td>
+                    <td class="py-2 px-2 text-center">{{this.numeroPiezas}}</td>
+                    <td class="py-2 px-2 text-center">{{this.nombrePieza}}</td>
                     <td class="py-2 px-2 text-center">{{this.fechaMantenimiento}}</td>
                     <td class="py-2 px-2 text-center">{{this.observacionTaxidermia}}</td>
                     <td class="p-3">
