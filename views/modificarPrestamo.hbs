@@ -22,13 +22,8 @@
       <div>
         <label for="numeroPiezas" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Número de
           piezas</label>
-        <input type="text" name="numeroPiezas" id="numeroPiezas" required
+        <input type="text" name="numeroPiezas" id="numeroPiezas" required value="{{prestamo.numeroPiezas}}"
           class="mt-2 block w-full rounded-md border-0 py-1.5 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
-          <Select name="piezaId" id="piezaId" required class="mt-2 block w-full rounded-md border-0 py-2 px-2 text-zinc-900 dark:text-zinc-300 bg-white dark:bg-zinc-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6">
-            {{#each piezas}}
-              <option value="{{this.NumeroRegistro}}">{{this.NumeroRegistro}} - {{this.NombrePieza}}</option>
-            {{/each}}
-          </Select>
       </div>
 
       <div>
@@ -94,7 +89,7 @@
 <div id="errorModal" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50" style="display: none;">
   <div
     class="border-[1px] border-blue-200 bg-blue-100 dark:bg-blue-800 dark:border-blue-500 rounded-lg text-black dark:text-gray-100 shadow-lg p-6 transition-colors duration-200 px-4 py-2 flex items-center space-x-4">
-    <p id="errorMessage"></p>
+    <ul id="errorList"></ul>
     <button class="close-button">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
         <path
@@ -121,36 +116,44 @@
     // Validaciones de los inputs
     if (!/^\d+$/.test(numeroPrestamo)) {
       valid = false;
-      messages.push("El número de préstamo debe ser un número entero positivo.");
+      messages.push("* El número de préstamo debe ser un número entero positivo.");
     }
-    if (!/^[a-zA-Z0-9\s]+$/.test(numeroPiezas)) {
+    if (!/^[0-9\s,]+$/.test(numeroPiezas)) {
       valid = false;
-      messages.push("El número de piezas solo puede contener caracteres alfanuméricos.");
+      messages.push("* El número de piezas solo puede contener caracteres alfanuméricos.");
     }
     if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;]+$/.test(eventoPrestamo)) {
       valid = false;
-      messages.push("El tipo de evento solo puede contener caracteres alfanuméricos.");
+      messages.push("* El evento solo puede contener caracteres alfanuméricos.");
     }
     if (fechaPrestamo === "") {
       valid = false;
-      messages.push("La fecha de préstamo es requerida.");
+      messages.push("* La fecha de préstamo es requerida.");
     }
     if (fechaDevolucion === "") {
       valid = false;
-      messages.push("La fecha de devolución es requerida.");
+      messages.push("* La fecha de devolución es requerida.");
     }
     if (!/^\d+$/.test(cantidad) || cantidad <= 0) {
       valid = false;
-      messages.push("La cantidad debe ser un número entero positivo.");
+      messages.push("* La cantidad debe ser un número entero positivo.");
     }
 
     // Enviar error
     if (!valid) {
       event.preventDefault();
       const errorModal = document.getElementById('errorModal');
-      const errorMessage = document.getElementById('errorMessage');
-      errorMessage.textContent = messages.join("\n");
-      errorModal.style.display = 'flex';
+      const errorList = document.getElementById('errorList');
+      errorList.innerHTML = ''; // Limpiar la lista de errores
+
+      messages.forEach(message => {
+        const li = document.createElement('li');
+        li.textContent = message;
+        errorList.appendChild(li);
+      });
+
+      errorModal.style.display = 'flex'; 'flex';
+
     } else {
       this.submit();
     }

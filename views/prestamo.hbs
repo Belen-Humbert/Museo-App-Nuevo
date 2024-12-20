@@ -98,9 +98,9 @@
       valid = false;
       messages.push("* El número de préstamo debe ser un número entero positivo.");
     }
-    if (!/^\d+$/.test(numeroPiezas)) {
+    if (!/^[0-9\s,]+$/.test(numeroPiezas)) {
       valid = false;
-      messages.push("* El número de piezas debe ser un número entero positivo.");
+      messages.push("* El número de piezas solo puede contener caracteres alfanuméricos.");
     }
     if (!/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ0-9\s.,;]+$/.test(eventoPrestamo)) {
       valid = false;
